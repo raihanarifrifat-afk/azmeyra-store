@@ -2411,3 +2411,6 @@ p{line-height:1.75}
  .welcome-close{top:10px;right:10px;width:35px;height:35px}
 }
 @media(prefers-reduced-motion:reduce){.welcome-overlay,.welcome-modal{animation:none!important;transition:none!important}}
+
+.welcome-brand-logo{display:block;width:clamp(125px,42%,190px);height:auto;max-height:52px;object-fit:contain;margin:0 auto 26px}
+@media(max-width:600px){.welcome-brand-logo{width:142px;max-height:42px;margin:0 auto 17px}}
