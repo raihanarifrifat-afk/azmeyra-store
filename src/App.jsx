@@ -131,20 +131,47 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
   const arrivals=[...products.filter(item=>item.tag==='New arrival'||item.tag==='Just in'),...products.filter(item=>item.tag!=='New arrival'&&item.tag!=='Just in')].slice(0,4);
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
   const homeCategories=CATEGORIES.filter(item=>['Salwar Kameez','Kurti','Western','Abaya & Burka'].includes(item.name));
+  const heroSlides=[
+    {category:'SOLID ABAYA',title:'Abaya An-Nuha',image:'https://images.pexels.com/photos/13791549/pexels-photo-13791549.jpeg?auto=compress&cs=tinysrgb&w=1200',alt:'Model wearing a refined modest abaya',link:'/shop?category=Abaya%20%26%20Burka',cta:'Explore drop'},
+    {category:'THE EVERYDAY EDIT',title:'Effortless co-ords',image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&auto=format&fit=crop&q=85',alt:'Contemporary women fashion collection',link:'/shop?category=Western',cta:'Shop the edit'},
+    {category:'THE SIGNATURE SET',title:'Made for your moments',image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200&auto=format&fit=crop&q=85',alt:'Elegant kurti collection',link:'/shop?category=Kurti',cta:'Discover more'}
+  ];
+  const [heroSlide,setHeroSlide]=useState(0);
+  useEffect(()=>{const timer=setInterval(()=>setHeroSlide(current=>(current+1)%heroSlides.length),6000);return()=>clearInterval(timer)},[]);
+  const activeHero=heroSlides[heroSlide];
+  const changeHero=direction=>setHeroSlide(current=>(current+direction+heroSlides.length)%heroSlides.length);
   return <>
-    <section className="hero-editorial hero-model-led">
-      <img className="hero-model-image" src="https://images.pexels.com/photos/20777172/pexels-photo-20777172.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Model wearing an elegant embroidered salwar kameez from the AZMEYRA collection"/>
-      <div className="hero-shade"/>
-      <div className="hero-frame">
-        <motion.div className="hero-copy" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.85,ease:[.2,.7,.2,1]}}>
-          <span className="eyebrow hero-eyebrow"><i/> THE AZMEYRA COLLECTION</span>
-          <h1>Made to be<br/><em>remembered.</em></h1>
-          <p>Thoughtfully chosen pieces for the days that become your favourite memories.</p>
-          <div className="hero-actions"><Link className="button button-cream hero-primary-cta" to="/shop">Explore the collection <ArrowUpRight/></Link></div>
-        </motion.div>
+    <section className="az-home-hero" aria-label="Featured AZMEYRA collection">
+      <div className="az-hero-intro">
+        <span className="az-hero-kicker">THE ART OF EVERYDAY ELEGANCE</span>
+        <h1>Experience the <em>AZMEYRA</em> edit.</h1>
+        <p>Thoughtfully selected fashion for every version of you.</p>
+        <div className="az-hero-dots" aria-label="Choose featured collection">
+          {heroSlides.map((slide,index)=><button key={slide.title} className={index===heroSlide?'active':''} onClick={()=>setHeroSlide(index)} aria-label={'Show '+slide.title}/>)}
+        </div>
+      </div>
+      <div className="az-hero-stage">
+        <AnimatePresence mode="wait">
+          <motion.div className="az-hero-backdrop" key={'back-'+activeHero.image} style={{backgroundImage:'url('+activeHero.image+')'}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.5}}/>
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
+          <motion.article className="az-hero-card" key={activeHero.title} initial={{opacity:0,y:22,scale:.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:-14,scale:.985}} transition={{duration:.45,ease:[.2,.7,.2,1]}}>
+            <img src={activeHero.image} alt={activeHero.alt} fetchPriority="high"/>
+            <div className="az-hero-card-shade"/>
+            <div className="az-hero-card-copy">
+              <span>{activeHero.category}</span>
+              <h2>{activeHero.title}</h2>
+              <Link to={activeHero.link}>{activeHero.cta} <ArrowRight size={18}/></Link>
+            </div>
+          </motion.article>
+        </AnimatePresence>
+      </div>
+      <div className="az-hero-controls">
+        <button onClick={()=>changeHero(-1)} aria-label="Previous collection"><ChevronLeft/></button>
+        <span><b>{String(heroSlide+1).padStart(2,'0')}</b> / {String(heroSlides.length).padStart(2,'0')}</span>
+        <button onClick={()=>changeHero(1)} aria-label="Next collection"><ChevronRight/></button>
       </div>
     </section>
-
     <motion.section className="section-block category-section homepage-category-section" {...reveal}>
       <SectionHeading eyebrow="FIND YOUR FAVOURITE" title="Shop by category." link="/shop" linkText="View all categories"/>
       <div className="category-grid homepage-category-grid">
