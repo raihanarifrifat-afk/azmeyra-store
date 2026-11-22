@@ -93,16 +93,31 @@ function App() {
 
       </div>
     </main> : <main id="top">
-      <section className="hero-editorial">
+      <section className="hero-editorial hero-reimagined">
         <div className="hero-editorial-copy">
-          <p className="eyebrow">AZMEYRA · THE NEW EDIT</p>
-          <h1>Quiet style.<br/><em>Lasting impression.</em></h1>
-          <p className="hero-editorial-text">Thoughtful pieces for the moments that make you, you.</p>
-          <button className="editorial-cta" onClick={()=>choose('All')}>SHOP THE COLLECTION <ArrowRight size={17}/></button>
-          <span className="hero-edition">COLLECTION Nº 01 — 2026</span>
+          <p className="eyebrow">AZMEYRA / THE 2026 COLLECTION</p>
+          <h1>Wear what<br/><em>feels like you.</em></h1>
+          <p className="hero-editorial-text">A thoughtful wardrobe of beautiful details, effortless comfort and everyday elegance.</p>
+          <div className="hero-actions">
+            <button className="editorial-cta" onClick={()=>choose('All')}>EXPLORE THE COLLECTION <ArrowRight size={17}/></button>
+            <span className="hero-edition">DESIGNED FOR YOUR EVERYDAY</span>
+          </div>
         </div>
+        <div className="hero-type-art" aria-hidden="true">
+          <span className="hero-art-index">EST. WITH ELEGANCE · BD</span>
+          <span className="hero-art-serif">A</span>
+          <span className="hero-art-word">AZMEYRA</span>
+          <span className="hero-art-caption">ELEGANCE IN EVERY LOOK</span>
+          <span className="hero-art-orbit"></span>
+        </div>
+        <div className="hero-bottom-line"><span>01 — NEW SEASON</span><span>THOUGHTFULLY SELECTED · BEAUTIFULLY WORN</span><span>SCROLL TO EXPLORE ↓</span></div>
       </section>
       <section className="brand-marquee" aria-label="AZMEYRA brand message"><div>LESS, BUT LOVELIER <span>✳</span> ELEGANCE IN EVERY LOOK <span>✳</span> MADE FOR YOUR MOMENTS <span>✳</span> LESS, BUT LOVELIER <span>✳</span> ELEGANCE IN EVERY LOOK <span>✳</span></div></section>
+      <section className="service-strip">
+        <div><Truck/><span><b>DELIVERY ACROSS BANGLADESH</b><small>Carefully packed to your door</small></span></div>
+        <div><RotateCcw/><span><b>EASY EXCHANGE</b><small>7-day exchange support</small></span></div>
+        <div><ShieldCheck/><span><b>THOUGHTFUL QUALITY</b><small>Pieces selected with care</small></span></div>
+      </section>
       <section className="category-editorial">
         <div className="category-editorial-heading"><p className="eyebrow">FIND YOUR WAY</p><h2>Explore the <em>edits.</em></h2><p>A considered collection for every version of you.</p></div>
         <div className="category-editorial-grid">
