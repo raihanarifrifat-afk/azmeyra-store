@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import brandLogo from './assets/azmeyra-logo.svg';
 import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -218,23 +218,24 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
         <button onClick={()=>changeHero(1)} aria-label="Next collection"><ChevronRight/></button>
       </div>
     </section>
-    <motion.section className="section-block category-section homepage-category-section" {...reveal}>
-      <SectionHeading eyebrow="FIND YOUR FAVOURITE" title="Shop by category." link="/shop" linkText="View all categories"/>
-      <div className="category-grid homepage-category-grid">
-        {homeCategories.map((category,index)=><motion.div key={category.name} className="category-reveal" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.15}} transition={{duration:.55,delay:index*.08}}>
-          <Link className="category-card" to={'/shop?category='+encodeURIComponent(category.name)}>
-            <img src={category.image+'&auto=format&fit=crop&q=85'} alt={category.name} loading="lazy"/>
-            <span className="category-overlay"/>
-            <span className="category-title">{category.name}<ArrowUpRight/></span>
-          </Link>
-        </motion.div>)}
+    <section className="az-collections" aria-label="Shop collections">
+      <div className="az-collections-intro">
+        <span className="eyebrow">THE AZMEYRA EDIT</span>
+        <h2>Find your <em>favourite</em> collection.</h2>
+        <p>Thoughtfully selected styles for everyday wear and special moments.</p>
       </div>
-    </motion.section>
-
-    <motion.section className="section-block arrivals-section homepage-arrivals-section" {...reveal}>
-      <SectionHeading eyebrow="FRESH FROM THE EDIT" title="New arrivals." link="/shop" linkText="Shop all new arrivals"/>
-      <ProductGrid products={arrivals} wishlist={wishlist} onToggleWishlist={onToggleWishlist} onAdd={onAdd}/>
-    </motion.section>
+      {[
+        {name:'Salwar Kameez',title:'Three Piece Collection',eyebrow:'LOCAL · INDIAN · PAKISTANI'},
+        {name:'Kurti',title:'Kurti Collection',eyebrow:'EASY EVERYDAY STYLE'},
+        {name:'Abaya & Burka',title:'Modest Wear Collection',eyebrow:'GRACE IN EVERY DETAIL'},
+        {name:'Western',title:'Contemporary Collection',eyebrow:'A MODERN EDIT'},
+        {name:'Gown',title:'Occasion Collection',eyebrow:'MADE FOR YOUR MOMENTS'},
+        {name:'Accessories',title:'Finishing Touches',eyebrow:'THE LITTLE DETAILS'}
+      ].map(collection=>{
+        const items=products.filter(item=>item.category===collection.name&&!/saree/i.test(item.name));
+        return items.length>0?<CollectionRail key={collection.name} collection={collection} products={items} wishlist={wishlist} onToggleWishlist={onToggleWishlist} onAdd={onAdd}/>:null;
+      })}
+    </section>
 
     <section className="benefit-band homepage-benefit-band" aria-label="Shopping benefits">
       <div className="benefit-item"><span className="benefit-icon"><Truck/></span><div><b>Delivery across Bangladesh</b><small>Carefully packed, right to your door</small></div></div>
@@ -264,6 +265,28 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
     </section>
     <Newsletter/>
   </>;
+}
+
+
+function CollectionRail({collection,products,wishlist,onToggleWishlist,onAdd}){
+  const rail=useRef(null);
+  const move=direction=>rail.current?.scrollBy({left:direction*rail.current.clientWidth*.78,behavior:'smooth'});
+  return <section className="az-collection-row">
+    <div className="az-collection-heading">
+      <div><span className="eyebrow">{collection.eyebrow}</span><h2>{collection.title}</h2><small>{collection.name}</small></div>
+      <Link to={'/shop?category='+encodeURIComponent(collection.name)} className="az-view-all">View all <ArrowUpRight size={15}/></Link>
+    </div>
+    <div className="az-collection-track-wrap">
+      <button className="az-rail-arrow az-rail-prev" onClick={()=>move(-1)} aria-label={'Previous '+collection.title}><ChevronLeft/></button>
+      <div className="az-collection-track" ref={rail}>
+        {products.map(product=><div className="az-collection-product" key={product.id}>
+          <ProductCard product={product} wished={wishlist.includes(product.id)} onToggle={()=>onToggleWishlist(product.id)} onAdd={()=>onAdd(product)}/>
+        </div>)}
+      </div>
+      <button className="az-rail-arrow az-rail-next" onClick={()=>move(1)} aria-label={'Next '+collection.title}><ChevronRight/></button>
+    </div>
+    <div className="az-collection-footer"><Link to={'/shop?category='+encodeURIComponent(collection.name)}>Explore collection <ArrowRight size={14}/></Link></div>
+  </section>;
 }
 
 function SectionHeading({eyebrow,title,link,linkText='Explore all'}){return <div className="section-heading"><div><span className="eyebrow">{eyebrow}</span><h2>{title}</h2></div>{link&&<Link className="text-link" to={link}>{linkText}<ArrowUpRight/></Link>}</div>}
