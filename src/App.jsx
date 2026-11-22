@@ -117,7 +117,7 @@ function App(){
     </AnimatePresence>
     <SiteFooter/>
     <a className="floating-chat" href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp chat"><MessageCircle/></a>
-    <MobileDock cartCount={cartCount}/>
+    <MobileDock cartCount={cartCount} onMenu={()=>setMobileMenu(value=>!value)}/>
     <CartDrawer open={cartOpen} cart={cart} total={cartTotal} onClose={()=>setCartOpen(false)} onQuantity={setQuantity} onRemove={removeFromCart}/>
     <AnimatePresence>{toast && <motion.div className="toast-message" initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} exit={{opacity:0,y:14}}><Check size={16}/>{toast}</motion.div>}</AnimatePresence>
   </div>;
@@ -125,7 +125,13 @@ function App(){
 
 function AnnouncementBar(){return <div className="announcement"><span>COMPLIMENTARY DELIVERY ON ORDERS OVER ৳5,000</span><span className="announcement-note">A LITTLE SOMETHING, JUST FOR YOU</span></div>}
 
-function MobileDock({cartCount}){return <nav className="mobile-dock" aria-label="Quick navigation"><NavLink to="/"><span className="dock-symbol">⌂</span>Home</NavLink><NavLink to="/shop"><Search/>Shop</NavLink><NavLink to="/wishlist"><Heart/>Saved</NavLink><NavLink to="/cart"><ShoppingBag/>Bag <b>{cartCount}</b></NavLink></nav>}
+function MobileDock({cartCount,onMenu}){return <nav className="mobile-dock" aria-label="Quick navigation">
+  <NavLink to="/shop"><Grid2X2/>Category</NavLink>
+  <NavLink to="/about"><UsersRound/>Community</NavLink>
+  <NavLink to="/" className="dock-home"><House/></NavLink>
+  <a href="https://wa.me/" target="_blank" rel="noreferrer"><MessageCircle/>Chat</a>
+  <button type="button" onClick={onMenu}><Menu/>Menu</button>
+</nav>}
 
 function Home({products,wishlist,onToggleWishlist,onAdd}){
   const arrivals=[...products.filter(item=>item.tag==='New arrival'||item.tag==='Just in'),...products.filter(item=>item.tag!=='New arrival'&&item.tag!=='Just in')].slice(0,4);
