@@ -10,23 +10,31 @@ import {
 } from 'lucide-react';
 
 const CATEGORIES = [
-  { name:'Salwar Kameez', count:'01', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=900' },
-  { name:'Kurti', count:'02', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=900' },
-  { name:'Western', count:'03', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900' },
-  { name:'Gown', count:'04', image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=900' },
-  { name:'Abaya & Burka', count:'05', image:'https://images.unsplash.com/photo-1585487000160-6ebcf38cd4a3?w=900' },
-  { name:'Nightwear', count:'06', image:'https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=900' },
-  { name:'Accessories', count:'07', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=900' }
+  { name:'Abaya & Burka', count:'01', image:'https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160' },
+  { name:'Kaftan', count:'02', image:'https://jamila-eg.com/cdn/shop/files/Arabic-Calligraphy-Kaftan-001-Black00002.webp?v=1747655404' },
+  { name:'Karchupi', count:'03', image:'https://down-my.img.susercontent.com/file/sg-11134201-8261q-ml7gv0ery6fhff' },
+  { name:'Embroidery', count:'04', image:'https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg' },
+  { name:'Kurti', count:'05', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=900' },
+  { name:'Salwar Kameez', count:'06', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=900' },
+  { name:'Cover Up', count:'07', image:'https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg' },
+  { name:'Western', count:'08', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900' },
+  { name:'Gown', count:'09', image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=900' },
+  { name:'Accessories', count:'10', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=900' }
 ];
 
 const SEED = [
-  { id:2, name:'Ivory Embroidered Set', category:'Salwar Kameez', price:3200, tag:'Bestseller', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1000', images:['https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1200'], sizes:['S','M','L','XL'], colors:['Ivory','Sage'], stock:8, description:'An understated embroidered set that pairs delicate detailing with everyday comfort.', featured:true },
-  { id:3, name:'Everyday Linen Kurti', category:'Kurti', price:1450, tag:'Just in', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1000', images:['https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200'], sizes:['S','M','L','XL'], colors:['Sand','Olive'], stock:18, description:'An easy, breathable silhouette made for long days and relaxed plans.', featured:true },
+  { id:2, name:'Classic Black Embroidered Abaya', category:'Abaya & Burka', price:3490, tag:'Bestseller', image:'https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160', images:['https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160'], sizes:['S','M','L','XL'], colors:['Black'], stock:8, description:'A flowing black abaya with refined embroidered detailing for everyday elegance.', featured:true },
+  { id:3, name:'Everyday Linen Kurti', category:'Kurti', price:1450, tag:'Just in', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1000', images:['https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200'], sizes:['S','M','L','XL'], colors:['Sage','Sand'], stock:18, description:'An easy, breathable silhouette made for long days and relaxed plans.', featured:true },
   { id:4, name:'Modern Co-ord Set', category:'Western', price:2350, tag:'New arrival', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1000', images:['https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200'], sizes:['S','M','L'], colors:['Black','Stone'], stock:10, description:'A polished two-piece look for days when getting dressed should feel effortless.', featured:true },
   { id:5, name:'Midnight Occasion Gown', category:'Gown', price:4600, tag:'Limited edit', image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=1000', images:['https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=1200'], sizes:['S','M','L','XL'], colors:['Midnight','Wine'], stock:5, description:'A refined occasion silhouette with a little drama and a beautiful finish.', featured:true },
-  { id:6, name:'Classic Black Abaya', category:'Abaya & Burka', price:2750, tag:'Bestseller', image:'https://images.unsplash.com/photo-1585487000160-6ebcf38cd4a3?w=1000', images:['https://images.unsplash.com/photo-1585487000160-6ebcf38cd4a3?w=1200'], sizes:['S','M','L','XL'], colors:['Black','Mocha'], stock:9, description:'A clean, versatile abaya designed around a timeless and comfortable fit.', featured:true },
-  { id:7, name:'Soft Lounge Set', category:'Nightwear', price:1650, tag:'Everyday favourite', image:'https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=1000', images:['https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=1200'], sizes:['S','M','L','XL'], colors:['Blush','Cream'], stock:14, description:'Soft textures and an easy fit for slower mornings and restful evenings.', featured:false },
-  { id:8, name:'Pearl Detail Earrings', category:'Accessories', price:650, tag:'Small treasure', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1000', images:['https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200'], sizes:['One size'], colors:['Gold'], stock:22, description:'A delicate finishing touch that brings a soft glow to any look.', featured:false }
+  { id:6, name:'Classic Black Abaya', category:'Abaya & Burka', price:2750, tag:'Bestseller', image:'https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg', images:['https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg'], sizes:['S','M','L','XL'], colors:['Black','Mocha'], stock:9, description:'A clean, versatile abaya designed around a timeless and comfortable fit.', featured:true },
+  { id:7, name:'Soft Lounge Set', category:'Cover Up', price:1690, tag:'Everyday favourite', image:'https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg', images:['https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg'], sizes:['S','M','L','XL'], colors:['Taupe','Black'], stock:14, description:'A relaxed, modest layer for comfortable everyday styling.', featured:false },
+  { id:8, name:'Pearl Detail Earrings', category:'Accessories', price:650, tag:'Small treasure', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1000', images:['https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200'], sizes:['One size'], colors:['Gold'], stock:22, description:'A delicate finishing touch that brings a soft glow to any look.', featured:false },
+  { id:9, name:'Signature Black Kaftan', category:'Kaftan', price:3990, tag:'New arrival', image:'https://jamila-eg.com/cdn/shop/files/Arabic-Calligraphy-Kaftan-001-Black00002.webp?v=1747655404', images:['https://jamila-eg.com/cdn/shop/files/Arabic-Calligraphy-Kaftan-001-Black00002.webp?v=1747655404'], sizes:['M','L','XL'], colors:['Black'], stock:7, description:'A graceful kaftan with statement sleeve detailing and a fluid silhouette.', featured:true },
+  { id:10, name:'Pastel Karchupi Abaya', category:'Karchupi', price:4990, tag:'Hand-finished', image:'https://down-my.img.susercontent.com/file/sg-11134201-8261q-ml7gv0ery6fhff', images:['https://down-my.img.susercontent.com/file/sg-11134201-8261q-ml7gv0ery6fhff'], sizes:['S','M','L','XL'], colors:['Mauve','Ivory'], stock:6, description:'A detailed occasion abaya with delicate hand-finished embellishment.', featured:true },
+  { id:11, name:'Embroidered Neutral Abaya', category:'Embroidery', price:4290, tag:'Bestseller', image:'https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg', images:['https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg'], sizes:['S','M','L','XL'], colors:['Taupe','Stone'], stock:5, description:'Soft neutral tones with carefully placed embroidery.', featured:true },
+  { id:12, name:'Ivory Embroidered Three Piece', category:'Salwar Kameez', price:3200, tag:'New arrival', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1000', images:['https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1200'], sizes:['S','M','L','XL'], colors:['Ivory','Sage'], stock:8, description:'An understated three-piece set with delicate detailing and everyday comfort.', featured:true },
+  { id:13, name:'Pastel Kaftan Cover Up', category:'Cover Up', price:1990, tag:'Easy layer', image:'https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg', images:['https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg'], sizes:['S','M','L'], colors:['Taupe','Black'], stock:11, description:'A lightweight open layer designed to style over everyday outfits.', featured:false }
 ];
 
 const money = value => '৳' + Number(value || 0).toLocaleString('en-BD');
@@ -38,7 +46,7 @@ const reveal = { initial:'hidden', whileInView:'visible', viewport:{once:true,am
 function App(){
   const location = useLocation();
   const navigate = useNavigate();
-  const [products,setProducts] = useState(()=>readStore('az-products',SEED).filter(item=>item.category!=='Saree'&&!/saree/i.test(item.name)));
+  const [products,setProducts] = useState(()=>{ const saved=readStore('az-products',[]); const merged=new Map(SEED.map(item=>[item.id,item])); saved.filter(item=>item.category!=='Saree'&&!/saree/i.test(item.name)).forEach(item=>merged.set(item.id,{...merged.get(item.id),...item,image:item.image||merged.get(item.id)?.image})); return [...merged.values()]; });
   const [cart,setCart] = useState(()=>readStore('az-cart',[]));
   const [wishlist,setWishlist] = useState(()=>readStore('az-wish',[]));
   const [orders,setOrders] = useState(()=>readStore('az-orders',[]));
