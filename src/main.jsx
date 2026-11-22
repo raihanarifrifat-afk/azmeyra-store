@@ -101,11 +101,6 @@ function App() {
           <button className="editorial-cta" onClick={()=>choose('All')}>SHOP THE COLLECTION <ArrowRight size={17}/></button>
           <span className="hero-edition">COLLECTION Nº 01 — 2026</span>
         </div>
-        <div className="hero-editorial-visual">
-          <img src={photo('photo-1610030469983-98e550d6193c',1500)} alt="AZMEYRA new season fashion collection"/>
-          <div className="hero-visual-caption"><span>THE ART OF GETTING DRESSED</span><span>01 / 03</span></div>
-          <div className="hero-vertical-word">AZMEYRA</div>
-        </div>
       </section>
       <section className="brand-marquee" aria-label="AZMEYRA brand message"><div>LESS, BUT LOVELIER <span>✳</span> ELEGANCE IN EVERY LOOK <span>✳</span> MADE FOR YOUR MOMENTS <span>✳</span> LESS, BUT LOVELIER <span>✳</span> ELEGANCE IN EVERY LOOK <span>✳</span></div></section>
       <section className="category-editorial">
