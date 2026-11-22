@@ -2089,3 +2089,129 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .az-hero-card{width:68vw}
   .az-hero-peek{width:29vw}
 }
+
+
+/* Global readable typography scale — consistent across every route */
+:root{--type-body:16px;--type-small:14px;--type-label:11px}
+body{font-size:var(--type-body);line-height:1.65}
+button,input,textarea,select{font-size:inherit}
+p{line-height:1.75}
+.eyebrow{font-size:11px;letter-spacing:1.8px}
+.button{font-size:13px;letter-spacing:.45px}
+.text-link{font-size:13px}
+.announcement{font-size:10px;letter-spacing:1.45px}
+.announcement-note{font-size:9px}
+.primary-nav a{font-size:13px}
+.action-count{font-size:10px}
+.search-submit{font-size:13px}
+.search-suggestions>span{font-size:10px}
+.search-suggestions button{font-size:12px}
+.hero-copy>p{font-size:16px;line-height:1.75}
+.hero-caption{font-size:10px}
+.hero-vertical{font-size:10px}
+.intro-strip{font-size:10px;letter-spacing:1.5px}
+.benefit-item b{font-size:13px}
+.benefit-item small{font-size:12px}
+.section-heading>.text-link{font-size:12px}
+.category-number{font-size:10px}
+.product-badge{font-size:10px}
+.quick-add-button{font-size:12px}
+.product-meta{font-size:11px}
+.product-price{font-size:14px}
+.product-price del,.detail-price del{font-size:12px}
+.image-stamp{font-size:10px}
+.story-copy p,.campaign-content p,.newsletter-section p{font-size:15px;line-height:1.8}
+.campaign-side-note{font-size:10px}
+.newsletter-input input{font-size:15px}
+.newsletter-section form>label{font-size:10px}
+.newsletter-section form>small{font-size:11px}
+.footer-brand-column>p{font-size:13px;line-height:1.8}
+.footer-column>b{font-size:10px}
+.footer-column>a,.footer-column>span{font-size:13px}
+.footer-bottom{font-size:9px}
+.shop-intro>p{font-size:15px;line-height:1.75}
+.breadcrumb{font-size:11px}
+.shop-toolbar{font-size:13px}
+.filter-trigger,.sort-control{font-size:12px}
+.filter-heading>button,.filter-search input,.filter-group>b,.filter-option,.size-filter button,.price-range-label,.active-filters button{font-size:12px}
+.filter-option span,.price-range-label strong{font-size:11px}
+.detail-image-label{font-size:10px}
+.detail-rating{font-size:12px}
+.detail-description{font-size:15px;line-height:1.8}
+.option-label b,.option-label>span,.size-guide,.colour-options button,.size-options button,.detail-stock{font-size:13px}
+.service-notes>div{font-size:12px}
+.size-guide-panel p{font-size:12px}
+.cart-line-info>span,.cart-line-info>b,.quantity-control>span{font-size:12px}
+.order-summary>div:not(.summary-total){font-size:13px}
+.summary-total{font-size:14px}
+.summary-reassurance{font-size:11px}
+.checkout-form-card label,.contact-form label,.simple-panel label{font-size:12px}
+.checkout-form-card input,.checkout-form-card textarea,.contact-form input,.contact-form textarea,.contact-form select,.simple-panel input{font-size:14px}
+.payment-options button{font-size:12px}
+.payment-note{font-size:12px}
+.checkout-item>span,.checkout-item>b{font-size:12px}
+.checkout-item small{font-size:11px}
+.order-success p,.about-grid p,.values-row p,.contact-details small,.journal-grid p,.admin-preview p{font-size:14px;line-height:1.8}
+.values-row span,.journal-read{font-size:11px}
+.admin-sidebar>button,.admin-sidebar>a,.admin-stats span,.admin-row,.admin-row button,.admin-row select{font-size:12px}
+.drawer-subtotal{font-size:14px}
+.drawer-footer>p,.drawer-empty p,.drawer-view-cart,.toast-message{font-size:12px}
+
+/* Mobile: supporting labels stay legible without breaking the layout */
+@media(max-width:700px){
+  body{font-size:15px;line-height:1.65}
+  .announcement{min-height:32px;font-size:9px;letter-spacing:1.1px}
+  .announcement-note{font-size:9px}
+  .primary-nav a{font-size:13px}
+  .hero-copy>p{font-size:15px;line-height:1.75}
+  .hero-actions .button,.hero-actions .text-link{font-size:12px}
+  .hero-caption{font-size:9px;letter-spacing:.8px}
+  .hero-vertical{font-size:8px}
+  .intro-strip{font-size:9px;letter-spacing:.8px;gap:8px}
+  .benefit-item b{font-size:11px;line-height:1.4}
+  .benefit-item small{font-size:10px;line-height:1.45}
+  .section-heading>.text-link{font-size:11px}
+  .category-number{font-size:9px}
+  .category-title{font-size:21px}
+  .product-badge{font-size:9px;letter-spacing:.4px}
+  .quick-add-button{min-height:38px;font-size:11px}
+  .product-meta{font-size:10px;letter-spacing:.5px}
+  .product-name{font-size:20px;line-height:1.12}
+  .product-price{font-size:13px}
+  .story-copy p,.campaign-content p,.newsletter-section p{font-size:14px;line-height:1.75}
+  .footer-brand-column>p{font-size:12px}
+  .footer-column>b{font-size:9px}
+  .footer-column>a,.footer-column>span{font-size:12px}
+  .footer-bottom{font-size:8px}
+  .shop-intro>p{font-size:14px}
+  .breadcrumb{font-size:10px}
+  .shop-toolbar{font-size:11px}
+  .filter-trigger,.sort-control{font-size:11px}
+  .sort-control select{font-size:11px}
+  .filter-heading>button,.filter-search input,.filter-group>b,.filter-option{font-size:12px}
+  .filter-option span{font-size:10px}
+  .size-filter button{font-size:11px}
+  .empty-state p{font-size:13px}
+  .detail-information h1{font-size:clamp(38px,10vw,46px)}
+  .detail-description{font-size:14px;line-height:1.75}
+  .detail-price{font-size:17px}
+  .detail-rating,.option-label b,.option-label>span,.size-guide,.colour-options button,.size-options button{font-size:12px}
+  .detail-stock,.service-notes>div{font-size:11px}
+  .cart-line-info>span,.cart-line-info>b{font-size:11px}
+  .order-summary>div:not(.summary-total){font-size:12px}
+  .checkout-form-card label,.contact-form label,.simple-panel label{font-size:12px}
+  .checkout-form-card input,.checkout-form-card textarea,.contact-form input,.contact-form textarea,.contact-form select,.simple-panel input{font-size:14px}
+  .payment-options button{font-size:11px}
+  .payment-note{font-size:11px}
+  .checkout-item>span,.checkout-item>b{font-size:11px}
+  .checkout-item small{font-size:10px}
+  .order-success p,.about-grid p,.values-row p,.contact-details small,.journal-grid p{font-size:13px;line-height:1.75}
+  .journal-read{font-size:10px}
+  .admin-preview p{font-size:13px}
+}
+@media(max-width:380px){
+  .intro-strip{font-size:8px;letter-spacing:.45px}
+  .benefit-item b{font-size:10px}
+  .benefit-item small{font-size:9px}
+  .product-meta{font-size:9px}
+}
