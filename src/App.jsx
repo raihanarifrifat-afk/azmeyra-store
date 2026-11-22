@@ -233,9 +233,13 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
         <p>Thoughtfully selected styles for everyday wear and special moments.</p>
       </div>
       {[
-        {name:'Salwar Kameez',title:'Three Piece Collection',eyebrow:'THE THREE PIECE EDIT'},
+        {name:'Abaya & Burka',title:'Abaya Collection',eyebrow:'GRACE IN EVERY DETAIL'},
+        {name:'Kaftan',title:'Kaftan Collection',eyebrow:'FLOWING EVERYDAY ELEGANCE'},
+        {name:'Karchupi',title:'Karchupi Collection',eyebrow:'DETAILS MADE TO STAND OUT'},
+        {name:'Embroidery',title:'Embroidery Collection',eyebrow:'CRAFTED WITH CARE'},
         {name:'Kurti',title:'Kurti Collection',eyebrow:'EASY EVERYDAY STYLE'},
-        {name:'Abaya & Burka',title:'Modest Wear Collection',eyebrow:'GRACE IN EVERY DETAIL'},
+        {name:'Salwar Kameez',title:'Three Piece Collection',eyebrow:'THE THREE PIECE EDIT'},
+        {name:'Cover Up',title:'Cover Up Collection',eyebrow:'EASY LAYERING'},
         {name:'Western',title:'Contemporary Collection',eyebrow:'A MODERN EDIT'},
         {name:'Gown',title:'Occasion Collection',eyebrow:'MADE FOR YOUR MOMENTS'},
         {name:'Accessories',title:'Finishing Touches',eyebrow:'THE LITTLE DETAILS'}
