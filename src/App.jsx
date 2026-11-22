@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import brandLogo from './assets/azmeyra-logo.svg';
-import { supabase } from './lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+const supabase = createClient('https://qnfwciocoykmnvyrjasq.supabase.co', 'sb_publishable_oX02yAqCy5mgjUoFHCFMpg_1N0plQ-2');
 import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
@@ -62,7 +63,17 @@ function App(){
   useEffect(()=>writeStore('az-cart',cart),[cart]);
   useEffect(()=>writeStore('az-wish',wishlist),[wishlist]);
   useEffect(()=>writeStore('az-orders',orders),[orders]);
-  useEffect(()=>{\n    if(!supabase) return;\n    let alive=true;\n    (async()=>{\n      const {data,error}=await supabase.from('products').select('id,name,description,price,images,sizes,colors,stock,tag,categories(name)').eq('is_active',true).order('created_at',{ascending:false});\n      if(error){console.error('AZMEYRA product sync:',error.message);return;}\n      if(!alive||!data?.length)return;\n      setProducts(data.map(p=>({id:p.id,name:p.name,category:p.categories?.name||'Collection',price:Number(p.price),tag:p.tag||'',image:p.images?.[0]||'',images:p.images||[],sizes:p.sizes||[],colors:p.colors||[],stock:p.stock,description:p.description||'',featured:Boolean(p.tag)})));\n    })();\n    return()=>{alive=false;};\n  },[]);
+  useEffect(()=>{
+    if(!supabase) return;
+    let alive=true;
+    (async()=>{
+      const {data,error}=await supabase.from('products').select('id,name,description,price,images,sizes,colors,stock,tag,categories(name)').eq('is_active',true).order('created_at',{ascending:false});
+      if(error){console.error('AZMEYRA product sync:',error.message);return;}
+      if(!alive||!data?.length)return;
+      setProducts(data.map(p=>({id:p.id,name:p.name,category:p.categories?.name||'Collection',price:Number(p.price),tag:p.tag||'',image:p.images?.[0]||'',images:p.images||[],sizes:p.sizes||[],colors:p.colors||[],stock:p.stock,description:p.description||'',featured:Boolean(p.tag)})));
+    })();
+    return()=>{alive=false;};
+  },[]);
   useEffect(()=>{ window.scrollTo({top:0,behavior:'smooth'}); setMobileMenu(false); setSearchOpen(false); },[location.pathname]);
   useEffect(()=>{ if(sessionStorage.getItem('az-welcome-seen')) return; const timer=setTimeout(()=>setWelcomeOpen(true),650); return ()=>clearTimeout(timer); },[]);
   const closeWelcome = () => { sessionStorage.setItem('az-welcome-seen','1'); setWelcomeOpen(false); };
