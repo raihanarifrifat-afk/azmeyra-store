@@ -1592,3 +1592,24 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  .az-hero-card{width:82vw;min-height:490px}
  .az-hero-intro h1{font-size:31px}
 }
+
+/* Keep the AZMEYRA wordmark exactly centered in the mobile header */
+@media(max-width:700px){
+  .header-inner{position:relative;grid-template-columns:38px minmax(0,1fr) 112px}
+  .brand-lockup{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:145px;
+    justify-content:center;
+    transform:translate(-50%,-50%);
+    z-index:2;
+  }
+  .brand-lockup img{display:block;width:142px;max-height:50px}
+  .header-actions{position:relative;z-index:3;grid-column:3;justify-self:end;gap:2px}
+}
+@media(max-width:380px){
+  .brand-lockup{width:130px}
+  .brand-lockup img{width:128px}
+  .header-actions .icon-button{width:31px;height:36px;padding:6px}
+}
