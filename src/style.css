@@ -176,8 +176,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .footer-top,.footer-bottom{width:calc(100% - 48px);max-width:var(--content);margin:0 auto}
 .footer-top{display:grid;grid-template-columns:1.45fr .7fr .85fr 1.25fr;gap:50px;padding-bottom:54px}
 .footer-brand-column{max-width:260px}
-.footer-logo{display:block;width:190px;padding:6px;background:var(--paper);mix-blend-mode:screen}
-.footer-logo img{width:100%;height:auto}
+.footer-logo{display:block;width:190px;padding:0;background:transparent}
+.footer-logo img{width:100%;height:auto;object-fit:contain}
 .footer-brand-column>p{max-width:230px;color:rgba(245,242,233,.63);font-size:10px;line-height:1.8}
 .social-links{display:flex;gap:9px;margin-top:18px}
 .social-links a{width:32px;height:32px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:50%;color:#eee}
