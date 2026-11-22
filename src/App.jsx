@@ -55,12 +55,15 @@ function App(){
   const [mobileMenu,setMobileMenu] = useState(false);
   const [cartOpen,setCartOpen] = useState(false);
   const [toast,setToast] = useState('');
+  const [welcomeOpen,setWelcomeOpen] = useState(false);
 
   useEffect(()=>writeStore('az-products',products),[products]);
   useEffect(()=>writeStore('az-cart',cart),[cart]);
   useEffect(()=>writeStore('az-wish',wishlist),[wishlist]);
   useEffect(()=>writeStore('az-orders',orders),[orders]);
   useEffect(()=>{ window.scrollTo({top:0,behavior:'smooth'}); setMobileMenu(false); setSearchOpen(false); },[location.pathname]);
+  useEffect(()=>{ if(sessionStorage.getItem('az-welcome-seen')) return; const timer=setTimeout(()=>setWelcomeOpen(true),650); return ()=>clearTimeout(timer); },[]);
+  const closeWelcome = () => { sessionStorage.setItem('az-welcome-seen','1'); setWelcomeOpen(false); };
   useEffect(()=>{ if(!toast) return undefined; const timer=setTimeout(()=>setToast(''),2600); return ()=>clearTimeout(timer); },[toast]);
 
   const cartCount = cart.reduce((sum,item)=>sum+item.qty,0);
@@ -125,6 +128,15 @@ function App(){
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </motion.main>
+    </AnimatePresence>
+    <AnimatePresence>
+      {welcomeOpen && <motion.div className="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onMouseDown={event=>{if(event.target===event.currentTarget)closeWelcome();}}>
+        <motion.section className="welcome-modal" initial={{opacity:0,y:24,scale:.97}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:18,scale:.98}} transition={{duration:.3}}>
+          <button className="welcome-close" onClick={closeWelcome} aria-label="Close welcome popup"><X/></button>
+          <div className="welcome-image"><img src="https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160" alt="AZMEYRA modest fashion collection"/></div>
+          <div className="welcome-copy"><span className="eyebrow">WELCOME TO AZMEYRA</span><h2 id="welcome-title">The art of<br/><em>everyday elegance.</em></h2><p>Thoughtfully selected fashion for every version of you. Discover a collection made to feel personal, effortless and beautifully yours.</p><button className="button button-dark" onClick={()=>{closeWelcome();navigate('/shop');}}>Explore the collection <ArrowRight/></button><button className="welcome-dismiss" onClick={closeWelcome}>Maybe later</button></div>
+        </motion.section>
+      </motion.div>}
     </AnimatePresence>
     <SiteFooter/>
     <a className="floating-chat" href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp chat"><MessageCircle/></a>
