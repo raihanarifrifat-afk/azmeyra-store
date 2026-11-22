@@ -225,7 +225,7 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
         <p>Thoughtfully selected styles for everyday wear and special moments.</p>
       </div>
       {[
-        {name:'Salwar Kameez',title:'Three Piece Collection',eyebrow:'LOCAL · INDIAN · PAKISTANI'},
+        {name:'Salwar Kameez',title:'Three Piece Collection',eyebrow:'THE THREE PIECE EDIT'},
         {name:'Kurti',title:'Kurti Collection',eyebrow:'EASY EVERYDAY STYLE'},
         {name:'Abaya & Burka',title:'Modest Wear Collection',eyebrow:'GRACE IN EVERY DETAIL'},
         {name:'Western',title:'Contemporary Collection',eyebrow:'A MODERN EDIT'},
