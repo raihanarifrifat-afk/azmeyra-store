@@ -2385,3 +2385,29 @@ p{line-height:1.75}
  .az-collection-footer{margin-top:8px}
  .az-collection-footer a{padding:10px 20px;font-size:8px}
 }
+
+
+/* First-visit welcome overlay */
+.welcome-overlay{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px;background:rgba(15,18,15,.62);backdrop-filter:blur(7px)}
+.welcome-modal{position:relative;width:min(860px,100%);min-height:440px;display:grid;grid-template-columns:.92fr 1.08fr;overflow:hidden;background:#fbfaf6;box-shadow:0 28px 100px rgba(0,0,0,.28)}
+.welcome-image{min-height:440px;background:#e8e2d7;overflow:hidden}
+.welcome-image img{width:100%;height:100%;min-height:440px;object-fit:cover;object-position:center 25%}
+.welcome-copy{align-self:center;padding:clamp(30px,5vw,62px);text-align:left}
+.welcome-copy h2{margin:17px 0 17px;font:500 clamp(40px,5vw,60px)/.94 var(--serif);letter-spacing:-.8px;color:var(--ink)}
+.welcome-copy h2 em{font-weight:400;color:var(--clay)}
+.welcome-copy p{margin:0 0 25px;color:#72766d;font-size:14px;line-height:1.85}
+.welcome-close{position:absolute;z-index:2;top:13px;right:13px;width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(39,55,46,.12);border-radius:50%;background:rgba(255,254,250,.94);color:var(--ink)}
+.welcome-close svg{width:18px;height:18px}
+.welcome-dismiss{display:block;margin:14px auto 0;padding:6px 10px;border:0;background:transparent;color:#77796f;font-size:11px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){
+ .welcome-overlay{padding:17px}
+ .welcome-modal{width:min(420px,100%);min-height:0;grid-template-columns:1fr;max-height:calc(100dvh - 34px);overflow:auto}
+ .welcome-image{min-height:0;height:220px}
+ .welcome-image img{min-height:0;height:100%;object-position:center 30%}
+ .welcome-copy{padding:25px 25px 23px;text-align:center}
+ .welcome-copy h2{font-size:39px;margin:12px 0}
+ .welcome-copy p{font-size:13px;line-height:1.65;margin-bottom:19px}
+ .welcome-copy .button{width:100%;min-height:46px}
+ .welcome-close{top:10px;right:10px;width:35px;height:35px}
+}
+@media(prefers-reduced-motion:reduce){.welcome-overlay,.welcome-modal{animation:none!important;transition:none!important}}
