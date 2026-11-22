@@ -579,3 +579,16 @@ body,.header,.newsletter,.product-detail-page{background:#fff;color:#171717}
 @media(prefers-reduced-motion:no-preference){
  .hero-image{transition:filter .5s ease}
 }
+
+
+/* Final contrast correction for the monochrome newsletter */
+.newsletter{background:#fff!important;color:#111!important}
+.newsletter .eyebrow{color:#555!important}
+.newsletter h2,.newsletter h2 em{color:#111!important}
+.newsletter>p:not(.eyebrow){color:#555!important}
+.newsletter form{border-bottom-color:#222!important}
+.newsletter input{color:#111!important}
+.newsletter input::placeholder{color:#777!important}
+.newsletter form button{color:#111!important}
+.newsletter:before,.newsletter:after{border-color:#e5e5e5!important;box-shadow:0 0 0 24px #00000005,0 0 0 48px #00000003!important}
+.newsletter .success{color:#333!important}
