@@ -10,18 +10,16 @@ import {
 } from 'lucide-react';
 
 const CATEGORIES = [
-  { name:'Saree', count:'01', image:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=900' },
-  { name:'Salwar Kameez', count:'02', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=900' },
-  { name:'Kurti', count:'03', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=900' },
-  { name:'Western', count:'04', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900' },
-  { name:'Gown', count:'05', image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=900' },
-  { name:'Abaya & Burka', count:'06', image:'https://images.unsplash.com/photo-1585487000160-6ebcf38cd4a3?w=900' },
-  { name:'Nightwear', count:'07', image:'https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=900' },
-  { name:'Accessories', count:'08', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=900' }
+  { name:'Salwar Kameez', count:'01', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=900' },
+  { name:'Kurti', count:'02', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=900' },
+  { name:'Western', count:'03', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900' },
+  { name:'Gown', count:'04', image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=900' },
+  { name:'Abaya & Burka', count:'05', image:'https://images.unsplash.com/photo-1585487000160-6ebcf38cd4a3?w=900' },
+  { name:'Nightwear', count:'06', image:'https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=900' },
+  { name:'Accessories', count:'07', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=900' }
 ];
 
 const SEED = [
-  { id:1, name:'Heritage Floral Saree', category:'Saree', price:2850, compareAt:3400, tag:'New arrival', image:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1000', images:['https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1200'], sizes:['Free size'], colors:['Plum','Ivory'], stock:12, description:'A graceful statement piece with rich detail and an effortless drape. Made for celebrations, gatherings and the moments worth remembering.', featured:true },
   { id:2, name:'Ivory Embroidered Set', category:'Salwar Kameez', price:3200, tag:'Bestseller', image:'https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1000', images:['https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=1200'], sizes:['S','M','L','XL'], colors:['Ivory','Sage'], stock:8, description:'An understated embroidered set that pairs delicate detailing with everyday comfort.', featured:true },
   { id:3, name:'Everyday Linen Kurti', category:'Kurti', price:1450, tag:'Just in', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1000', images:['https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200'], sizes:['S','M','L','XL'], colors:['Sand','Olive'], stock:18, description:'An easy, breathable silhouette made for long days and relaxed plans.', featured:true },
   { id:4, name:'Modern Co-ord Set', category:'Western', price:2350, tag:'New arrival', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1000', images:['https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200'], sizes:['S','M','L'], colors:['Black','Stone'], stock:10, description:'A polished two-piece look for days when getting dressed should feel effortless.', featured:true },
@@ -40,7 +38,7 @@ const reveal = { initial:'hidden', whileInView:'visible', viewport:{once:true,am
 function App(){
   const location = useLocation();
   const navigate = useNavigate();
-  const [products,setProducts] = useState(()=>readStore('az-products',SEED));
+  const [products,setProducts] = useState(()=>readStore('az-products',SEED).filter(item=>item.category!=='Saree'&&!/saree/i.test(item.name)));
   const [cart,setCart] = useState(()=>readStore('az-cart',[]));
   const [wishlist,setWishlist] = useState(()=>readStore('az-wish',[]));
   const [orders,setOrders] = useState(()=>readStore('az-orders',[]));
@@ -92,8 +90,8 @@ function App(){
       </div>
       <AnimatePresence>
         {searchOpen && <motion.div className="search-panel" initial={{opacity:0,y:-12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-12}}>
-          <form className="search-form" onSubmit={submitSearch}><Search/><input autoFocus value={search} onChange={event=>setSearch(event.target.value)} placeholder="Search sarees, kurtis, occasionwear..."/><button className="search-submit" type="submit">Search <ArrowUpRight/></button><button className="search-close icon-button" type="button" onClick={()=>setSearchOpen(false)} aria-label="Close search"><X/></button></form>
-          <div className="search-suggestions"><span>POPULAR SEARCHES</span>{['Saree','Kurti','Abaya & Burka','Occasionwear'].map(term=><button key={term} onClick={()=>{setSearch(term);navigate('/shop?search='+encodeURIComponent(term));setSearchOpen(false);}}>{term}</button>)}</div>
+          <form className="search-form" onSubmit={submitSearch}><Search/><input autoFocus value={search} onChange={event=>setSearch(event.target.value)} placeholder="Search suits, kurtis, occasionwear..."/><button className="search-submit" type="submit">Search <ArrowUpRight/></button><button className="search-close icon-button" type="button" onClick={()=>setSearchOpen(false)} aria-label="Close search"><X/></button></form>
+          <div className="search-suggestions"><span>POPULAR SEARCHES</span>{['Salwar Kameez','Kurti','Abaya & Burka','Occasionwear'].map(term=><button key={term} onClick={()=>{setSearch(term);navigate('/shop?search='+encodeURIComponent(term));setSearchOpen(false);}}>{term}</button>)}</div>
         </motion.div>}
       </AnimatePresence>
     </header>
@@ -132,10 +130,10 @@ function MobileDock({cartCount}){return <nav className="mobile-dock" aria-label=
 function Home({products,wishlist,onToggleWishlist,onAdd}){
   const arrivals=[...products.filter(item=>item.tag==='New arrival'||item.tag==='Just in'),...products.filter(item=>item.tag!=='New arrival'&&item.tag!=='Just in')].slice(0,4);
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
-  const homeCategories=CATEGORIES.filter(item=>['Saree','Salwar Kameez','Kurti','Abaya & Burka'].includes(item.name));
+  const homeCategories=CATEGORIES.filter(item=>['Salwar Kameez','Kurti','Western','Abaya & Burka'].includes(item.name));
   return <>
     <section className="hero-editorial hero-model-led">
-      <img className="hero-model-image" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=2000&auto=format&fit=crop&q=90" alt="Model wearing an elegant traditional outfit from the AZMEYRA collection"/>
+      <img className="hero-model-image" src="https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=2000&auto=format&fit=crop&q=90" alt="Model wearing an elegant embroidered salwar kameez from the AZMEYRA collection"/>
       <div className="hero-shade"/>
       <div className="hero-frame">
         <motion.div className="hero-copy" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.85,ease:[.2,.7,.2,1]}}>
