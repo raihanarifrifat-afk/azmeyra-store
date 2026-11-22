@@ -72,7 +72,6 @@ function App() {
   const toggleWish = id => setWishlist(p=>p.includes(id)?p.filter(x=>x!==id):[...p,id]);
   const choose = c => {setCategory(c);setSelectedProduct(null);setSearchOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>document.getElementById('shop')?.scrollIntoView({behavior:'smooth',block:'start'}),120);};
   return <>
-    <div className="announcement">A LITTLE LUXURY, DELIVERED TO YOUR DOOR <span>✦</span> FREE DELIVERY ON ORDERS OVER ৳3,500</div>
     <header className="header">
       <button className="icon-btn mobile-menu" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Open menu">{menuOpen?<X/>:<Menu/>}</button>
       <nav className={`nav left-nav ${menuOpen?'show':''}`}>
