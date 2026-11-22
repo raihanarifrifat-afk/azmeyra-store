@@ -2328,3 +2328,60 @@ p{line-height:1.75}
   .homepage-arrivals-section .wishlist-button{top:8px;right:8px;width:34px;height:34px}
   .homepage-arrivals-section .quick-add-button{left:8px;right:8px;bottom:8px;min-height:38px;font-size:10px}
 }
+
+
+/* AZMEYRA business-led collection carousels */
+.az-collections{padding:26px 0 8px;background:#fff}
+.az-collections-intro{max-width:var(--content);width:calc(100% - 48px);margin:0 auto 48px;padding:30px 0 24px;border-bottom:1px solid #e7e7e4}
+.az-collections-intro h2{margin:10px 0 8px;font:500 clamp(34px,4vw,54px)/1 var(--serif);letter-spacing:-.7px;color:#111}
+.az-collections-intro h2 em{font-weight:400;color:#777}
+.az-collections-intro p{margin:0;color:#777;font-size:15px}
+.az-collection-row{width:calc(100% - 48px);max-width:var(--content);margin:0 auto 54px}
+.az-collection-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:19px;padding-bottom:13px;border-bottom:1px solid #e8e8e5}
+.az-collection-heading .eyebrow{font-size:9px;letter-spacing:2px;color:#777}
+.az-collection-heading h2{margin:7px 0 4px;font:500 clamp(24px,2.6vw,34px)/1.05 var(--serif);color:#111}
+.az-collection-heading small{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:#888}
+.az-view-all{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#111;border-bottom:1px solid #aaa;padding:0 0 7px}
+.az-collection-track-wrap{position:relative}
+.az-collection-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 54px)/4);gap:18px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 1px 12px}
+.az-collection-track::-webkit-scrollbar{display:none}
+.az-collection-product{min-width:0;scroll-snap-align:start}
+.az-collection-product .product-card{height:100%;padding:0 0 12px;border:1px solid #ededeb;background:#fff}
+.az-collection-product .product-image-wrap{border-radius:0;overflow:hidden;background:#eee}
+.az-collection-product .product-image{aspect-ratio:.76/1}
+.az-collection-product .product-meta{padding:0 12px;margin-top:12px;font-size:9px;letter-spacing:1px}
+.az-collection-product .product-name{display:block;padding:0 12px;margin-top:7px;font:500 18px/1.18 var(--serif);min-height:42px}
+.az-collection-product .product-price{padding:0 12px;margin-top:8px;font-size:14px}
+.az-collection-product .product-badge{top:11px;left:11px}
+.az-collection-product .wishlist-chip{top:10px;right:10px}
+.az-collection-product .quick-add-button{left:10px;right:10px;bottom:10px}
+.az-rail-arrow{position:absolute;z-index:3;top:42%;width:38px;height:38px;border:1px solid #e4e4e1;border-radius:50%;background:rgba(255,255,255,.96);display:grid;place-items:center;box-shadow:0 3px 12px rgba(0,0,0,.08);transition:transform .2s,background .2s}
+.az-rail-arrow:hover{transform:scale(1.08);background:#111;color:#fff}
+.az-rail-prev{left:-17px}.az-rail-next{right:-17px}
+.az-collection-footer{display:flex;justify-content:center;margin-top:12px}
+.az-collection-footer a{display:inline-flex;align-items:center;gap:12px;padding:12px 25px;border:1px solid #d9d9d5;border-radius:30px;font-size:9px;letter-spacing:1.7px;text-transform:uppercase;transition:all .25s}
+.az-collection-footer a:hover{background:#111;color:#fff;border-color:#111}
+@media(max-width:700px){
+ .az-collections{padding-top:10px}
+ .az-collections-intro{width:calc(100% - 34px);margin-bottom:34px;padding:23px 0 19px}
+ .az-collections-intro h2{font-size:34px}
+ .az-collections-intro p{font-size:13px;line-height:1.5}
+ .az-collection-row{width:calc(100% - 34px);margin-bottom:38px}
+ .az-collection-heading{margin-bottom:13px}
+ .az-collection-heading h2{font-size:23px}
+ .az-collection-heading small{font-size:8px;letter-spacing:1px}
+ .az-collection-heading .eyebrow{font-size:8px}
+ .az-view-all{font-size:8px;gap:4px;padding-bottom:5px}
+ .az-collection-track{grid-auto-columns:calc((100% - 24px)/2.15);gap:11px;padding-bottom:8px}
+ .az-collection-product .product-image{aspect-ratio:.69/1}
+ .az-collection-product .product-meta{padding:0 8px;margin-top:9px;font-size:8px}
+ .az-collection-product .product-name{padding:0 8px;font-size:15px;min-height:36px}
+ .az-collection-product .product-price{padding:0 8px;font-size:13px}
+ .az-collection-product .product-badge{top:7px;left:7px;padding:6px 7px;font-size:8px}
+ .az-collection-product .wishlist-chip{top:7px;right:7px;width:31px;height:31px}
+ .az-collection-product .quick-add-button{left:7px;right:7px;bottom:7px;min-height:34px;font-size:9px}
+ .az-rail-arrow{width:31px;height:31px;top:39%}
+ .az-rail-prev{left:-10px}.az-rail-next{right:-10px}
+ .az-collection-footer{margin-top:8px}
+ .az-collection-footer a{padding:10px 20px;font-size:8px}
+}
