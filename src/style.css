@@ -2004,3 +2004,21 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .az-hero-card{width:78vw;min-height:0}
   .az-hero-intro h1{font-size:30px}
 }
+
+
+/* Compact mobile collection slider: keep the card in proportion */
+@media(max-width:700px){
+  .az-home-hero{padding:26px 0 28px}
+  .az-hero-intro{margin-bottom:20px}
+  .az-hero-stage{height:clamp(410px,122vw,490px);min-height:0}
+  .az-hero-card{width:min(74vw,330px);height:100%;min-height:0;max-height:none}
+  .az-hero-card-copy{left:18px;right:16px;bottom:19px}
+  .az-hero-card-copy h2{font-size:24px;margin:7px 0 12px}
+  .az-hero-card-copy a{min-height:40px;padding:0 16px}
+  .az-hero-controls{margin-top:17px;gap:16px}
+  .az-hero-controls>button{width:42px;height:42px}
+}
+@media(max-width:380px){
+  .az-hero-stage{height:420px}
+  .az-hero-card{width:76vw}
+}
