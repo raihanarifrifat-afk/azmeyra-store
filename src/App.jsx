@@ -445,7 +445,7 @@ function JournalPage(){const stories=[['The art of a thoughtful wardrobe','Build
 
 function AdminPage({products,setProducts,orders,setOrders,session,isAdmin,loading}){
   const [section,setSection]=useState('Overview');
-  const [email,setEmail]=useState('raihanarifrifat@gmail.com');
+  const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState('');
