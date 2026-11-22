@@ -4,8 +4,8 @@ import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } fro
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight,
-  Clock3, CreditCard, Heart, Mail, MapPin, Menu, MessageCircle, Minus,
-  PackageCheck, Plus, Search, ShieldCheck, ShoppingBag, SlidersHorizontal, Sparkles,
+  Clock3, CreditCard, Grid2X2, Heart, House, Mail, MapPin, Menu, MessageCircle, Minus,
+  PackageCheck, Plus, Search, ShieldCheck, ShoppingBag, SlidersHorizontal, Sparkles, UsersRound,
   Star, Trash2, Truck, UserRound, X
 } from 'lucide-react';
 
