@@ -1663,3 +1663,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .header-actions .account-link{right:8px}
   .mobile-dock a,.mobile-dock button{font-size:9px}
 }
+
+/* Remove the thin separator above the announcement strip */
+.announcement{border-top:0!important;box-shadow:none!important;margin-top:0!important}
+.site-shell::before,.announcement::before{display:none!important;content:none!important}
