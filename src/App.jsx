@@ -173,9 +173,12 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
   const homeCategories=CATEGORIES.filter(item=>['Salwar Kameez','Kurti','Western','Abaya & Burka'].includes(item.name));
   const heroSlides=[
-    {category:'SOLID ABAYA',title:'Abaya An-Nuha',image:'https://images.pexels.com/photos/13791549/pexels-photo-13791549.jpeg?auto=compress&cs=tinysrgb&w=1200',alt:'Model wearing a refined modest abaya',link:'/shop?category=Abaya%20%26%20Burka',cta:'Explore drop'},
-    {category:'THE EVERYDAY EDIT',title:'Effortless co-ords',image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&auto=format&fit=crop&q=85',alt:'Contemporary women fashion collection',link:'/shop?category=Western',cta:'Shop the edit'},
-    {category:'THE SIGNATURE SET',title:'Made for your moments',image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200&auto=format&fit=crop&q=85',alt:'Elegant kurti collection',link:'/shop?category=Kurti',cta:'Discover more'}
+    {category:'THE ABAYA EDIT',title:'Abaya An-Nuha',image:'https://images.pexels.com/photos/13791549/pexels-photo-13791549.jpeg?auto=compress&cs=tinysrgb&w=1200',alt:'Model wearing a refined modest abaya',link:'/shop?category=Abaya%20%26%20Burka',cta:'Explore collection'},
+    {category:'THE MODEST SET',title:'Everyday elegance',image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&auto=format&fit=crop&q=85',alt:'Contemporary modest fashion styling',link:'/shop?category=Salwar%20Kameez',cta:'Discover the edit'},
+    {category:'THE KURTI STORY',title:'Grace in every detail',image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200&auto=format&fit=crop&q=85',alt:'Elegant traditional outfit collection',link:'/shop?category=Kurti',cta:'Shop kurtis'},
+    {category:'THE WESTERN EDIT',title:'A little more you',image:'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=1200&auto=format&fit=crop&q=85',alt:'Modern womenswear collection',link:'/shop?category=Western',cta:'Explore styles'},
+    {category:'OCCASION WEAR',title:'Made for the moment',image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=1200&auto=format&fit=crop&q=85',alt:'Elegant occasion wear fashion',link:'/shop?category=Gown',cta:'Find your look'},
+    {category:'THE FINISHING TOUCH',title:'Details that define you',image:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&auto=format&fit=crop&q=85',alt:'Fashion accessories and jewellery styling',link:'/shop?category=Accessories',cta:'View accessories'}
   ];
   const [heroSlide,setHeroSlide]=useState(0);
   useEffect(()=>{const timer=setInterval(()=>setHeroSlide(current=>(current+1)%heroSlides.length),6000);return()=>clearInterval(timer)},[]);
@@ -192,6 +195,8 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
         </div>
       </div>
       <div className="az-hero-stage">
+        <button className="az-hero-peek az-hero-peek-left" onClick={()=>changeHero(-1)} aria-label="Previous collection" style={{backgroundImage:'url('+heroSlides[(heroSlide+heroSlides.length-1)%heroSlides.length].image)'}}><span>0{((heroSlide+heroSlides.length-1)%heroSlides.length)+1}</span></button>
+        <button className="az-hero-peek az-hero-peek-right" onClick={()=>changeHero(1)} aria-label="Next collection" style={{backgroundImage:'url('+heroSlides[(heroSlide+1)%heroSlides.length].image)'}}><span>0{((heroSlide+1)%heroSlides.length)+1}</span></button>
         <AnimatePresence mode="wait">
           <motion.div className="az-hero-backdrop" key={'back-'+activeHero.image} style={{backgroundImage:'url('+activeHero.image+')'}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.5}}/>
         </AnimatePresence>
