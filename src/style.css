@@ -1972,3 +1972,35 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .mobile-dock .dock-home.active{color:#fff}
   .floating-chat{background:#111!important;color:#fff!important;border:1px solid #777!important}
 }
+
+
+/* Compact mobile collection slider — keep the card comfortably above the dock */
+@media(max-width:700px){
+  .az-home-hero{padding:27px 0 24px}
+  .az-hero-intro{margin-bottom:21px}
+  .az-hero-stage{
+    height:clamp(360px,112vw,455px);
+    min-height:0;
+    max-height:455px;
+    margin:0 auto;
+  }
+  .az-hero-backdrop{inset:5% 4%;filter:blur(15px);opacity:.28}
+  .az-hero-card{
+    width:min(76vw,320px);
+    height:100%;
+    min-height:0;
+    max-height:none;
+    border-radius:17px;
+  }
+  .az-hero-card>img{object-position:center 24%}
+  .az-hero-card-copy{left:18px;right:16px;bottom:18px}
+  .az-hero-card-copy h2{font-size:24px;margin:7px 0 12px}
+  .az-hero-card-copy a{min-height:38px;padding:0 15px;font-size:11px}
+  .az-hero-controls{margin-top:18px;gap:16px}
+  .az-hero-controls>button{width:42px;height:42px}
+}
+@media(max-width:380px){
+  .az-hero-stage{height:clamp(340px,108vw,405px)}
+  .az-hero-card{width:78vw;min-height:0}
+  .az-hero-intro h1{font-size:30px}
+}
