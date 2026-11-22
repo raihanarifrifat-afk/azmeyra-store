@@ -95,6 +95,10 @@ function App(){
       </AnimatePresence>
     </header>
 
+    <AnimatePresence>
+      {mobileMenu && <MobileMenu onClose={()=>setMobileMenu(false)}/>}
+    </AnimatePresence>
+
     <AnimatePresence mode="wait" initial={false}>
       <motion.main key={location.pathname} className="route-main" initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} transition={{duration:.22}}>
         <Routes>
@@ -122,14 +126,48 @@ function App(){
   </div>;
 }
 
-function MobileDock({cartCount,onMenu}){return <nav className="mobile-dock" aria-label="Quick navigation">
-  <NavLink to="/shop"><Grid2X2/>Category</NavLink>
-  <NavLink to="/about"><UsersRound/>Community</NavLink>
-  <NavLink to="/" className="dock-home"><House/></NavLink>
-  <a href="https://wa.me/" target="_blank" rel="noreferrer"><MessageCircle/>Chat</a>
-  <button type="button" onClick={onMenu}><Menu/>Menu</button>
-</nav>}
+function MobileMenu({onClose}){
+  const collections=['Abaya & Burka','Salwar Kameez','Kurti & Tops','Gowns','Nightwear','Accessories'];
+  const info=[['Our story','/about'],['Journal','/blog'],['Contact & support','/contact'],['My account','/account']];
+  return <motion.div className="az-menu-scrim" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={onClose}>
+    <motion.aside className="az-menu-panel" initial={{x:'100%'}} animate={{x:0}} exit={{x:'100%'}} transition={{type:'spring',damping:29,stiffness:250}} onClick={event=>event.stopPropagation()} aria-label="AZMEYRA menu">
+      <div className="az-menu-head">
+        <Link to="/" onClick={onClose}><img src={brandLogo} alt="AZMEYRA"/></Link>
+        <button className="az-menu-close" onClick={onClose} aria-label="Close menu"><X/></button>
+      </div>
+      <div className="az-menu-scroll">
+        <Link className="az-menu-community" to="/blog" onClick={onClose}>
+          <span className="az-menu-community-icon"><UsersRound/></span>
+          <span><strong>THE STYLE JOURNAL</strong><small>Stories, styling notes & new arrivals</small></span>
+          <ArrowRight/>
+        </Link>
+        <div className="az-menu-section-title"><span>EXPLORE COLLECTIONS</span><i>✦</i></div>
+        <div className="az-menu-collections">
+          {collections.map((name,index)=><Link key={name} to={'/shop?category='+encodeURIComponent(name)} onClick={onClose} className={index===0?'featured':''}>{name}<ArrowRight size={15}/></Link>)}
+        </div>
+        <div className="az-menu-edit">
+          <div className="az-menu-edit-top"><span>THE AZMEYRA EDIT</span><span>01 — 06</span></div>
+          <p>Considered pieces.<br/><em>Made for your moments.</em></p>
+          <Link to="/shop" onClick={onClose}>DISCOVER ALL PIECES <ArrowRight size={16}/></Link>
+        </div>
+        <div className="az-menu-section-title"><span>INFORMATION</span><i>✦</i></div>
+        <div className="az-menu-info">{info.map(([label,path])=><Link key={path} to={path} onClick={onClose}>{label}<ArrowRight size={14}/></Link>)}</div>
+        <a className="az-menu-help" href="https://wa.me/" target="_blank" rel="noreferrer">
+          <span className="az-menu-help-icon"><MessageCircle/></span><span><strong>Need a little help?</strong><small>Chat with our customer care</small></span><ArrowRight/>
+        </a>
+      </div>
+      <div className="az-menu-foot">AZMEYRA <span>—</span> ELEGANCE IN EVERY LOOK</div>
+    </motion.aside>
+  </motion.div>;
+}
 
+function MobileDock({cartCount,onMenu}){return <nav className="mobile-dock" aria-label="Quick navigation">
+  <NavLink to="/shop"><Grid2X2/><span>Discover</span></NavLink>
+  <NavLink to="/blog"><BookOpen/><span>Journal</span></NavLink>
+  <NavLink to="/" className="dock-home"><House/></NavLink>
+  <a href="https://wa.me/" target="_blank" rel="noreferrer"><MessageCircle/><span>Concierge</span></a>
+  <button type="button" onClick={onMenu}><Menu/><span>Menu</span></button>
+</nav>}
 function Home({products,wishlist,onToggleWishlist,onAdd}){
   const arrivals=[...products.filter(item=>item.tag==='New arrival'||item.tag==='Just in'),...products.filter(item=>item.tag!=='New arrival'&&item.tag!=='Just in')].slice(0,4);
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
