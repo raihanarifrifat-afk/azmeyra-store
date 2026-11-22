@@ -181,7 +181,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .footer-brand-column>p{max-width:230px;color:rgba(245,242,233,.63);font-size:10px;line-height:1.8}
 .social-links{display:flex;gap:9px;margin-top:18px}
 .social-links a{width:32px;height:32px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:50%;color:#eee}
-.social-links svg{width:14px;height:14px}
+.social-links svg{width:14px;height:14px}.social-ig{font-size:10px;font-weight:700;letter-spacing:-.5px}
 .footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
 .footer-column>b{margin:7px 0 6px;color:#cfb693;font-size:8px;letter-spacing:1.5px}
 .footer-column>a,.footer-column>span{color:rgba(245,242,233,.72);font-size:10px;transition:color .2s}
