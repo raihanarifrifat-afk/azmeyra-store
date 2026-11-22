@@ -1948,3 +1948,27 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:700px){
   .hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.52))}
 }
+
+
+/* Monochrome finish for the AZMEYRA signature mobile dock */
+@media(max-width:700px){
+  .mobile-dock{
+    background:linear-gradient(115deg,#fff 0%,#f4f4f4 52%,#fff 100%);
+    border-color:#bdbdbd;
+    box-shadow:0 10px 30px rgba(0,0,0,.14),inset 0 1px 0 #fff;
+  }
+  .mobile-dock::before{background:linear-gradient(transparent,#c7c7c7,transparent)}
+  .mobile-dock::after{color:#555}
+  .mobile-dock a,.mobile-dock button{color:#222}
+  .mobile-dock a.active:not(.dock-home){color:#000}
+  .mobile-dock .dock-home{
+    border-color:#777;
+    outline-color:#f7f7f7;
+    background:linear-gradient(145deg,#333,#050505);
+    color:#fff;
+    box-shadow:0 7px 18px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.2);
+  }
+  .mobile-dock .dock-home::after{border-color:rgba(255,255,255,.24)}
+  .mobile-dock .dock-home.active{color:#fff}
+  .floating-chat{background:#111!important;color:#fff!important;border:1px solid #777!important}
+}
