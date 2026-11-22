@@ -1123,3 +1123,48 @@ footer{background:#090909!important;color:#fff!important;padding:70px clamp(22px
 @media(max-width:390px){
   .header .brand img{width:clamp(116px,29vw,126px)}
 }
+
+
+/* Full-width text-only hero after removing the fashion photograph */
+.hero-editorial{
+  display:flex!important;
+  justify-content:center;
+  align-items:center;
+  min-height:620px;
+  background:#f4f4f2;
+  position:relative;
+}
+.hero-editorial-copy{
+  width:min(100%,1100px);
+  min-height:620px;
+  align-items:center;
+  text-align:center;
+  padding:100px 40px 90px;
+}
+.hero-editorial-copy:before{
+  left:7%!important;
+  top:12%!important;
+  width:210px!important;
+  height:210px!important;
+  opacity:.65;
+}
+.hero-editorial-copy h1{max-width:900px}
+.hero-editorial-text{max-width:440px!important}
+.hero-edition{margin-top:55px}
+@media(max-width:760px){
+  .hero-editorial{min-height:0}
+  .hero-editorial-copy{
+    width:100%;
+    min-height:420px;
+    padding:65px 22px 55px;
+    align-items:center;
+    text-align:center;
+  }
+  .hero-editorial-copy:before{
+    width:115px!important;height:115px!important;
+    left:auto!important;right:-48px!important;top:22px!important;
+  }
+  .hero-editorial-copy h1{font-size:clamp(43px,10vw,58px);max-width:100%}
+  .hero-editorial-text{max-width:310px!important}
+  .hero-edition{margin-top:35px}
+}
