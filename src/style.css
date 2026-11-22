@@ -1101,3 +1101,25 @@ footer{background:#090909!important;color:#fff!important;padding:70px clamp(22px
   .product .quick-add{transform:none;opacity:1}
   .category-editorial-card:active .category-editorial-image{transform:scale(1.025)}
 }
+
+
+/* Center the mobile AZMEYRA logo against the full viewport, not the free grid column */
+@media(max-width:760px){
+  .header{position:sticky;isolation:isolate}
+  .header .brand{
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    justify-self:auto!important;
+    width:max-content;
+    z-index:1;
+  }
+  .header .brand img{display:block;width:clamp(126px,30vw,150px);max-height:46px}
+  .header .mobile-menu,.header .header-actions{position:relative;z-index:2}
+}
+@media(max-width:390px){
+  .header .brand img{width:clamp(116px,29vw,126px)}
+}
