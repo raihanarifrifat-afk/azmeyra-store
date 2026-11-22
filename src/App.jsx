@@ -130,92 +130,46 @@ function AnnouncementBar(){return <div className="announcement"><span>COMPLIMENT
 function MobileDock({cartCount}){return <nav className="mobile-dock" aria-label="Quick navigation"><NavLink to="/"><span className="dock-symbol">⌂</span>Home</NavLink><NavLink to="/shop"><Search/>Shop</NavLink><NavLink to="/wishlist"><Heart/>Saved</NavLink><NavLink to="/cart"><ShoppingBag/>Bag <b>{cartCount}</b></NavLink></nav>}
 
 function Home({products,wishlist,onToggleWishlist,onAdd}){
-  const arrivals=products.filter(item=>item.tag==='New arrival' || item.tag==='Just in').slice(0,4);
+  const arrivals=[...products.filter(item=>item.tag==='New arrival'||item.tag==='Just in'),...products.filter(item=>item.tag!=='New arrival'&&item.tag!=='Just in')].slice(0,4);
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
+  const homeCategories=CATEGORIES.filter(item=>['Saree','Salwar Kameez','Kurti','Abaya & Burka'].includes(item.name));
   return <>
-    <section className="hero-editorial">
-      <div className="hero-photo" aria-hidden="true">
-        <svg className="hero-backdrop-art" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="az-emerald-cloth" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#244d39"/>
-              <stop offset=".42" stopColor="#123927"/>
-              <stop offset="1" stopColor="#06271d"/>
-            </linearGradient>
-            <linearGradient id="az-emerald-fold" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#52735a" stopOpacity=".12"/>
-              <stop offset=".48" stopColor="#071f18" stopOpacity=".72"/>
-              <stop offset="1" stopColor="#63806a" stopOpacity=".22"/>
-            </linearGradient>
-            <linearGradient id="az-champagne-cloth" x1="0" y1="0" x2="1" y2=".8">
-              <stop offset="0" stopColor="#fffdf7"/>
-              <stop offset=".4" stopColor="#eee3d0"/>
-              <stop offset=".76" stopColor="#d9c6a5"/>
-              <stop offset="1" stopColor="#f8f0e3"/>
-            </linearGradient>
-            <linearGradient id="az-sheer-cloth" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#fffefa" stopOpacity=".88"/>
-              <stop offset=".55" stopColor="#f5ead9" stopOpacity=".7"/>
-              <stop offset="1" stopColor="#fffefa" stopOpacity=".18"/>
-            </linearGradient>
-            <linearGradient id="az-gold-thread" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#9b713c" stopOpacity=".2"/>
-              <stop offset=".5" stopColor="#c7a36b"/>
-              <stop offset="1" stopColor="#f1dbac" stopOpacity=".28"/>
-            </linearGradient>
-          </defs>
-          <path d="M630 -40 C760 40 690 142 784 236 C884 338 782 430 891 540 C950 600 1003 650 1020 760 L1140 760 L1140 -40Z" fill="url(#az-emerald-cloth)"/>
-          <path d="M755 -30 C858 100 735 185 855 300 C965 406 845 518 1010 750 L1140 750 L1140 -30Z" fill="url(#az-emerald-fold)" opacity=".75"/>
-          <path d="M610 5 C770 126 677 222 790 327 C883 413 785 535 922 720" fill="none" stroke="#9c835b" strokeWidth="2" opacity=".48"/>
-          <path d="M714 -20 C815 105 735 190 851 302 C946 395 865 534 1035 720" fill="none" stroke="#d8bd8b" strokeWidth="1.4" opacity=".42"/>
-          <path d="M1100 -30 C1015 72 987 167 895 250 C808 328 841 408 760 493 C690 565 665 650 600 760 L1140 760Z" fill="url(#az-champagne-cloth)"/>
-          <path d="M1120 15 C1031 122 1010 193 912 275 C832 342 850 431 771 506 C708 566 688 651 638 740" fill="none" stroke="#fffdf7" strokeWidth="28" opacity=".5"/>
-          <path d="M1095 65 C1004 168 982 221 900 295 C818 370 844 445 755 541 C706 595 687 671 665 730" fill="none" stroke="#c8ad7e" strokeWidth="2" opacity=".62"/>
-          <path d="M1040 0 C965 118 951 182 865 261 C784 337 809 417 716 515 C648 587 631 664 584 730" fill="none" stroke="#fffefa" strokeWidth="9" opacity=".46"/>
-          <path d="M1100 270 C1000 359 969 412 877 466 C785 520 778 606 683 720 L1140 720Z" fill="url(#az-sheer-cloth)"/>
-          <path d="M1110 320 C1013 410 969 449 878 510 C805 560 780 637 719 720" fill="none" stroke="#fffefa" strokeWidth="3" opacity=".75"/>
-          <path d="M1110 355 C1018 441 982 480 890 537 C818 582 797 651 751 720" fill="none" stroke="url(#az-gold-thread)" strokeWidth="1.5"/>
-          <path d="M460 720 C590 648 675 641 782 651 C900 661 985 630 1100 576 L1100 720Z" fill="#f4ecdc" opacity=".78"/>
-          <path d="M465 720 C593 658 677 658 787 665 C904 673 1008 641 1100 600" fill="none" stroke="#c3a16b" strokeWidth="1.4" opacity=".65"/>
-          <path d="M696 -20 C761 75 733 140 776 199" fill="none" stroke="#fffefa" strokeWidth="2" opacity=".1"/>
-        </svg>
-      </div>
+    <section className="hero-editorial hero-model-led">
+      <img className="hero-model-image" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=2000&auto=format&fit=crop&q=90" alt="Model wearing an elegant traditional outfit from the AZMEYRA collection"/>
       <div className="hero-shade"/>
       <div className="hero-frame">
-        <motion.div className="hero-copy" initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:.8,ease:[.2,.7,.2,1]}}>
-          <span className="eyebrow hero-eyebrow"><i/> THE AZMEYRA EDIT · 2026</span>
+        <motion.div className="hero-copy" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.85,ease:[.2,.7,.2,1]}}>
+          <span className="eyebrow hero-eyebrow"><i/> THE AZMEYRA COLLECTION</span>
           <h1>Made to be<br/><em>remembered.</em></h1>
           <p>Thoughtfully chosen pieces for the days that become your favourite memories.</p>
-          <div className="hero-actions"><Link className="button button-cream" to="/shop">Explore the collection <ArrowUpRight/></Link><Link className="text-link text-link-light" to="/about">Discover our story <ArrowRight/></Link></div>
+          <div className="hero-actions"><Link className="button button-cream hero-primary-cta" to="/shop">Explore the collection <ArrowUpRight/></Link></div>
         </motion.div>
-        <div className="hero-caption"><span>01 / THE NEW SEASON</span><span>CRAFTED FOR YOUR MOMENTS</span></div>
       </div>
-      <div className="hero-vertical">ELEGANCE IN EVERY LOOK</div>
     </section>
 
-    <section className="intro-strip"><span>LESS, BUT LOVELIER</span><i/> <span>ELEGANCE IN EVERY LOOK</span><i/> <span>MADE FOR YOUR MOMENTS</span></section>
+    <motion.section className="section-block category-section homepage-category-section" {...reveal}>
+      <SectionHeading eyebrow="FIND YOUR FAVOURITE" title="Shop by category." link="/shop" linkText="View all categories"/>
+      <div className="category-grid homepage-category-grid">
+        {homeCategories.map((category,index)=><motion.div key={category.name} className="category-reveal" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.15}} transition={{duration:.55,delay:index*.08}}>
+          <Link className="category-card" to={'/shop?category='+encodeURIComponent(category.name)}>
+            <img src={category.image+'&auto=format&fit=crop&q=85'} alt={category.name} loading="lazy"/>
+            <span className="category-overlay"/>
+            <span className="category-title">{category.name}<ArrowUpRight/></span>
+          </Link>
+        </motion.div>)}
+      </div>
+    </motion.section>
 
-    <section className="benefit-band">
+    <motion.section className="section-block arrivals-section homepage-arrivals-section" {...reveal}>
+      <SectionHeading eyebrow="FRESH FROM THE EDIT" title="New arrivals." link="/shop" linkText="Shop all new arrivals"/>
+      <ProductGrid products={arrivals} wishlist={wishlist} onToggleWishlist={onToggleWishlist} onAdd={onAdd}/>
+    </motion.section>
+
+    <section className="benefit-band homepage-benefit-band" aria-label="Shopping benefits">
       <div className="benefit-item"><span className="benefit-icon"><Truck/></span><div><b>Delivery across Bangladesh</b><small>Carefully packed, right to your door</small></div></div>
       <div className="benefit-item"><span className="benefit-icon"><ShieldCheck/></span><div><b>Thoughtful quality</b><small>Pieces selected with care</small></div></div>
       <div className="benefit-item"><span className="benefit-icon"><PackageCheck/></span><div><b>Easy exchange</b><small>Friendly support when you need it</small></div></div>
     </section>
-
-    <motion.section className="section-block category-section" {...reveal}>
-      <SectionHeading eyebrow="FIND YOUR FEELING" title="A world of ways to wear." link="/shop" linkText="View all categories"/>
-      <div className="category-grid">
-        {CATEGORIES.map((category,index)=><Link className="category-card" to={'/shop?category='+encodeURIComponent(category.name)} key={category.name}>
-          <img src={category.image} alt={category.name} loading="lazy"/>
-          <span className="category-number">{category.count}</span><span className="category-overlay"/>
-          <span className="category-title">{category.name}<ArrowUpRight/></span>
-        </Link>)}
-      </div>
-    </motion.section>
-
-    <motion.section className="section-block arrivals-section" {...reveal}>
-      <SectionHeading eyebrow="FRESH FROM THE EDIT" title="New, and noteworthy." link="/shop" linkText="Shop new arrivals"/>
-      <ProductGrid products={arrivals.length?arrivals:products.slice(0,4)} wishlist={wishlist} onToggleWishlist={onToggleWishlist} onAdd={onAdd}/>
-    </motion.section>
 
     <section className="story-split">
       <div className="story-image"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1400" alt="A carefully styled fashion edit" loading="lazy"/><span className="image-stamp">THE AZMEYRA<br/>POINT OF VIEW</span></div>
@@ -237,7 +191,6 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
       <div className="campaign-content"><span className="eyebrow">A LITTLE SOMETHING FOR YOU</span><h2>Make room for<br/><em>lovely things.</em></h2><p>Explore the pieces that make everyday dressing feel special.</p><Link className="button button-cream" to="/shop">Shop the edit <ArrowUpRight/></Link></div>
       <span className="campaign-side-note">THE AZMEYRA EDIT / 2026</span>
     </section>
-
     <Newsletter/>
   </>;
 }
@@ -246,7 +199,7 @@ function SectionHeading({eyebrow,title,link,linkText='Explore all'}){return <div
 
 function ProductGrid({products,wishlist,onToggleWishlist,onAdd}){return <div className="product-grid">{products.map(product=><ProductCard key={product.id} product={product} wished={wishlist.includes(product.id)} onToggle={()=>onToggleWishlist(product.id)} onAdd={()=>onAdd(product)}/>)}</div>}
 
-function ProductCard({product,wished,onToggle,onAdd}){return <motion.article className="product-card" whileHover={{y:-5}} transition={{duration:.22}}>
+function ProductCard({product,wished,onToggle,onAdd}){return <motion.article className="product-card" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.14}} whileHover={{y:-5}} transition={{duration:.35}}>
   <div className="product-image-wrap"><Link className="product-image" to={'/product/'+product.id}><img src={product.image} alt={product.name} loading="lazy"/><span className="product-image-glow"/></Link>
     {product.tag&&<span className="product-badge">{product.tag}</span>}
     <button className={wished?'wishlist-chip is-active':'wishlist-chip'} onClick={onToggle} aria-label={wished?'Remove from wishlist':'Add to wishlist'}><Heart fill={wished?'currentColor':'none'}/></button>
