@@ -977,3 +977,15 @@ footer{background:#090909!important;color:#fff!important;padding:70px clamp(22px
  .newsletter{padding:65px 18px 75px!important}
 }
 @media(prefers-reduced-motion:reduce){.brand-marquee>div{animation:none}}
+
+
+/* Keep all fashion/product photography in its original full colour.
+   The monochrome treatment applies to the interface, not the garments or models. */
+.hero-image,
+.hero-editorial-visual > img,
+.story-photo img,
+.category-editorial-image,
+.category-editorial-card:hover .category-editorial-image,
+.editorial-feature-image img {
+  filter: none !important;
+}
