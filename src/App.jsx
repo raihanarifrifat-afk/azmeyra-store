@@ -73,7 +73,6 @@ function App(){
   const submitSearch = event => { event.preventDefault(); navigate('/shop?search='+encodeURIComponent(search.trim())); setSearchOpen(false); };
 
   return <div className="site-shell">
-    <AnnouncementBar/>
     <header className="site-header">
       <div className="header-inner">
         <button className="mobile-menu-button icon-button" aria-label="Open menu" onClick={()=>setMobileMenu(value=>!value)}>{mobileMenu?<X/>:<Menu/>}</button>
@@ -122,8 +121,6 @@ function App(){
     <AnimatePresence>{toast && <motion.div className="toast-message" initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} exit={{opacity:0,y:14}}><Check size={16}/>{toast}</motion.div>}</AnimatePresence>
   </div>;
 }
-
-function AnnouncementBar(){return <div className="announcement"><span>COMPLIMENTARY DELIVERY ON ORDERS OVER ৳5,000</span><span className="announcement-note">A LITTLE SOMETHING, JUST FOR YOU</span></div>}
 
 function MobileDock({cartCount,onMenu}){return <nav className="mobile-dock" aria-label="Quick navigation">
   <NavLink to="/shop"><Grid2X2/>Category</NavLink>
