@@ -3,7 +3,7 @@ import brandLogo from './assets/azmeyra-logo.svg';
 import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight,
+  ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Check, ChevronDown, ChevronLeft, ChevronRight,
   Clock3, CreditCard, Grid2X2, Heart, House, Mail, MapPin, Menu, MessageCircle, Minus,
   PackageCheck, Plus, Search, ShieldCheck, ShoppingBag, SlidersHorizontal, Sparkles, UsersRound,
   Star, Trash2, Truck, UserRound, X
