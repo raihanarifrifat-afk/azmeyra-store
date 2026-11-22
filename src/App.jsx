@@ -133,7 +133,7 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
   const homeCategories=CATEGORIES.filter(item=>['Salwar Kameez','Kurti','Western','Abaya & Burka'].includes(item.name));
   return <>
     <section className="hero-editorial hero-model-led">
-      <img className="hero-model-image" src="https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=2000&auto=format&fit=crop&q=90" alt="Model wearing an elegant embroidered salwar kameez from the AZMEYRA collection"/>
+      <img className="hero-model-image" src="https://images.pexels.com/photos/20777172/pexels-photo-20777172.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Model wearing an elegant embroidered salwar kameez from the AZMEYRA collection"/>
       <div className="hero-shade"/>
       <div className="hero-frame">
         <motion.div className="hero-copy" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.85,ease:[.2,.7,.2,1]}}>
