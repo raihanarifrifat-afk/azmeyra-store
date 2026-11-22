@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Search, ShoppingBag, Menu, X, Heart, ArrowRight, ChevronDown, Instagram, Facebook, Truck, RotateCcw, ShieldCheck, Plus, Minus, PackageCheck } from 'lucide-react';
 import './style.css';
@@ -32,6 +32,20 @@ function App() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [customer, setCustomer] = useState({name:'',phone:'',address:''});
   const [orderPrepared, setOrderPrepared] = useState(false);
+  useEffect(() => {
+    const items = document.querySelectorAll('.benefits > div, .product, .story-photo, .story-copy, .newsletter, .footer-top > div');
+    if (!('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+    items.forEach(item => { item.classList.add('scroll-reveal'); observer.observe(item); });
+    return () => observer.disconnect();
+  }, []);
   const shown = useMemo(() => {
     let list = products.filter(p => (category === 'All' || p.category === category) && p.name.toLowerCase().includes(search.toLowerCase()));
     if (sort === 'low') list.sort((a,b)=>a.price-b.price);
