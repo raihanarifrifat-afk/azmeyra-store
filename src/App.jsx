@@ -360,7 +360,7 @@ function Shop({products,wishlist,onToggleWishlist,onAdd}){
 
 function ProductDetail({products,wishlist,onToggleWishlist,onAdd}){
   const {id}=useParams();
-  const product=products.find(item=>item.id===Number(id));
+  const product=products.find(item=>String(item.id)===String(id));
   const [selectedSize,setSelectedSize]=useState('');
   const [selectedColor,setSelectedColor]=useState('');
   const [activeImage,setActiveImage]=useState(0);
