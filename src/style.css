@@ -1098,3 +1098,108 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .hero-caption{color:var(--ink-soft)}
   .hero-vertical{display:none}
 }
+
+
+/* Visibility fix + restrained motion: text must never be hidden */
+.hero-editorial .hero-copy,
+.hero-editorial .hero-copy .hero-eyebrow,
+.hero-editorial .hero-copy h1,
+.hero-editorial .hero-copy>p,
+.hero-editorial .hero-copy .hero-actions,
+.hero-editorial .hero-caption,
+.hero-editorial .hero-vertical{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none;
+}
+.hero-editorial .hero-copy .hero-eyebrow,
+.hero-editorial .hero-copy h1,
+.hero-editorial .hero-copy>p,
+.hero-editorial .hero-copy .hero-actions{
+  animation:azmeyraCopySettle .8s cubic-bezier(.2,.7,.2,1) both!important;
+}
+.hero-editorial .hero-copy h1{animation-delay:.12s!important}
+.hero-editorial .hero-copy>p{animation-delay:.24s!important}
+.hero-editorial .hero-copy .hero-actions{animation-delay:.36s!important}
+.hero-editorial .hero-ambient-orb{
+  animation:azmeyraOrbFloat 16s ease-in-out infinite alternate!important;
+}
+.hero-editorial .hero-orbit-one{
+  animation:azmeyraGoldOrbit 42s linear infinite!important;
+}
+.hero-editorial .hero-orbit-two{
+  animation:azmeyraGoldOrbitReverse 58s linear infinite!important;
+}
+.hero-editorial .hero-silk-wave-one{
+  animation:azmeyraSilkDrift 13s ease-in-out infinite alternate!important;
+}
+.hero-editorial .hero-silk-wave-two{
+  animation:azmeyraSilkDriftReverse 16s ease-in-out infinite alternate!important;
+}
+.hero-editorial .hero-botanical{
+  animation:azmeyraLeafSway 10s ease-in-out infinite alternate!important;
+}
+.hero-editorial .hero-light-points i{
+  animation:azmeyraSoftSparkle 5.5s ease-in-out infinite!important;
+}
+.hero-editorial .hero-light-points i:nth-child(2n){animation-delay:-2.4s!important}
+.hero-editorial .hero-light-points i:nth-child(3n){animation-delay:-3.8s!important}
+@keyframes azmeyraCopySettle{
+  from{opacity:0;transform:translateY(13px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes azmeyraOrbFloat{
+  0%{transform:translate3d(0,0,0) rotate(-7deg) scale(1)}
+  100%{transform:translate3d(-9px,12px,0) rotate(-4deg) scale(1.018)}
+}
+@keyframes azmeyraGoldOrbit{
+  from{transform:rotate(-16deg) scaleX(.79)}
+  to{transform:rotate(344deg) scaleX(.79)}
+}
+@keyframes azmeyraGoldOrbitReverse{
+  from{transform:rotate(22deg) scaleX(.7)}
+  to{transform:rotate(-338deg) scaleX(.7)}
+}
+@keyframes azmeyraSilkDrift{
+  from{transform:translate3d(0,0,0) rotate(-7deg) scaleY(.98)}
+  to{transform:translate3d(-1.5%,-8px,0) rotate(-4deg) scaleY(1.025)}
+}
+@keyframes azmeyraSilkDriftReverse{
+  from{transform:translate3d(0,0,0) rotate(7deg)}
+  to{transform:translate3d(1.2%,-6px,0) rotate(4deg)}
+}
+@keyframes azmeyraLeafSway{
+  from{transform:rotate(-2deg) translateY(0)}
+  to{transform:rotate(2deg) translateY(-7px)}
+}
+@keyframes azmeyraSoftSparkle{
+  0%,100%{opacity:.25;transform:scale(.8)}
+  50%{opacity:.9;transform:scale(1.25)}
+}
+@media(max-width:700px){
+  .hero-editorial .hero-ambient-orb{animation-duration:19s!important}
+  .hero-editorial .hero-orbit-one{animation-duration:50s!important}
+  .hero-editorial .hero-orbit-two{animation-duration:65s!important}
+  .hero-editorial .hero-botanical{animation-duration:13s!important}
+  .hero-editorial .hero-copy .hero-eyebrow,
+  .hero-editorial .hero-copy h1,
+  .hero-editorial .hero-copy>p,
+  .hero-editorial .hero-copy .hero-actions{animation:none!important;opacity:1!important;transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-editorial .hero-copy .hero-eyebrow,
+  .hero-editorial .hero-copy h1,
+  .hero-editorial .hero-copy>p,
+  .hero-editorial .hero-copy .hero-actions,
+  .hero-editorial .hero-ambient-orb,
+  .hero-editorial .hero-orbit-one,
+  .hero-editorial .hero-orbit-two,
+  .hero-editorial .hero-silk-wave-one,
+  .hero-editorial .hero-silk-wave-two,
+  .hero-editorial .hero-botanical,
+  .hero-editorial .hero-light-points i{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+}
