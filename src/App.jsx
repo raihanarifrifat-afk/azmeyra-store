@@ -58,11 +58,30 @@ function App(){
   const [cartOpen,setCartOpen] = useState(false);
   const [toast,setToast] = useState('');
   const [welcomeOpen,setWelcomeOpen] = useState(false);
+  const [authSession,setAuthSession] = useState(null);
+  const [adminRole,setAdminRole] = useState(false);
+  const [authLoading,setAuthLoading] = useState(true);
 
   useEffect(()=>writeStore('az-products',products),[products]);
   useEffect(()=>writeStore('az-cart',cart),[cart]);
   useEffect(()=>writeStore('az-wish',wishlist),[wishlist]);
   useEffect(()=>writeStore('az-orders',orders),[orders]);
+  useEffect(()=>{
+    let active=true;
+    const syncSession=async(session)=>{
+      if(!active)return;
+      setAuthSession(session||null);
+      if(!session?.user){setAdminRole(false);setAuthLoading(false);return;}
+      setAuthLoading(true);
+      const {data,error}=await supabase.from('profiles').select('role').eq('id',session.user.id).maybeSingle();
+      if(!active)return;
+      setAdminRole(!error&&data?.role==='admin');
+      setAuthLoading(false);
+    };
+    supabase.auth.getSession().then(({data})=>syncSession(data.session));
+    const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,session)=>{syncSession(session);});
+    return()=>{active=false;subscription.unsubscribe();};
+  },[]);
   useEffect(()=>{
     if(!supabase) return;
     let alive=true;
@@ -137,7 +156,7 @@ function App(){
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/contact" element={<ContactPage/>}/>
           <Route path="/blog" element={<JournalPage/>}/>
-          <Route path="/admin" element={<AdminPage products={products} setProducts={setProducts} orders={orders} setOrders={setOrders}/>}/>
+          <Route path="/admin" element={<AdminPage products={products} setProducts={setProducts} orders={orders} setOrders={setOrders} session={authSession} isAdmin={adminRole} loading={authLoading}/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
       </motion.main>
@@ -424,7 +443,24 @@ function ContactPage(){return <div className="page-wrap contact-page"><div class
 function PhoneIcon(){return <span className="phone-symbol">⌕</span>}
 function JournalPage(){const stories=[['The art of a thoughtful wardrobe','Build a collection that feels personal, versatile and entirely your own.','https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1100'],['A little guide to occasion dressing','Find the balance between feeling special and feeling like yourself.','https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1100'],['The beauty of the finishing touch','Small details have a lovely way of changing the whole look.','https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1100']];return <div className="page-wrap journal-page"><div className="shop-intro"><span className="eyebrow">THE AZMEYRA JOURNAL</span><h1>Notes on <em>style.</em></h1><p>Ideas, inspiration and thoughtful ways to wear what you love.</p></div><div className="journal-grid">{stories.map((story,index)=><article key={story[0]}><img src={story[2]} alt={story[0]} loading="lazy"/><span className="eyebrow">STYLE NOTES · 0{index+1}</span><h2>{story[0]}</h2><p>{story[1]}</p><span className="journal-read">A LITTLE INSPIRATION <ArrowUpRight/></span></article>)}</div></div>}
 
-function AdminPage({products,setProducts,orders,setOrders}){const [opened,setOpened]=useState(false);const [section,setSection]=useState('Overview');if(!opened)return <div className="page-wrap admin-preview"><span className="eyebrow">STORE MANAGEMENT</span><h1>AZMEYRA <em>studio.</em></h1><p>This is a local preview panel. Add secure Supabase authentication and staff roles before production use.</p><button className="button button-dark" onClick={()=>setOpened(true)}>Open preview dashboard <ArrowRight/></button></div>;return <div className="page-wrap admin-layout"><aside className="admin-sidebar"><img src={brandLogo} alt="AZMEYRA"/>{['Overview','Products','Orders'].map(item=><button className={section===item?'active':''} key={item} onClick={()=>setSection(item)}>{item}</button>)}<Link to="/">Back to store <ArrowUpRight/></Link></aside><div className="admin-content"><span className="eyebrow">AZMEYRA / ADMIN</span><h1>{section}</h1>{section==='Overview'?<div className="admin-stats"><div><span>Products</span><b>{products.length}</b></div><div><span>Orders</span><b>{orders.length}</b></div><div><span>Order value</span><b>{money(orders.reduce((sum,order)=>sum+order.total,0))}</b></div></div>:section==='Products'?<><button className="button button-dark" onClick={()=>{const name=prompt('Product name?');if(name)setProducts(current=>[...current,{...SEED[2],id:Date.now(),name,price:1500,stock:1}]);}}>Add product <Plus/></button>{products.map(product=><div className="admin-row" key={product.id}>{product.name} · {money(product.price)}<button onClick={()=>setProducts(current=>current.filter(item=>item.id!==product.id))}>Remove</button></div>)}</>:orders.map(order=><div className="admin-row" key={order.id}>{order.id} · {order.name} · {money(order.total)}<select value={order.status} onChange={event=>setOrders(current=>current.map(item=>item.id===order.id?{...item,status:event.target.value}:item))}>{['Order received','Confirmed','Processing','Shipped','Delivered','Cancelled'].map(status=><option key={status}>{status}</option>)}</select></div>)}</div></div>}
+function AdminPage({products,setProducts,orders,setOrders,session,isAdmin,loading}){
+  const [section,setSection]=useState('Overview');
+  const [email,setEmail]=useState('raihanarifrifat@gmail.com');
+  const [password,setPassword]=useState('');
+  const [busy,setBusy]=useState(false);
+  const [error,setError]=useState('');
+  const signIn=async(event)=>{
+    event.preventDefault();setBusy(true);setError('');
+    const {error:loginError}=await supabase.auth.signInWithPassword({email:email.trim(),password});
+    setBusy(false);setPassword('');
+    if(loginError)setError(loginError.message);
+  };
+  const signOut=async()=>{await supabase.auth.signOut();setSection('Overview');};
+  if(loading)return <div className="page-wrap"><div className="simple-panel"><p>Checking administrator access…</p></div></div>;
+  if(!session)return <div className="page-wrap admin-preview"><span className="eyebrow">SECURE STORE MANAGEMENT</span><h1>AZMEYRA <em>admin.</em></h1><div className="simple-panel" style={{maxWidth:480,margin:'32px auto',textAlign:'left'}}><h2>Admin login</h2><form onSubmit={signIn}><label>Email address<input type="email" autoComplete="username" value={email} onChange={event=>setEmail(event.target.value)} required/></label><label style={{display:'block',marginTop:16}}>Password<input type="password" autoComplete="current-password" value={password} onChange={event=>setPassword(event.target.value)} required/></label>{error&&<p className="payment-note" role="alert">{error}</p>}<button className="button button-dark" style={{marginTop:20}} type="submit" disabled={busy}>{busy?'Signing in…':'Sign in securely'} <ArrowRight/></button></form></div></div>;
+  if(!isAdmin)return <div className="page-wrap admin-preview"><span className="eyebrow">ACCESS RESTRICTED</span><h1>Admin access <em>required.</em></h1><p>This account does not have the AZMEYRA administrator role.</p><button className="button button-dark" onClick={signOut}>Sign out <ArrowRight/></button></div>;
+  return <div className="page-wrap admin-layout"><aside className="admin-sidebar"><img src={brandLogo} alt="AZMEYRA"/>{['Overview','Products','Orders'].map(item=><button className={section===item?'active':''} key={item} onClick={()=>setSection(item)}>{item}</button>)}<Link to="/">Back to store <ArrowUpRight/></Link><button onClick={signOut}>Sign out</button></aside><div className="admin-content"><span className="eyebrow">SIGNED IN AS {session.user.email}</span><h1>{section}</h1>{section==='Overview'?<div className="admin-stats"><div><span>Products</span><b>{products.length}</b></div><div><span>Orders</span><b>{orders.length}</b></div><div><span>Order value</span><b>{money(orders.reduce((sum,order)=>sum+order.total,0))}</b></div></div>:section==='Products'?<><button className="button button-dark" onClick={()=>{const name=prompt('Product name?');if(name)setProducts(current=>[...current,{...SEED[2],id:Date.now(),name,price:1500,stock:1}]);}}>Add product <Plus/></button>{products.map(product=><div className="admin-row" key={product.id}>{product.name} · {money(product.price)}<button onClick={()=>setProducts(current=>current.filter(item=>item.id!==product.id))}>Remove</button></div>)}</>:orders.map(order=><div className="admin-row" key={order.id}>{order.id} · {order.name} · {money(order.total)}<select value={order.status} onChange={event=>setOrders(current=>current.map(item=>item.id===order.id?{...item,status:event.target.value}:item))}>{['Order received','Confirmed','Processing','Shipped','Delivered','Cancelled'].map(status=><option key={status}>{status}</option>)}</select></div>)}</div></div>;
+}
 
 function NotFound(){return <div className="page-wrap empty-state"><span className="eyebrow">AZMEYRA / 404</span><h2>This page has wandered off.</h2><p>Let's get you back to something lovely.</p><Link className="button button-dark" to="/">Back to home <ArrowLeft/></Link></div>}
 
