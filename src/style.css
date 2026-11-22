@@ -1633,3 +1633,33 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .header-actions .wishlist-link,
   .header-actions .bag-link{flex-basis:35px}
 }
+
+/* Reference-inspired AZMEYRA mobile header and five-item bottom dock */
+@media(max-width:700px){
+  .header-inner{height:72px;display:flex;align-items:center;justify-content:center;position:relative;padding:0 16px}
+  .mobile-menu-button{display:none!important}
+  .brand-lockup{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:142px;display:flex;justify-content:center;z-index:2}
+  .brand-lockup img{width:140px;max-height:49px}
+  .header-actions{position:static;width:auto;display:flex;align-items:center;justify-content:flex-end;gap:0}
+  .header-actions .search-toggle{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:40px;height:42px;z-index:3}
+  .header-actions .wishlist-link{display:none!important}
+  .header-actions .account-link{display:inline-flex!important;position:absolute;right:15px;top:50%;transform:translateY(-50%);width:38px;height:42px;z-index:3}
+  .header-actions .bag-link{display:inline-flex!important;position:absolute;right:55px;top:50%;transform:translateY(-50%);width:38px;height:42px;z-index:3}
+  .mobile-dock{position:fixed;right:0;bottom:0;left:0;z-index:45;height:76px;display:flex;align-items:center;justify-content:space-around;padding:7px 8px calc(7px + env(safe-area-inset-bottom));background:rgba(28,29,27,.97);border-top:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);box-shadow:0 -8px 24px rgba(0,0,0,.12)}
+  .mobile-dock a,.mobile-dock button{position:relative;flex:1;min-width:0;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:0;background:none;color:rgba(255,255,255,.78);font:inherit;font-size:10px;text-decoration:none;cursor:pointer}
+  .mobile-dock a.active:not(.dock-home){color:#e2c38d}
+  .mobile-dock svg{width:21px;height:21px;stroke-width:1.65}
+  .mobile-dock .dock-home{flex:0 0 72px;width:72px;height:72px;margin-top:-35px;border:5px solid #1c1d1b;border-radius:50%;background:linear-gradient(145deg,#f4d99e,#c49a54);color:#171713;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+  .mobile-dock .dock-home svg{width:31px;height:31px;stroke-width:2.2}
+  .mobile-dock .dock-home.active{color:#171713}
+  .mobile-dock button{padding:0}
+  .floating-chat{bottom:91px}
+  .route-main{padding-bottom:4px}
+}
+@media(max-width:380px){
+  .brand-lockup,.brand-lockup img{width:128px}
+  .header-actions .search-toggle{left:11px}
+  .header-actions .bag-link{right:48px}
+  .header-actions .account-link{right:8px}
+  .mobile-dock a,.mobile-dock button{font-size:9px}
+}
