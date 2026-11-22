@@ -134,7 +134,15 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
   return <>
     <section className="hero-editorial">
-      <div className="hero-photo" role="img" aria-label="Elegant traditional saree collection"/>
+      <div className="hero-photo" aria-hidden="true">
+        <div className="hero-ambient-orb"/>
+        <div className="hero-orbit hero-orbit-one"/>
+        <div className="hero-orbit hero-orbit-two"/>
+        <div className="hero-silk-wave hero-silk-wave-one"/>
+        <div className="hero-silk-wave hero-silk-wave-two"/>
+        <div className="hero-botanical" aria-hidden="true"><i/><i/><i/><i/><i/><i/></div>
+        <div className="hero-light-points" aria-hidden="true"><i/><i/><i/><i/><i/><i/><i/></div>
+      </div>
       <div className="hero-shade"/>
       <div className="hero-frame">
         <motion.div className="hero-copy" initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:.8,ease:[.2,.7,.2,1]}}>
