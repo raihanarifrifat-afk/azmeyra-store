@@ -504,3 +504,78 @@ footer{background:#241626;color:#f5e9e4;padding-top:70px}.footer-top h4{color:#e
 }
 
 
+
+
+/* AZMEYRA monochrome identity: black, white and neutral greys */
+:root{
+ color:#171717;background:#fff;
+ --ink:#171717;--muted:#777;--paper:#fff;--line:#dedede;
+}
+body,.header,.newsletter,.product-detail-page{background:#fff;color:#171717}
+.announcement,footer,.detail-add-cart,.frequently-add,.quick-add:hover,.view-all button:hover,.cart-empty button,.size-options button.selected,.unit-switch button.active{background:#111!important;color:#fff!important}
+.announcement span{color:#d8d8d8}
+.header{border-bottom-color:#e5e5e5}
+.nav button,.footer-top button{color:#333}
+.nav button:hover,.footer-top button:hover,.detail-breadcrumb button,.text-link:hover{color:#000}
+.bag-count,.toast{background:#111;color:#fff}
+.hero{background:#222}
+.hero-image{filter:grayscale(100%)}
+.hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.35) 48%,rgba(0,0,0,.08))}
+.eyebrow,.detail-title-row .eyebrow{color:#777}
+.benefits,.story,.frequently-bought,.exchange-note,.detail-main-image,.detail-thumbnails button,.frequently-photo,.product-image{background:#f2f2f2}
+.benefits>div{border-color:#d8d8d8}
+.benefits svg{stroke:#555}
+.benefits small,.section-note,.story-copy>p:not(.eyebrow),.newsletter>p:not(.eyebrow){color:#777}
+.categories button.active:after{background:#111}
+.categories button.active,.product-info h3,.detail-title-row h1,.frequently-bought h3,.detail-description h3,.size-chart h3{color:#171717}
+.product-tag{background:#fff;color:#111}
+.wish{color:#333}.wish.chosen{color:#111}
+.quick-add{background:rgba(255,255,255,.96);color:#111}
+.quick-add:hover{background:#111;color:#fff}
+.detail-breadcrumb{color:#777;border-color:#ddd}
+.detail-breadcrumb button{color:#111}
+.detail-layout{color:#171717}
+.detail-main-image{box-shadow:0 12px 30px #0000000d}
+.detail-sale-tag{background:#111;color:#fff}
+.detail-thumbnails button{border-color:#ddd}
+.detail-thumbnails button:hover,.detail-thumbnails button.selected{border-color:#111}
+.frequently-bought{border-left-color:#111;background:#f4f4f4}
+.frequently-item>div b,.detail-price strong{color:#111}
+.detail-information{background:#fff;border-color:#ddd;box-shadow:0 12px 35px #0000000b}
+.detail-information:before{background:#111}
+.detail-wish{border-color:#ddd;color:#222;background:#fff}
+.detail-wish:hover,.detail-wish.chosen{background:#111;color:#fff;border-color:#111}
+.detail-price{border-color:#ddd}
+.detail-price span{background:#eee;color:#333}
+.detail-shipping,.exchange-note>div{color:#555}
+.detail-options>b{color:#333}
+.size-options button{border-color:#ccc;color:#222}
+.size-options button:hover{border-color:#111;color:#111}
+.size-options button.selected{background:#111;border-color:#111;box-shadow:inset 0 -3px 0 #777}
+.detail-quantity{border-color:#ccc;background:#fff}
+.detail-quantity button{color:#111}
+.detail-add-cart{background:#111;border-color:#111;color:#fff}
+.detail-add-cart:hover,.frequently-add:hover{background:#444;border-color:#444}
+.exchange-note{border-color:#ddd;background:#f7f7f7}
+.exchange-note>div b{color:#222}
+.exchange-note p,.detail-description p,.detail-description li{color:#666}
+.detail-description li::marker{color:#555}
+.detail-disclaimer{color:#444!important;background:#f2f2f2}
+.size-chart{border-color:#ddd}
+.unit-switch button{border-color:#ccc;color:#222}
+.unit-switch button.active{background:#111;border-color:#111;color:#fff}
+.size-chart th{background:#eee;color:#222}
+.size-chart td{background:#fff;color:#555}
+.size-chart th,.size-chart td{border-bottom:1px solid #ddd}
+.back-to-shop{border-color:#111;background:#fff;color:#111}
+.back-to-shop:hover{background:#111;color:#fff}
+.footer-top h4{color:#ddd}
+.footer-brand p,.social-note,.footer-top button,.footer-top a{color:#c4c4c4}
+.footer-bottom{border-color:#555;color:#aaa}
+.success{color:#555}
+.cart-drawer{background:#fff;color:#111}
+.drawer-head,.cart-item{border-color:#ddd}
+.qty button{border-color:#ccc;color:#111}
+@media(prefers-reduced-motion:no-preference){
+ .hero-image{transition:filter .5s ease}
+}
