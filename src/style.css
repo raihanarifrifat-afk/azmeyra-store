@@ -1613,3 +1613,23 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .brand-lockup img{width:128px}
   .header-actions .icon-button{width:31px;height:36px;padding:6px}
 }
+
+/* Final mobile header spacing: centered wordmark must never collide with actions */
+@media(max-width:700px){
+  .header-inner{grid-template-columns:38px minmax(0,1fr) 112px;padding-left:14px;padding-right:14px}
+  .brand-lockup{width:120px;left:50%;transform:translate(-50%,-50%);pointer-events:auto}
+  .brand-lockup img{width:120px;max-height:46px}
+  .header-actions{width:112px;display:flex;justify-content:flex-end;gap:0}
+  .header-actions .search-toggle,
+  .header-actions .wishlist-link,
+  .header-actions .bag-link{display:inline-flex;flex:0 0 35px}
+  .header-actions .account-link{display:none}
+}
+@media(max-width:380px){
+  .header-inner{grid-template-columns:34px minmax(0,1fr) 105px;padding-left:9px;padding-right:9px}
+  .brand-lockup,.brand-lockup img{width:112px}
+  .header-actions{width:105px}
+  .header-actions .search-toggle,
+  .header-actions .wishlist-link,
+  .header-actions .bag-link{flex-basis:35px}
+}
