@@ -94,21 +94,44 @@ function App() {
 
       </div>
     </main> : <main id="top">
-      <section className="hero">
-        <div className="hero-image" /><div className="hero-shade" />
-        <div className="hero-content"><p className="eyebrow light">THE NEW SEASON EDIT · 2026</p><h1>Wear your<br/><em>kind of beautiful.</em></h1><p className="hero-copy">Thoughtfully chosen styles. Timeless details.<br/>A little elegance in every look.</p><button className="light-btn" onClick={()=>choose('All')}>EXPLORE COLLECTION <ArrowRight size={17}/></button></div>
-        <div className="hero-index">01 <span/> 03</div>
+      <section className="hero-editorial">
+        <div className="hero-editorial-copy">
+          <p className="eyebrow">AZMEYRA · THE NEW EDIT</p>
+          <h1>Quiet style.<br/><em>Lasting impression.</em></h1>
+          <p className="hero-editorial-text">Thoughtful pieces for the moments that make you, you.</p>
+          <button className="editorial-cta" onClick={()=>choose('All')}>SHOP THE COLLECTION <ArrowRight size={17}/></button>
+          <span className="hero-edition">COLLECTION Nº 01 — 2026</span>
+        </div>
+        <div className="hero-editorial-visual">
+          <img src={photo('photo-1610030469983-98e550d6193c',1500)} alt="AZMEYRA new season fashion collection"/>
+          <div className="hero-visual-caption"><span>THE ART OF GETTING DRESSED</span><span>01 / 03</span></div>
+          <div className="hero-vertical-word">AZMEYRA</div>
+        </div>
       </section>
-      <section className="benefits"><div><Truck/><span><b>DELIVERY ACROSS BANGLADESH</b><small>Carefully packed, right to your door</small></span></div><div><RotateCcw/><span><b>HASSLE-FREE EXCHANGE</b><small>Easy exchange within 3 days</small></span></div><div><ShieldCheck/><span><b>THOUGHTFUL QUALITY</b><small>Picked with care, made to love</small></span></div></section>
+      <section className="brand-marquee" aria-label="AZMEYRA brand message"><div>LESS, BUT LOVELIER <span>✳</span> ELEGANCE IN EVERY LOOK <span>✳</span> MADE FOR YOUR MOMENTS <span>✳</span> LESS, BUT LOVELIER <span>✳</span> ELEGANCE IN EVERY LOOK <span>✳</span></div></section>
+      <section className="category-editorial">
+        <div className="category-editorial-heading"><p className="eyebrow">FIND YOUR WAY</p><h2>Explore the <em>edits.</em></h2><p>A considered collection for every version of you.</p></div>
+        <div className="category-editorial-grid">
+          {[
+            {name:'Three-Piece',note:'THE COMPLETE LOOK',image:products[0]},
+            {name:'Two-Piece',note:'EASY EVERYDAY',image:products[2]},
+            {name:'Kurtis',note:'EFFORTLESS FORM',image:products[4]},
+            {name:'Festive',note:'MADE TO CELEBRATE',image:products[5]}
+          ].map((item,i)=><button className="category-editorial-card" key={item.name} onClick={()=>choose(item.name)}><ProductVisual product={item.image} className="category-editorial-image"/><span className="category-card-number">0{i+1}</span><span className="category-card-copy"><small>{item.note}</small><b>{item.name}</b></span><span className="category-card-arrow"><ArrowRight size={18}/></span></button>)}
+        </div>
+      </section>
       <section className="collection" id="shop">
-        <div className="section-heading"><div><p className="eyebrow">CURATED FOR YOU</p><h2>Find your <em>favourite.</em></h2></div><p className="section-note">Pieces that make every day<br/>feel a little more special.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">THE AZMEYRA SELECTION</p><h2>Pieces to <em>keep.</em></h2></div><p className="section-note">Thoughtfully chosen. Beautifully<br/>considered. Made to be worn.</p></div>
         <div className="shop-toolbar"><div className="categories">{categories.map(c=><button key={c} className={category===c?'active':''} onClick={()=>setCategory(c)}>{c}</button>)}</div><label className="sort">SORT BY <select value={sort} onChange={e=>setSort(e.target.value)}><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select><ChevronDown size={13}/></label></div>
         <div className="product-grid">{shown.map(p=><article className="product" key={p.id} role="button" tabIndex={0} onClick={()=>{setSelectedProduct(p);setSelectedSize('M');setDetailQty(1);window.scrollTo({top:0,behavior:'smooth'})}} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setSelectedProduct(p);setSelectedSize('M');setDetailQty(1);window.scrollTo({top:0,behavior:'smooth'})}}}><div className="product-image"><ProductVisual product={p} className="catalog-product-visual"/>{p.tag&&<span className="product-tag">{p.tag}</span>}<button className={`wish ${wishlist.includes(p.id)?'chosen':''}`} onClick={e=>{e.stopPropagation();toggleWish(p.id)}} aria-label="Add to wishlist"><Heart size={17} fill={wishlist.includes(p.id)?'currentColor':'none'}/></button><button className="quick-add" onClick={e=>{e.stopPropagation();add(p)}}>ADD TO BAG <Plus size={15}/></button></div><div className="product-info"><div><h3>{p.name}</h3><p>{p.color} · {p.category}</p></div><div className="price"><b>৳{p.price.toLocaleString('en-BD')}</b>{p.old&&<del>৳{p.old.toLocaleString('en-BD')}</del>}</div></div></article>)}</div>
         {shown.length===0&&<div className="empty">No pieces found. Try another search.</div>}
         <div className="view-all"><button onClick={()=>{setCategory('All');setSearch('')}}>VIEW ALL PIECES <ArrowRight size={16}/></button></div>
       </section>
-      <section className="story"><div className="story-photo"><img src={photo('photo-1603217192097-13c306522271',1000)} alt="Elegant fashion detail" loading="lazy"/></div><div className="story-copy"><p className="eyebrow">THE AZMEYRA FEELING</p><h2>Elegance is not<br/>a trend. It's a <em>feeling.</em></h2><p>We believe getting dressed should feel effortless. AZMEYRA brings together thoughtful designs, graceful details and everyday comfort — so you can feel like yourself, beautifully.</p><button className="text-link" onClick={()=>choose('All')}>DISCOVER OUR COLLECTION <ArrowRight size={16}/></button></div></section>
-      <section className="newsletter"><p className="eyebrow">A NOTE FROM US</p><h2>A little beauty in<br/><em>your inbox.</em></h2><p>Be the first to know about new arrivals, special edits and lovely surprises.</p><form onSubmit={e=>{e.preventDefault();if(email.includes('@'))setSubscribed(true)}}><input type="email" required placeholder="Your email address" value={email} onChange={e=>setEmail(e.target.value)}/><button>{subscribed?'YOU’RE ON THE LIST':'SUBSCRIBE'} <ArrowRight size={16}/></button></form>{subscribed&&<small className="success">Thank you for joining the AZMEYRA circle.</small>}</section>
+      <section className="editorial-feature">
+        <div className="editorial-feature-image"><img src={photo('photo-1603217192097-13c306522271',1200)} alt="A detail from the AZMEYRA collection" loading="lazy"/><span>DETAILS THAT SPEAK</span></div>
+        <div className="editorial-feature-copy"><p className="eyebrow">A NOTE ON STYLE</p><h2>Not just what<br/>you wear. <em>How you feel.</em></h2><p>We believe personal style is found in the details — the texture, the movement, the quiet confidence of a piece that feels just right.</p><button className="editorial-cta editorial-cta-dark" onClick={()=>choose('All')}>DISCOVER AZMEYRA <ArrowRight size={17}/></button><small>DESIGNED FOR YOUR EVERYDAY AND EVERYTHING ELSE.</small></div>
+      </section>
+      <section className="newsletter"><p className="eyebrow">A LETTER FROM AZMEYRA</p><h2>A little more <em>lovely.</em><br/>In your inbox.</h2><p>New arrivals, thoughtful edits and notes worth opening.</p><form onSubmit={e=>{e.preventDefault();if(email.includes('@'))setSubscribed(true)}}><input type="email" required placeholder="Your email address" value={email} onChange={e=>setEmail(e.target.value)}/><button>{subscribed?'YOU’RE ON THE LIST':'JOIN THE LIST'} <ArrowRight size={16}/></button></form>{subscribed&&<small className="success">Thank you for joining the AZMEYRA circle.</small>}</section>
     </main>}
     <footer><div className="footer-top"><div className="footer-brand"><img src={`${import.meta.env.BASE_URL}azmeyra-logo-white.svg`} alt="AZMEYRA"/><p>Elegance in every look.<br/>Made for the way you feel.</p></div><div><h4>EXPLORE</h4><button onClick={()=>choose('All')}>Shop all</button><button onClick={()=>choose('Three-Piece')}>Three-piece</button><button onClick={()=>choose('Two-Piece')}>Two-piece</button><button onClick={()=>choose('Festive')}>Festive edit</button></div><div><h4>WE’RE HERE</h4><a href="mailto:hello@azmeyra.com">Email us</a><button onClick={()=>setInfoOpen('delivery')}>Delivery & exchange</button><button onClick={()=>setInfoOpen('faq')}>FAQs</button><button onClick={()=>setInfoOpen('contact')}>Contact</button></div><div><h4>FOLLOW OUR STORY</h4><div className="socials"><button aria-label="Instagram" onClick={()=>setInfoOpen('social')}><Instagram/></button><button aria-label="Facebook" onClick={()=>setInfoOpen('social')}><Facebook/></button></div><p className="social-note">Find your daily dose of elegance.</p></div></div><div className="footer-bottom"><span>© 2026 AZMEYRA. ALL RIGHTS RESERVED.</span><span>MADE WITH CARE IN BANGLADESH</span></div></footer>
     {notice&&<div className="toast">{notice}</div>}
