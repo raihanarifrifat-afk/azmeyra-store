@@ -1,3 +1,6 @@
+create schema if not exists private;
+grant usage on schema private to anon, authenticated;
+
 alter table public.orders add column if not exists delivery_area text;
 alter table public.orders drop constraint if exists orders_delivery_area_check;
 alter table public.orders add constraint orders_delivery_area_check check (delivery_area is null or delivery_area in ('inside_dhaka','outside_dhaka'));
