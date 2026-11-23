@@ -116,6 +116,7 @@ function App(){
   const submitSearch = event => { event.preventDefault(); navigate('/shop?search='+encodeURIComponent(search.trim())); setSearchOpen(false); };
 
   return <div className="site-shell">
+    {!location.pathname.startsWith("/admin") && <>
     <header className="site-header">
       <div className="header-inner">
         <button className="mobile-menu-button icon-button" aria-label="Open menu" onClick={()=>setMobileMenu(value=>!value)}>{mobileMenu?<X/>:<Menu/>}</button>
@@ -141,6 +142,7 @@ function App(){
     <AnimatePresence>
       {mobileMenu && <MobileMenu onClose={()=>setMobileMenu(false)}/>}
     </AnimatePresence>
+    </>}
 
     <AnimatePresence mode="wait" initial={false}>
       <motion.main key={location.pathname} className="route-main" initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} transition={{duration:.22}}>
