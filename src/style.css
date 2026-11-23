@@ -2867,3 +2867,69 @@ body{font-size:18px}
 .account-security-signout{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:35px;padding-top:20px;border-top:1px solid #e5e5e5;font-size:13px}
 .account-auth-panel{max-width:620px;margin:0 auto}.account-auth-panel .account-tabs{padding-top:0}
 @media(max-width:640px){.account-shell{padding:18px;margin-bottom:55px}.account-topline{align-items:flex-start}.account-tabs{margin:0 -2px;padding:15px 0}.account-tabs button{padding:12px 15px;font-size:13px}.account-section h2{font-size:22px}.account-order-head{padding:14px}.account-order-detail{padding:14px}.account-timeline>div{display:grid;grid-template-columns:12px 1fr;gap:5px}.account-timeline>div:after{grid-column:1/3;width:100%}.account-address-card{display:block}.account-address-actions{margin-top:14px}.account-wishlist-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.account-security-signout{align-items:flex-start;flex-direction:column}}
+
+
+/* Account tabs and empty-state polish */
+.account-tabs{
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:stretch;
+  gap:28px;
+  overflow-x:auto;
+  white-space:nowrap;
+  border-bottom:1px solid #e5e5e5;
+  padding:12px 0 0;
+}
+.account-tabs button,
+.account-tabs button.active{
+  flex:0 0 auto;
+  position:relative;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#777;
+  padding:13px 2px 15px;
+  margin:0;
+  box-shadow:none;
+  transition:color .2s ease;
+}
+.account-tabs button:hover{color:#111;background:transparent}
+.account-tabs button.active{
+  color:#111;
+  font-weight:600;
+}
+.account-tabs button.active:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:3px;
+  background:#111;
+}
+.account-empty{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:26px 18px;
+  background:#fafafa;
+  text-align:center;
+}
+.account-empty>svg{
+  width:38px;
+  height:38px;
+  color:#b8b8b8;
+  stroke-width:1.5;
+  margin:0 0 3px;
+}
+.account-empty h3{margin:0;font-size:19px}
+.account-empty p{margin:0 0 7px;color:#666;font-size:14px}
+.account-empty .button{margin-top:0}
+@media(max-width:640px){
+  .account-tabs{gap:22px;padding-top:10px}
+  .account-tabs button,.account-tabs button.active{padding:12px 1px 14px;font-size:13px}
+  .account-empty{padding:22px 14px;gap:6px}
+  .account-empty>svg{width:36px;height:36px}
+}
