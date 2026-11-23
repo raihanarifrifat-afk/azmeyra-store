@@ -237,27 +237,30 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
     {category:'THE FINISHING TOUCH',title:'Details that define you',image:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&auto=format&fit=crop&q=85',alt:'Fashion accessories and jewellery styling',link:'/shop?category=Accessories',cta:'View accessories'}
   ];
   const [heroSlide,setHeroSlide]=useState(0);
-  useEffect(()=>{const timer=setInterval(()=>setHeroSlide(current=>(current+1)%heroSlides.length),6000);return()=>clearInterval(timer)},[]);
+  const [heroPaused,setHeroPaused]=useState(false);
+  const [heroTouchStart,setHeroTouchStart]=useState(null);
+  useEffect(()=>{if(heroPaused)return;const timer=setTimeout(()=>setHeroSlide(current=>(current+1)%heroSlides.length),4500);return()=>clearTimeout(timer)},[heroSlide,heroPaused]);
   const activeHero=heroSlides[heroSlide];
   const changeHero=direction=>setHeroSlide(current=>(current+direction+heroSlides.length)%heroSlides.length);
+  const handleHeroTouchStart=e=>{setHeroPaused(true);setHeroTouchStart(e.touches[0].clientX);};
+  const handleHeroTouchEnd=e=>{if(heroTouchStart!==null){const delta=e.changedTouches[0].clientX-heroTouchStart;if(Math.abs(delta)>45)changeHero(delta<0?1:-1);}setHeroTouchStart(null);setHeroPaused(false);};
   return <>
     <section className="az-home-hero" aria-label="Featured AZMEYRA collection">
       <div className="az-hero-intro">
         <span className="az-hero-kicker">THE ART OF EVERYDAY ELEGANCE</span>
         <h1>Experience the <em>AZMEYRA</em> edit.</h1>
         <p>Thoughtfully selected fashion for every version of you.</p>
-        <div className="az-hero-dots" aria-label="Choose featured collection">
-          {heroSlides.map((slide,index)=><button key={slide.title} className={index===heroSlide?'active':''} onClick={()=>setHeroSlide(index)} aria-label={'Show '+slide.title}/>)}
-        </div>
-      </div>
-      <div className="az-hero-stage">
+        <div className="az-hero-progress" aria-label="Choose featured collection">
+          {heroSlides.map((slide,index)=><button key={slide.title} className={index===heroSlide?'active':''} onClick={()=>setHeroSlide(index)} aria-label={'Show '+slide.title}><span key={heroSlide===index?heroSlide:'idle'} /></button>)}
+        </div>     </div>
+      <div className="az-hero-stage" onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onTouchStart={handleHeroTouchStart} onTouchEnd={handleHeroTouchEnd}>
         <button className="az-hero-peek az-hero-peek-left" onClick={()=>changeHero(-1)} aria-label="Previous collection" style={{backgroundImage:`url(${heroSlides[(heroSlide+heroSlides.length-1)%heroSlides.length].image})`}}><span>0{((heroSlide+heroSlides.length-1)%heroSlides.length)+1}</span></button>
         <button className="az-hero-peek az-hero-peek-right" onClick={()=>changeHero(1)} aria-label="Next collection" style={{backgroundImage:`url(${heroSlides[(heroSlide+1)%heroSlides.length].image})`}}><span>0{((heroSlide+1)%heroSlides.length)+1}</span></button>
         <AnimatePresence mode="wait">
           <motion.div className="az-hero-backdrop" key={'back-'+activeHero.image} style={{backgroundImage:'url('+activeHero.image+')'}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.5}}/>
         </AnimatePresence>
         <AnimatePresence mode="wait">
-          <motion.article className="az-hero-card" key={activeHero.title} initial={{opacity:0,y:22,scale:.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:-14,scale:.985}} transition={{duration:.45,ease:[.2,.7,.2,1]}}>
+          <motion.article className="az-hero-card" key={activeHero.title} initial={{opacity:0,y:12,scale:.95}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:-8,scale:.97}} transition={{duration:.55,ease:[.2,.7,.2,1]}}>
             <img src={activeHero.image} alt={activeHero.alt} fetchPriority="high"/>
             <div className="az-hero-card-shade"/>
             <div className="az-hero-card-copy">
@@ -270,7 +273,7 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
       </div>
       <div className="az-hero-controls">
         <button onClick={()=>changeHero(-1)} aria-label="Previous collection"><ChevronLeft/></button>
-        <span><b>{String(heroSlide+1).padStart(2,'0')}</b> / {String(heroSlides.length).padStart(2,'0')}</span>
+        <span><AnimatePresence mode="wait"><motion.b key={heroSlide} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-7}} transition={{duration:.22}}>{String(heroSlide+1).padStart(2,'0')}</motion.b></AnimatePresence> / {String(heroSlides.length).padStart(2,'0')}</span>
         <button onClick={()=>changeHero(1)} aria-label="Next collection"><ChevronRight/></button>
       </div>
     </section>
