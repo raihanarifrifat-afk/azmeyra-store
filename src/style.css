@@ -2933,3 +2933,45 @@ body{font-size:18px}
   .account-empty{padding:22px 14px;gap:6px}
   .account-empty>svg{width:36px;height:36px}
 }
+
+
+/* Premium 3D hero carousel */
+.az-hero-stage{perspective:1400px;transform-style:preserve-3d;touch-action:pan-y}
+.az-hero-peek{
+  transform-style:preserve-3d;
+  filter:grayscale(1) saturate(.35);
+  opacity:.72;
+  box-shadow:0 24px 52px rgba(20,18,15,.2);
+  transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .65s ease,opacity .65s ease,box-shadow .65s ease;
+  backface-visibility:hidden;
+}
+.az-hero-peek-left{transform:translate(-13%,-50%) rotateY(11deg) rotateZ(-4deg) scale(.9);transform-origin:right center}
+.az-hero-peek-right{transform:translate(13%,-50%) rotateY(-11deg) rotateZ(4deg) scale(.9);transform-origin:left center}
+.az-hero-peek-left:hover{transform:translate(-10%,-50%) rotateY(5deg) rotateZ(-2deg) scale(.93);filter:grayscale(.35) saturate(.75);opacity:.9}
+.az-hero-peek-right:hover{transform:translate(10%,-50%) rotateY(-5deg) rotateZ(2deg) scale(.93);filter:grayscale(.35) saturate(.75);opacity:.9}
+.az-hero-card{transform:translateZ(35px);will-change:transform,opacity}
+.az-hero-card>img{animation:azHeroImageReveal .65s cubic-bezier(.2,.7,.2,1) both}
+@keyframes azHeroImageReveal{0%{transform:scale(1.045);filter:brightness(.94)}55%{transform:scale(.95);filter:brightness(.98)}100%{transform:scale(1);filter:brightness(1)}}
+.az-hero-progress{display:flex;justify-content:center;align-items:center;gap:7px;width:min(210px,65vw);margin:0 auto}
+.az-hero-progress button{position:relative;display:block;flex:1;height:3px;padding:0;border:0;border-radius:10px;background:#deddd9;overflow:hidden;cursor:pointer}
+.az-hero-progress button span{display:block;width:0;height:100%;background:#24231f;border-radius:inherit}
+.az-hero-progress button.active span{animation:azHeroProgressFill 4.5s linear forwards}
+@keyframes azHeroProgressFill{from{width:0}to{width:100%}}
+.az-hero-controls>span{display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:700;letter-spacing:2.8px}
+.az-hero-controls>span b{display:inline-block;font-size:18px;font-weight:800}
+@media(max-width:700px){
+ .az-hero-stage{perspective:1000px;overflow:hidden}
+ .az-hero-peek{width:27%;height:76%;max-height:none;opacity:.68}
+ .az-hero-peek-left{left:5%;transform:translate(-13%,-50%) rotateY(11deg) rotateZ(-4deg) scale(.9)}
+ .az-hero-peek-right{right:5%;transform:translate(13%,-50%) rotateY(-11deg) rotateZ(4deg) scale(.9)}
+ .az-hero-peek-left:hover{transform:translate(-13%,-50%) rotateY(11deg) rotateZ(-4deg) scale(.9)}
+ .az-hero-peek-right:hover{transform:translate(13%,-50%) rotateY(-11deg) rotateZ(4deg) scale(.9)}
+ .az-hero-progress{width:min(210px,70vw);gap:6px}
+ .az-hero-controls>span{font-size:16px}
+ .az-hero-controls>span b{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){
+ .az-hero-progress button.active span{animation:none;width:100%}
+ .az-hero-card>img{animation:none}
+ .az-hero-peek,.az-hero-card{transition:none}
+}
