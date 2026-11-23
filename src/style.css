@@ -2576,6 +2576,11 @@ p{line-height:1.75}
 .az-order-total-breakdown .az-order-grand-total{border-top:1px solid #e6ded5;margin-top:7px;padding-top:11px;font-size:14px;color:#171515}
 .az-order-total-breakdown .az-order-grand-total b{font-size:16px}
 .az-order-number{font-weight:600;letter-spacing:.2px}
+.az-order-row-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+.az-order-row-actions .az-order-view-hint{margin-top:0!important}
+.az-order-row-delete{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 15px;background:#fff;border:1px solid #c96a64;color:#a83d37;font:700 10px 'DM Sans',Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.az-order-row-delete:hover{background:#a83d37;border-color:#a83d37;color:#fff}
+.az-order-row-delete:disabled{opacity:.5;cursor:not-allowed}
 .az-order-view-hint{display:inline-flex!important;align-items:center;justify-content:center;gap:12px;min-width:188px;min-height:40px;margin-top:12px!important;padding:0 16px!important;background:#171515!important;border:1px solid #171515!important;border-radius:2px!important;color:#fff!important;font:700 10px/1 'Manrope',Arial,sans-serif!important;text-transform:uppercase;letter-spacing:1.05px;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;box-shadow:0 3px 8px rgba(23,21,21,.10)}
 .az-order-view-hint:hover{background:#8c7564!important;border-color:#8c7564!important;box-shadow:0 5px 14px rgba(23,21,21,.16);transform:translateY(-1px)}
 .az-order-view-hint:focus-visible{outline:2px solid #b79b82;outline-offset:3px}
