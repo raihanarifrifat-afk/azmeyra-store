@@ -112,3 +112,14 @@ begin
   );
 end;
 $function$
+
+
+-- Exposed invoker wrapper; privileged checkout logic remains in private schema.
+create or replace function public.create_guest_order(
+  p_customer_name text, p_phone text, p_email text, p_shipping_address text,
+  p_payment_method text, p_items jsonb, p_delivery_area text
+)
+returns jsonb language sql security invoker set search_path = ''
+as $$ select private.create_guest_order($1,$2,$3,$4,$5,$6,$7); $$;
+revoke all on function public.create_guest_order(text,text,text,text,text,jsonb,text) from public;
+grant execute on function public.create_guest_order(text,text,text,text,text,jsonb,text) to anon, authenticated;
