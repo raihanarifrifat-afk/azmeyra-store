@@ -37,3 +37,13 @@ as $$
   );
 $$;
 grant execute on function private.is_admin() to anon, authenticated;
+
+-- Legacy public trigger function is no longer used; the private trigger above is authoritative.
+drop function if exists public.handle_new_user();
+
+-- Keep the original baseline RLS policies working without a public SECURITY DEFINER helper.
+create or replace function public.is_admin()
+returns boolean language sql stable security invoker set search_path = ''
+as $$ select private.is_admin(); $$;
+revoke all on function public.is_admin() from public;
+grant execute on function public.is_admin() to anon, authenticated;
