@@ -94,8 +94,8 @@ function App(){
     return()=>{alive=false;};
   },[]);
   useEffect(()=>{ window.scrollTo({top:0,behavior:'smooth'}); setMobileMenu(false); setSearchOpen(false); },[location.pathname]);
-  useEffect(()=>{ if(location.pathname.startsWith('/admin')||location.pathname!=='/'){setWelcomeOpen(false);return;} if(localStorage.getItem('az-welcome-dismissed')==='1') return; const timer=setTimeout(()=>setWelcomeOpen(true),2500); return ()=>clearTimeout(timer); },[location.pathname]);
-  const closeWelcome = () => { localStorage.setItem('az-welcome-dismissed','1'); setWelcomeOpen(false); };
+  useEffect(()=>{ if(location.pathname.startsWith('/admin')||location.pathname!=='/'){setWelcomeOpen(false);return;} if(localStorage.getItem('az-welcome-dismissed-v2')==='1') return; const timer=setTimeout(()=>setWelcomeOpen(true),2500); return ()=>clearTimeout(timer); },[location.pathname]);
+  const closeWelcome = () => { localStorage.setItem('az-welcome-dismissed-v2','1'); setWelcomeOpen(false); };
   useEffect(()=>{ if(!toast) return undefined; const timer=setTimeout(()=>setToast(''),2600); return ()=>clearTimeout(timer); },[toast]);
 
   const cartCount = cart.reduce((sum,item)=>sum+item.qty,0);
