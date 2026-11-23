@@ -2571,8 +2571,13 @@ p{line-height:1.75}
 .az-order-total-breakdown .az-order-grand-total{border-top:1px solid #e6ded5;margin-top:7px;padding-top:11px;font-size:14px;color:#171515}
 .az-order-total-breakdown .az-order-grand-total b{font-size:16px}
 .az-order-number{font-weight:600;letter-spacing:.2px}
-.az-order-view-hint{display:flex!important;align-items:center;gap:5px;margin-top:7px!important;color:#8d7767!important;font-size:9px!important;text-transform:uppercase;letter-spacing:.5px}
-.az-order-view-hint span{font-size:13px}
+.az-order-view-hint{display:inline-flex!important;align-items:center;justify-content:center;gap:12px;min-width:188px;min-height:40px;margin-top:12px!important;padding:0 16px!important;background:#171515!important;border:1px solid #171515!important;border-radius:2px!important;color:#fff!important;font:700 10px/1 'Manrope',Arial,sans-serif!important;text-transform:uppercase;letter-spacing:1.05px;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;box-shadow:0 3px 8px rgba(23,21,21,.10)}
+.az-order-view-hint:hover{background:#8c7564!important;border-color:#8c7564!important;box-shadow:0 5px 14px rgba(23,21,21,.16);transform:translateY(-1px)}
+.az-order-view-hint:focus-visible{outline:2px solid #b79b82;outline-offset:3px}
+.az-order-view-hint span{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border:1px solid rgba(255,255,255,.48);border-radius:50%;font-size:14px;line-height:1}
+.az-order-view-hint.is-open{background:#8c7564!important;border-color:#8c7564!important}
+.az-order-view-hint.is-open span{transform:rotate(180deg)}
+.az-admin-table-wrap td:first-child{min-width:220px}
 .az-admin-table-wrap tbody tr{cursor:pointer}
 .az-admin-table-wrap tbody tr select,.az-admin-table-wrap tbody tr button{cursor:pointer}
 
