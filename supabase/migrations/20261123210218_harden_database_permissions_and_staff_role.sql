@@ -63,3 +63,33 @@ drop policy if exists welcome_images_admin_update on storage.objects;
 create policy welcome_images_admin_update on storage.objects for update to authenticated using (bucket_id='welcome-images' and (select private.is_admin())) with check (bucket_id='welcome-images' and (select private.is_admin()));
 drop policy if exists welcome_images_admin_delete on storage.objects;
 create policy welcome_images_admin_delete on storage.objects for delete to authenticated using (bucket_id='welcome-images' and (select private.is_admin()));
+
+-- Preserve the existing staff workspace's least-privilege order access.
+drop policy if exists orders_staff_select on public.orders;
+create policy orders_staff_select on public.orders
+for select to authenticated
+using (exists (
+  select 1 from public.profiles p
+  where p.id = (select auth.uid()) and p.role in ('admin','staff')
+));
+
+drop policy if exists orders_staff_update on public.orders;
+create policy orders_staff_update on public.orders
+for update to authenticated
+using (exists (
+  select 1 from public.profiles p
+  where p.id = (select auth.uid()) and p.role in ('admin','staff')
+))
+with check (exists (
+  select 1 from public.profiles p
+  where p.id = (select auth.uid()) and p.role in ('admin','staff')
+));
+
+drop policy if exists order_items_staff_select on public.order_items;
+create policy order_items_staff_select on public.order_items
+for select to authenticated
+using (exists (
+  select 1 from public.orders o
+  join public.profiles p on p.id = (select auth.uid())
+  where o.id = order_items.order_id and p.role in ('admin','staff')
+));
