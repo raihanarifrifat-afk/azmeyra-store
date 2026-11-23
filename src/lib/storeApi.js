@@ -80,7 +80,7 @@ export async function getMyOrders() {
  * product prices and stock on the server; the browser never supplies totals.
  * Online payments remain disabled until a verified payment gateway is added.
  */
-export async function placeCashOnDeliveryOrder({ customerName, phone, email, address, items }) {
+export async function placeCashOnDeliveryOrder({ customerName, phone, email, address, deliveryArea, items }) {
   const client = requireSupabase();
   const { data, error } = await client.rpc('create_guest_order', {
     p_customer_name: customerName,
@@ -93,7 +93,8 @@ export async function placeCashOnDeliveryOrder({ customerName, phone, email, add
       quantity: item.qty,
       size: item.size || null,
       color: item.color || null
-    }))
+    })),
+    p_delivery_area: deliveryArea
   });
   if (error) throw error;
   return data;
