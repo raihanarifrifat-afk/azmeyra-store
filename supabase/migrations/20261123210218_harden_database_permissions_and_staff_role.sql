@@ -40,8 +40,8 @@ revoke all on function public.track_guest_order(text,text) from public;
 grant execute on function public.track_guest_order(text,text) to anon, authenticated;
 
 -- Retire the obsolete six-argument checkout path. Checkout must include delivery_area.
-revoke all on function public.create_guest_order(text,text,text,text,text,jsonb) from public, anon, authenticated;
-revoke all on function private.create_guest_order(text,text,text,text,text,jsonb) from public, anon, authenticated;
+drop function if exists public.create_guest_order(text,text,text,text,text,jsonb);
+drop function if exists private.create_guest_order(text,text,text,text,text,jsonb);
 revoke all on function private.create_guest_order(text,text,text,text,text,jsonb,text) from public;
 grant execute on function private.create_guest_order(text,text,text,text,text,jsonb,text) to anon, authenticated;
 
