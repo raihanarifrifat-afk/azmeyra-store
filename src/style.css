@@ -2975,3 +2975,35 @@ body{font-size:18px}
  .az-hero-card>img{animation:none}
  .az-hero-peek,.az-hero-card{transition:none}
 }
+
+
+/* Welcome modal premium motion and mobile composition */
+.welcome-overlay{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.welcome-modal{transform-origin:center}
+.welcome-image img{animation:welcomePhotoDrift 10s ease-in-out infinite alternate;will-change:transform}
+@keyframes welcomePhotoDrift{from{transform:scale(1)}to{transform:scale(1.04)}}
+.welcome-close{cursor:pointer;transition:transform .2s ease,background-color .2s ease}
+.welcome-close svg{transition:transform .2s ease}
+.welcome-close:hover{transform:scale(1.1);background:#fff}
+.welcome-close:hover svg{transform:rotate(90deg)}
+.welcome-offer{margin:0 0 13px!important;padding:10px 12px;background:#f0eee8;color:#555b52!important;font-size:12px!important;line-height:1.5!important;text-align:center;letter-spacing:.1px}
+.welcome-offer strong{color:#171915;letter-spacing:1px}
+.welcome-dismiss{position:relative;text-decoration:none!important;transition:color .2s ease}
+.welcome-dismiss:after{content:"";position:absolute;left:10px;right:10px;bottom:4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
+.welcome-dismiss:hover{color:#222}
+.welcome-dismiss:hover:after{transform:scaleX(1)}
+@media(max-width:600px){
+ .welcome-overlay{padding:14px;align-items:center}
+ .welcome-modal{display:flex;flex-direction:column;width:100%;max-width:430px;min-height:0;max-height:calc(100dvh - 28px);overflow-y:auto}
+ .welcome-image{width:100%;height:auto;min-height:0;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+ .welcome-image img{display:block;width:100%;height:auto;min-height:0;max-height:42dvh;object-fit:contain;object-position:center;background:#e8e2d7}
+ .welcome-copy{width:100%;box-sizing:border-box;flex:0 0 auto;padding:22px 23px 20px;text-align:center}
+ .welcome-brand-logo{margin-bottom:13px}
+ .welcome-copy h2{font-size:36px;margin:10px 0}
+ .welcome-copy p{margin-bottom:15px}
+ .welcome-offer{font-size:11px!important;margin-bottom:11px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .welcome-image img{animation:none}
+ .welcome-close,.welcome-close svg,.welcome-dismiss:after{transition:none}
+}
