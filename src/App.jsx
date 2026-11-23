@@ -94,7 +94,7 @@ function App(){
     return()=>{alive=false;};
   },[]);
   useEffect(()=>{ window.scrollTo({top:0,behavior:'smooth'}); setMobileMenu(false); setSearchOpen(false); },[location.pathname]);
-  useEffect(()=>{ if(sessionStorage.getItem('az-welcome-seen')) return; const timer=setTimeout(()=>setWelcomeOpen(true),650); return ()=>clearTimeout(timer); },[]);
+  useEffect(()=>{ if(location.pathname.startsWith('/admin')){setWelcomeOpen(false);return;} if(sessionStorage.getItem('az-welcome-seen')) return; const timer=setTimeout(()=>setWelcomeOpen(true),650); return ()=>clearTimeout(timer); },[location.pathname]);
   const closeWelcome = () => { sessionStorage.setItem('az-welcome-seen','1'); setWelcomeOpen(false); };
   useEffect(()=>{ if(!toast) return undefined; const timer=setTimeout(()=>setToast(''),2600); return ()=>clearTimeout(timer); },[toast]);
 
@@ -172,10 +172,12 @@ function App(){
         </motion.section>
       </motion.div>}
     </AnimatePresence>
-    <SiteFooter/>
-    <a className="floating-chat" href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp chat"><MessageCircle/></a>
-    <MobileDock cartCount={cartCount} onMenu={()=>setMobileMenu(value=>!value)}/>
-    <CartDrawer open={cartOpen} cart={cart} total={cartTotal} onClose={()=>setCartOpen(false)} onQuantity={setQuantity} onRemove={removeFromCart}/>
+    {!location.pathname.startsWith('/admin') && <>
+      <SiteFooter/>
+      <a className="floating-chat" href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp chat"><MessageCircle/></a>
+      <MobileDock cartCount={cartCount} onMenu={()=>setMobileMenu(value=>!value)}/>
+      <CartDrawer open={cartOpen} cart={cart} total={cartTotal} onClose={()=>setCartOpen(false)} onQuantity={setQuantity} onRemove={removeFromCart}/>
+    </>}
     <AnimatePresence>{toast && <motion.div className="toast-message" initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} exit={{opacity:0,y:14}}><Check size={16}/>{toast}</motion.div>}</AnimatePresence>
   </div>;
 }
