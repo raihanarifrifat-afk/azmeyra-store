@@ -2545,7 +2545,9 @@ p{line-height:1.75}
 .az-admin-order-detail{padding:20px 22px;background:#fbfaf8;line-height:1.6;font-size:12px}
 .az-order-detail-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:17px;border-bottom:1px solid #e8e1da;margin-bottom:17px}
 .az-order-detail-heading .eyebrow{font-size:9px;letter-spacing:1.4px;color:#927f72}
-.az-order-detail-heading h3{font:600 23px 'Cormorant Garamond',Georgia,serif;letter-spacing:.7px;margin:3px 0}
+.az-order-detail-heading h3{font:700 22px 'DM Sans',Arial,sans-serif;letter-spacing:.15px;line-height:1.35;margin:5px 0;color:#171515}
+.az-order-detail-heading .eyebrow{font-family:'DM Sans',Arial,sans-serif;font-weight:700;font-size:10px;letter-spacing:1.6px}
+.az-order-detail-heading small{font-family:'DM Sans',Arial,sans-serif;font-weight:400;font-size:11px;letter-spacing:.1px}
 .az-order-detail-heading small{font-size:10px;color:#847970}
 .az-order-status-pill{display:inline-flex;align-items:center;padding:7px 12px;background:#eee8df;color:#55483e;font-size:10px;letter-spacing:.3px}
 .az-order-detail-customer{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;padding:16px;background:#fff;border:1px solid #ece6df;margin-bottom:20px}
