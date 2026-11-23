@@ -2542,6 +2542,14 @@ p{line-height:1.75}
 .az-admin-primary{margin-top:18px;min-width:150px}
 .az-admin-order-detail{padding:12px 16px;background:#f8f8f6;line-height:1.9;font-size:12px}
 .az-admin-order-detail p{margin:5px 0}
+.az-order-delivery-summary{display:flex;gap:22px;flex-wrap:wrap;margin:10px 0;padding:10px 12px;background:#fff;border:1px solid #e6e2dc;color:#71675f;font-size:11px}
+.az-order-delivery-summary b{color:#171515}
+.az-order-delivery-editor{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:13px 14px;margin:10px 0 14px;background:#f0ede7;border:1px solid #e1dbd1}
+.az-order-delivery-editor label{display:flex;flex-direction:column;gap:6px;min-width:220px;color:#5e554d;font-size:11px}
+.az-order-delivery-editor select{min-height:38px;padding:8px 10px;border:1px solid #d6d0c8;background:#fff;color:#171515;font:12px 'Manrope',Arial,sans-serif}
+.az-order-delivery-editor .az-admin-primary{margin:0;min-height:38px;padding:9px 15px;background:#111;color:#fff;border:1px solid #111;font:600 11px 'Manrope',Arial,sans-serif;cursor:pointer}
+.az-order-delivery-editor .az-admin-primary:disabled{opacity:.45;cursor:not-allowed}
+.az-order-delivery-editor small{flex-basis:100%;color:#81766c;font-size:10px}
 .az-admin-pagination{display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:15px 0;font-size:12px}
 .az-admin-pagination span{margin-right:auto;color:#777}
 .az-admin-pagination button{padding:9px 14px;border:1px solid #ddd;background:#fff}
