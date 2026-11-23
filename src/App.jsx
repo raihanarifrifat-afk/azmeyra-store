@@ -176,7 +176,7 @@ function App(){
     </AnimatePresence>
     {!location.pathname.startsWith('/admin') && <>
       <SiteFooter/>
-      <a className="floating-chat" href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp chat"><MessageCircle/></a>
+      <a className="floating-chat" href="/contact" target="_blank" rel="noreferrer" aria-label="WhatsApp chat"><MessageCircle/></a>
       <MobileDock cartCount={cartCount} onMenu={()=>setMobileMenu(value=>!value)}/>
       <CartDrawer open={cartOpen} cart={cart} total={cartTotal} onClose={()=>setCartOpen(false)} onQuantity={setQuantity} onRemove={removeFromCart}/>
     </>}
@@ -210,7 +210,7 @@ function MobileMenu({onClose}){
         </div>
         <div className="az-menu-section-title"><span>INFORMATION</span><i>✦</i></div>
         <div className="az-menu-info">{info.map(([label,path])=><Link key={path} to={path} onClick={onClose}>{label}<ArrowRight size={14}/></Link>)}</div>
-        <a className="az-menu-help" href="https://wa.me/" target="_blank" rel="noreferrer">
+        <a className="az-menu-help" href="/contact" target="_blank" rel="noreferrer">
           <span className="az-menu-help-icon"><MessageCircle/></span><span><strong>Need a little help?</strong><small>Chat with our customer care</small></span><ArrowRight/>
         </a>
       </div>
@@ -223,7 +223,7 @@ function MobileDock({cartCount,onMenu}){return <nav className="mobile-dock" aria
   <NavLink to="/shop"><Grid2X2/><span>Discover</span></NavLink>
   <NavLink to="/blog"><BookOpen/><span>Journal</span></NavLink>
   <NavLink to="/" className="dock-home"><House/></NavLink>
-  <a href="https://wa.me/" target="_blank" rel="noreferrer"><MessageCircle/><span>Concierge</span></a>
+  <a href="/contact" target="_blank" rel="noreferrer"><MessageCircle/><span>Concierge</span></a>
   <button type="button" onClick={onMenu}><Menu/><span>Menu</span></button>
 </nav>}
 function Home({products,wishlist,onToggleWishlist,onAdd}){
@@ -562,6 +562,6 @@ function NotFound(){return <div className="page-wrap empty-state"><span classNam
 
 function Newsletter(){const [email,setEmail]=useState('');const [status,setStatus]=useState('idle');const [message,setMessage]=useState('');const submit=async event=>{event.preventDefault();const normalized=email.trim().toLowerCase();setStatus('loading');setMessage('');try{const {error}=await supabase.from('newsletter_subscribers').insert({email:normalized});if(error?.code==='23505'){setStatus('exists');setMessage('You are already on the list.');return;}if(error)throw error;setStatus('success');setMessage('Thank you — you are on the list.');setEmail('');}catch(error){console.error('AZMEYRA newsletter signup:',error.message);setStatus('error');setMessage('Could not subscribe right now. Please try again.');}};return <section className="newsletter-section"><div><span className="eyebrow">A NOTE FROM US, NOW AND THEN</span><h2>A little loveliness<br/><em>in your inbox.</em></h2><p>New arrivals, thoughtful edits and a little inspiration.</p></div><form onSubmit={submit}><label htmlFor="newsletter-email">YOUR EMAIL ADDRESS</label><div className="newsletter-input"><input id="newsletter-email" type="email" value={email} onChange={event=>setEmail(event.target.value)} placeholder="you@example.com" maxLength={254} required/><button type="submit" aria-label="Subscribe" disabled={status==='loading'}><ArrowUpRight/></button></div><small role="status">{message||'A considered note. Never too many.'}</small></form></section>}
 
-function SiteFooter(){return <footer className="site-footer"><div className="footer-top"><div className="footer-brand-column"><Link to="/" className="footer-logo"><img src="/azmeyra-logo-light.svg" alt="AZMEYRA"/></Link><p>Thoughtfully selected pieces for your everyday moments.</p><div className="social-links"><a href="https://instagram.com" aria-label="Instagram"><span className="social-ig">IG</span></a><a href="https://wa.me/" aria-label="WhatsApp"><MessageCircle/></a></div></div><div className="footer-column"><b>EXPLORE</b><Link to="/shop">Shop all</Link><Link to="/about">Our story</Link><Link to="/blog">Journal</Link></div><div className="footer-column"><b>HELP & SUPPORT</b><Link to="/contact">Contact us</Link><Link to="/track">Track an order</Link><Link to="/account">My account</Link></div><div className="footer-column footer-contact"><b>THE AZMEYRA PROMISE</b><span><Truck/> Delivery across Bangladesh</span><span><ShieldCheck/> Thoughtfully selected</span><span><PackageCheck/> Easy exchange support</span></div></div><div className="footer-bottom"><span>© 2026 AZMEYRA. ALL RIGHTS RESERVED.</span><span>MADE WITH CARE IN BANGLADESH</span><span>THE ART OF EVERYDAY ELEGANCE</span></div></footer>}
+function SiteFooter(){return <footer className="site-footer"><div className="footer-top"><div className="footer-brand-column"><Link to="/" className="footer-logo"><img src="/azmeyra-logo-light.svg" alt="AZMEYRA"/></Link><p>Thoughtfully selected pieces for your everyday moments.</p><div className="social-links"><a href="https://instagram.com" aria-label="Instagram"><span className="social-ig">IG</span></a><a href="/contact" aria-label="WhatsApp"><MessageCircle/></a></div></div><div className="footer-column"><b>EXPLORE</b><Link to="/shop">Shop all</Link><Link to="/about">Our story</Link><Link to="/blog">Journal</Link></div><div className="footer-column"><b>HELP & SUPPORT</b><Link to="/contact">Contact us</Link><Link to="/track">Track an order</Link><Link to="/account">My account</Link></div><div className="footer-column footer-contact"><b>THE AZMEYRA PROMISE</b><span><Truck/> Delivery across Bangladesh</span><span><ShieldCheck/> Thoughtfully selected</span><span><PackageCheck/> Easy exchange support</span></div></div><div className="footer-bottom"><span>© 2026 AZMEYRA. ALL RIGHTS RESERVED.</span><span>MADE WITH CARE IN BANGLADESH</span><span>THE ART OF EVERYDAY ELEGANCE</span></div></footer>}
 
 export default App;
