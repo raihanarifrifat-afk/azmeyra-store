@@ -167,7 +167,7 @@ function App(){
       {welcomeOpen && <motion.div className="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onMouseDown={event=>{if(event.target===event.currentTarget)closeWelcome();}}>
         <motion.section className="welcome-modal" initial={{opacity:0,scale:.92}} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:.96}} transition={{duration:.35,ease:"easeOut"}}>
           <button className="welcome-close" onClick={closeWelcome} aria-label="Close welcome popup"><X/></button>
-          <div className="welcome-image"><img src="/images/azmeyra-welcome-model.webp" alt="AZMEYRA modest fashion collection"/></div>
+          <div className="welcome-image"><img src="/images/azmeyra-welcome-model.svg" alt="AZMEYRA modest fashion collection"/></div>
           <div className="welcome-copy"><img className="welcome-brand-logo" src={brandLogo} alt="AZMEYRA logo"/><span className="eyebrow">WELCOME TO AZMEYRA</span><h2 id="welcome-title">The art of<br/><em>everyday elegance.</em></h2><p>Thoughtfully selected fashion for every version of you. Discover a collection made to feel personal, effortless and beautifully yours.</p><button className="button button-dark" onClick={()=>{closeWelcome();navigate('/shop');}}>Explore the collection <ArrowRight/></button><button className="welcome-dismiss" onClick={closeWelcome}>Maybe later</button></div>
         </motion.section>
       </motion.div>}
