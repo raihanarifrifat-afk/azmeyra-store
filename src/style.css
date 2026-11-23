@@ -2744,3 +2744,9 @@ body{font-size:18px}
  .product-price{font-size:12px}
  .product-meta{font-size:10px}
 }
+
+.checkout-form-card select[name="delivery_area"]{width:100%;min-height:48px;padding:12px 13px;border:1px solid var(--line);border-radius:0;background:#fffefa;color:var(--ink);font:500 14px 'Manrope',Arial,sans-serif;outline:0}
+.checkout-form-card select[name="delivery_area"]:focus{border-color:var(--brass)}
+.checkout-delivery-breakdown{margin-top:18px;padding-top:12px;border-top:1px solid #d8d1c4}
+.checkout-delivery-breakdown>div{display:flex;justify-content:space-between;gap:12px;margin:9px 0;color:var(--muted);font-size:12px}
+.checkout-delivery-breakdown b{color:var(--ink);font-weight:600}
