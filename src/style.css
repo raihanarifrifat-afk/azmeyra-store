@@ -3118,3 +3118,45 @@ body{font-size:18px}
     margin-top:10px;
   }
 }
+
+
+/* Google OAuth button on customer sign-in and registration */
+.account-auth-divider{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:22px 0 16px;
+  color:#85857f;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.8px;
+}
+.account-auth-divider:before,.account-auth-divider:after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:#e7e5e0;
+}
+.account-google-button{
+  width:100%;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:0 18px;
+  border:1px solid #dcdad5;
+  border-radius:2px;
+  background:#fff;
+  color:#252520;
+  font:600 13px inherit;
+  cursor:pointer;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.account-google-button:hover:not(:disabled){
+  background:#faf9f6;
+  border-color:#aaa69d;
+  transform:translateY(-1px);
+}
+.account-google-button:disabled{opacity:.6;cursor:wait}
+.account-google-button svg{width:18px;height:18px;flex:0 0 18px}
