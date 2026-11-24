@@ -3085,3 +3085,36 @@ body{font-size:18px}
     background:linear-gradient(90deg,#f7f7f7 0%,rgba(247,247,247,.42) 3%,transparent 18%,transparent 82%,rgba(247,247,247,.42) 97%,#f7f7f7 100%);
   }
 }
+
+
+/* Tighten vertical rhythm around the homepage hero carousel */
+.az-home-hero{
+  padding-top:18px;
+  padding-bottom:24px;
+}
+.az-hero-intro{
+  margin-bottom:14px;
+}
+.az-hero-progress{
+  margin-top:0;
+  margin-bottom:0;
+}
+.az-hero-stage{
+  margin-top:0;
+}
+.az-hero-controls{
+  margin-top:12px;
+  margin-bottom:0;
+}
+@media(max-width:700px){
+  .az-home-hero{
+    padding-top:18px;
+    padding-bottom:22px;
+  }
+  .az-hero-intro{
+    margin-bottom:12px;
+  }
+  .az-hero-controls{
+    margin-top:10px;
+  }
+}
