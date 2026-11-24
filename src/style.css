@@ -3343,3 +3343,37 @@ body{font-size:18px}
  .account-auth-aside:before,.account-auth-aside:after,.account-auth-monogram,.account-auth-form{animation:none;opacity:1;transform:none}
  .account-auth-tab-indicator,.account-auth-field label,.account-auth-field input,.account-auth-google-button{transition:none}
 }
+
+
+/* Compact, centered customer sign-in inspired by the supplied reference */
+.account-auth-layout-compact{
+  display:flex!important;justify-content:center;align-items:flex-start;
+  width:min(100% - 32px, 460px);min-height:0;margin:0 auto 90px;
+  border:0!important;background:transparent!important;box-shadow:none!important;
+}
+.account-auth-layout-compact .account-auth-panel{
+  width:100%;max-width:460px;padding:28px 30px 24px;
+  border:1px solid #eeeae5;border-radius:22px;
+  background:#fff;box-shadow:0 14px 45px rgba(25,22,20,.07);
+}
+.account-auth-layout-compact .account-auth-heading{text-align:center;margin-bottom:22px}
+.account-auth-layout-compact .account-auth-heading .eyebrow{font-size:8px;letter-spacing:3px}
+.account-auth-layout-compact .account-auth-heading h2{font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:600;margin:0 0 8px}
+.account-auth-layout-compact .account-auth-heading p{font-size:12px;color:#555}
+.account-auth-layout-compact .account-auth-tabs{gap:0;margin-bottom:20px;padding:0 0 12px}
+.account-auth-layout-compact .account-auth-tabs button{flex:1;text-align:center;text-transform:uppercase;font-size:10px;letter-spacing:1.5px}
+.account-auth-layout-compact .account-auth-form{gap:11px}
+.account-auth-layout-compact .account-auth-form .account-auth-field input{height:44px;padding:14px 13px 5px;border-radius:7px;font-size:12px}
+.account-auth-layout-compact .account-auth-field label{left:13px;font-size:11px!important}
+.account-auth-layout-compact .account-auth-form>.button{min-height:48px;margin-top:5px;border-radius:10px;justify-content:center;text-transform:uppercase;font-size:11px;letter-spacing:1.5px}
+.account-auth-layout-compact .account-auth-divider{margin:16px 0 12px}
+.account-auth-layout-compact .account-google-button{min-height:46px;border-radius:10px}
+.account-auth-layout-compact .account-auth-switch{margin:18px -30px -24px;padding:17px 12px;text-align:center;background:#fbfaf9;border-radius:0 0 22px 22px;color:#777;font-size:11px}
+.account-auth-layout-compact .account-auth-switch button,.account-forgot-link{border:0;background:none;padding:0;color:#222;text-decoration:underline;font:inherit;font-weight:600;cursor:pointer}
+.account-auth-layout-compact .account-forgot-link{align-self:flex-end;font-size:10px;color:#777;margin-top:-3px}
+.account-auth-layout-compact .account-notice{margin:0;font-size:11px;color:#376b4c}
+@media(max-width:520px){
+ .account-auth-layout-compact{width:calc(100% - 28px);margin-bottom:70px}
+ .account-auth-layout-compact .account-auth-panel{padding:25px 18px 20px;border-radius:19px}
+ .account-auth-layout-compact .account-auth-switch{margin:18px -18px -20px;border-radius:0 0 19px 19px}
+}
