@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 
 const CATEGORIES = [
-  { name:'Abaya', count:'01', image:'https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160' },
   { name:'Kaftan', count:'02', image:'https://jamila-eg.com/cdn/shop/files/Arabic-Calligraphy-Kaftan-001-Black00002.webp?v=1747655404' },
   { name:'Karchupi', count:'03', image:'https://down-my.img.susercontent.com/file/sg-11134201-8261q-ml7gv0ery6fhff' },
   { name:'Embroidery', count:'04', image:'https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg' },
@@ -25,11 +24,9 @@ const CATEGORIES = [
 ];
 
 const SEED = [
-  { id:2, name:'Classic Black Embroidered Abaya', category:'Abaya', price:3490, tag:'Bestseller', image:'https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160', images:['https://eastessence.com/cdn/shop/products/new-islamic-butterfly-cut-embroidered-kaftan-style-abaya-742798.jpg?v=1756725160'], sizes:['S','M','L','XL'], colors:['Black'], stock:8, description:'A flowing black abaya with refined embroidered detailing for everyday elegance.', featured:true },
   { id:3, name:'Everyday Linen Kurti', category:'Kurti', price:1450, tag:'Just in', image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1000', images:['https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200'], sizes:['S','M','L','XL'], colors:['Sage','Sand'], stock:18, description:'An easy, breathable silhouette made for long days and relaxed plans.', featured:true },
   { id:4, name:'Modern Co-ord Set', category:'Western', price:2350, tag:'New arrival', image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1000', images:['https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200'], sizes:['S','M','L'], colors:['Black','Stone'], stock:10, description:'A polished two-piece look for days when getting dressed should feel effortless.', featured:true },
   { id:5, name:'Midnight Occasion Gown', category:'Gown', price:4600, tag:'Limited edit', image:'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=1000', images:['https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=1200'], sizes:['S','M','L','XL'], colors:['Midnight','Wine'], stock:5, description:'A refined occasion silhouette with a little drama and a beautiful finish.', featured:true },
-  { id:6, name:'Classic Black Abaya', category:'Abaya', price:2750, tag:'Bestseller', image:'https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg', images:['https://i.etsystatic.com/53109869/r/il/616e1e/7088418778/il_1080xN.7088418778_qn3w.jpg'], sizes:['S','M','L','XL'], colors:['Black','Mocha'], stock:9, description:'A clean, versatile abaya designed around a timeless and comfortable fit.', featured:true },
   { id:7, name:'Soft Lounge Set', category:'Cover Up', price:1690, tag:'Everyday favourite', image:'https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg', images:['https://i.ebayimg.com/images/g/GksAAOSwG~ta8joy/s-l960.jpg'], sizes:['S','M','L','XL'], colors:['Taupe','Black'], stock:14, description:'A relaxed, modest layer for comfortable everyday styling.', featured:false },
   { id:8, name:'Pearl Detail Earrings', category:'Accessories', price:650, tag:'Small treasure', image:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1000', images:['https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200'], sizes:['One size'], colors:['Gold'], stock:22, description:'A delicate finishing touch that brings a soft glow to any look.', featured:false },
   { id:9, name:'Signature Black Kaftan', category:'Kaftan', price:3990, tag:'New arrival', image:'https://jamila-eg.com/cdn/shop/files/Arabic-Calligraphy-Kaftan-001-Black00002.webp?v=1747655404', images:['https://jamila-eg.com/cdn/shop/files/Arabic-Calligraphy-Kaftan-001-Black00002.webp?v=1747655404'], sizes:['M','L','XL'], colors:['Black'], stock:7, description:'A graceful kaftan with statement sleeve detailing and a fluid silhouette.', featured:true },
@@ -136,7 +133,7 @@ function App(){
       <AnimatePresence>
         {searchOpen && <motion.div className="search-panel" initial={{opacity:0,y:-12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-12}}>
           <form className="search-form" onSubmit={submitSearch}><Search/><input autoFocus value={search} onChange={event=>setSearch(event.target.value)} placeholder="Search suits, kurtis, occasionwear..."/><button className="search-submit" type="submit">Search <ArrowUpRight/></button><button className="search-close icon-button" type="button" onClick={()=>setSearchOpen(false)} aria-label="Close search"><X/></button></form>
-          <div className="search-suggestions"><span>POPULAR SEARCHES</span>{['Salwar Kameez','Kurti','Abaya','Occasionwear'].map(term=><button key={term} onClick={()=>{setSearch(term);navigate('/shop?search='+encodeURIComponent(term));setSearchOpen(false);}}>{term}</button>)}</div>
+          <div className="search-suggestions"><span>POPULAR SEARCHES</span>{['Salwar Kameez','Kurti','Occasionwear'].map(term=><button key={term} onClick={()=>{setSearch(term);navigate('/shop?search='+encodeURIComponent(term));setSearchOpen(false);}}>{term}</button>)}</div>
         </motion.div>}
       </AnimatePresence>
     </header>
@@ -185,7 +182,7 @@ function App(){
 }
 
 function MobileMenu({onClose}){
-  const collections=['Abaya','Salwar Kameez','Kurti & Tops','Gowns','Nightwear','Accessories'];
+  const collections=['Salwar Kameez','Kurti & Tops','Gowns','Nightwear','Accessories'];
   const info=[['Our story','/about'],['Journal','/blog'],['Contact & support','/contact'],['My account','/account']];
   return <motion.div className="az-menu-scrim" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={onClose}>
     <motion.aside className="az-menu-panel" initial={{x:'100%'}} animate={{x:0}} exit={{x:'100%'}} transition={{type:'spring',damping:29,stiffness:250}} onClick={event=>event.stopPropagation()} aria-label="AZMEYRA menu">
@@ -229,9 +226,8 @@ function MobileDock({cartCount,onMenu}){return <nav className="mobile-dock" aria
 function Home({products,wishlist,onToggleWishlist,onAdd}){
   const arrivals=[...products.filter(item=>item.tag==='New arrival'||item.tag==='Just in'),...products.filter(item=>item.tag!=='New arrival'&&item.tag!=='Just in')].slice(0,4);
   const bestsellers=products.filter(item=>item.tag==='Bestseller').slice(0,4);
-  const homeCategories=CATEGORIES.filter(item=>['Salwar Kameez','Kurti','Western','Abaya'].includes(item.name));
+  const homeCategories=CATEGORIES.filter(item=>['Salwar Kameez','Kurti','Western'].includes(item.name));
   const heroSlides=[
-    {category:'THE ABAYA EDIT',title:'Abaya An-Nuha',image:'https://images.pexels.com/photos/13791549/pexels-photo-13791549.jpeg?auto=compress&cs=tinysrgb&w=1200',alt:'Model wearing a refined modest abaya',link:'/shop?category=Abaya%20%26%20Burka',cta:'Explore collection'},
     {category:'THE MODEST SET',title:'Everyday elegance',image:'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&auto=format&fit=crop&q=85',alt:'Contemporary modest fashion styling',link:'/shop?category=Salwar%20Kameez',cta:'Discover the edit'},
     {category:'THE KURTI STORY',title:'Grace in every detail',image:'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?w=1200&auto=format&fit=crop&q=85',alt:'Elegant traditional outfit collection',link:'/shop?category=Kurti',cta:'Shop kurtis'},
     {category:'THE WESTERN EDIT',title:'A little more you',image:'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?w=1200&auto=format&fit=crop&q=85',alt:'Modern womenswear collection',link:'/shop?category=Western',cta:'Explore styles'},
@@ -286,7 +282,6 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
         <p>Thoughtfully selected styles for everyday wear and special moments.</p>
       </div>
       {[
-        {name:'Abaya',title:'Abaya Collection',eyebrow:'GRACE IN EVERY DETAIL'},
         {name:'Kaftan',title:'Kaftan Collection',eyebrow:'FLOWING EVERYDAY ELEGANCE'},
         {name:'Karchupi',title:'Karchupi Collection',eyebrow:'DETAILS MADE TO STAND OUT'},
         {name:'Embroidery',title:'Embroidery Collection',eyebrow:'CRAFTED WITH CARE'},
