@@ -3420,3 +3420,8 @@ body{font-size:18px}
  .account-auth-reference-heading{margin:28px auto 18px}
  .account-auth-layout-compact .account-auth-panel{padding:22px 18px 20px}
 }
+
+
+/* Remove the empty bordered wrapper around the customer auth card */
+.account-shell-auth{max-width:none!important;margin:0 auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}
+.account-shell-auth .account-auth-layout-compact{margin:0 auto 24px!important;}
