@@ -56,6 +56,7 @@ function App(){
   const [toast,setToast] = useState('');
   const [welcomeOpen,setWelcomeOpen] = useState(false);
   const [welcomeImageUrl,setWelcomeImageUrl] = useState('/images/azmeyra-welcome-model.svg');
+  const [welcomeImageReady,setWelcomeImageReady] = useState(false);
   const [authSession,setAuthSession] = useState(null);
   const [adminRole,setAdminRole] = useState(false);
   const [authLoading,setAuthLoading] = useState(true);
@@ -92,8 +93,8 @@ function App(){
     return()=>{alive=false;};
   },[]);
   useEffect(()=>{ window.scrollTo({top:0,behavior:'smooth'}); setMobileMenu(false); setSearchOpen(false); },[location.pathname]);
-  useEffect(()=>{ if(location.pathname.startsWith('/admin')||location.pathname!=='/'){setWelcomeOpen(false);return;} if(sessionStorage.getItem('az-welcome-shown-session')==='1'){setWelcomeOpen(false);return;} setWelcomeOpen(true); },[location.pathname]);
-  useEffect(()=>{let live=true;(async()=>{const {data,error}=await supabase.from('site_settings').select('value').eq('key','welcome_popup_image').maybeSingle();if(live&&!error&&data?.value)setWelcomeImageUrl(data.value);})();return()=>{live=false;};},[]);
+  useEffect(()=>{ if(location.pathname.startsWith('/admin')||location.pathname!=='/'){setWelcomeOpen(false);return;} if(!welcomeImageReady){setWelcomeOpen(false);return;} if(sessionStorage.getItem('az-welcome-shown-session')==='1'){setWelcomeOpen(false);return;} setWelcomeOpen(true); },[location.pathname,welcomeImageReady]);
+  useEffect(()=>{let live=true;(async()=>{try{const {data,error}=await supabase.from('site_settings').select('value').eq('key','welcome_popup_image').maybeSingle();if(!live)return;if(!error&&data?.value)setWelcomeImageUrl(data.value);}catch(e){console.error('Welcome image setting load failed:',e);}finally{if(live)setWelcomeImageReady(true);}})();return()=>{live=false;};},[]);
   const closeWelcome = () => { sessionStorage.setItem('az-welcome-shown-session','1'); setWelcomeOpen(false); };
   useEffect(()=>{ if(!toast) return undefined; const timer=setTimeout(()=>setToast(''),2600); return ()=>clearTimeout(timer); },[toast]);
 
