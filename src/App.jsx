@@ -95,9 +95,9 @@ function App(){
     return()=>{alive=false;};
   },[]);
   useEffect(()=>{ window.scrollTo({top:0,behavior:'smooth'}); setMobileMenu(false); setSearchOpen(false); },[location.pathname]);
-  useEffect(()=>{ if(location.pathname.startsWith('/admin')||location.pathname!=='/'){setWelcomeOpen(false);return;} setWelcomeOpen(true); },[location.pathname]);
+  useEffect(()=>{ if(location.pathname.startsWith('/admin')||location.pathname!=='/'){setWelcomeOpen(false);return;} if(sessionStorage.getItem('az-welcome-shown-session')==='1'){setWelcomeOpen(false);return;} setWelcomeOpen(true); },[location.pathname]);
   useEffect(()=>{let live=true;(async()=>{const {data,error}=await supabase.from('site_settings').select('value').eq('key','welcome_popup_image').maybeSingle();if(live&&!error&&data?.value)setWelcomeImageUrl(data.value);})();return()=>{live=false;};},[]);
-  const closeWelcome = () => { setWelcomeOpen(false); };
+  const closeWelcome = () => { sessionStorage.setItem('az-welcome-shown-session','1'); setWelcomeOpen(false); };
   useEffect(()=>{ if(!toast) return undefined; const timer=setTimeout(()=>setToast(''),2600); return ()=>clearTimeout(timer); },[toast]);
 
   const cartCount = cart.reduce((sum,item)=>sum+item.qty,0);
