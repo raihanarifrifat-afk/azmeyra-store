@@ -7,8 +7,8 @@ begin
  begin v_headers:=coalesce(current_setting('request.headers',true),'{}')::jsonb; v_ip:=split_part(coalesce(v_headers->>'x-forwarded-for',''),',',1)::inet;
  exception when others then v_ip:=null; end;
  if v_ip is null then v_ip:='0.0.0.0'::inet; end if;
- if v_path like '%/rpc/create_guest_order%' then perform private.enforce_api_rate_limit(v_ip,'guest_checkout',5,600);
- elsif v_path like '%/rpc/track_guest_order%' then perform private.enforce_api_rate_limit(v_ip,'order_tracking',20,600);
+ if v_path like '%rpc/create_guest_order%' then perform private.enforce_api_rate_limit(v_ip,'guest_checkout',5,600);
+ elsif v_path like '%rpc/track_guest_order%' then perform private.enforce_api_rate_limit(v_ip,'order_tracking',20,600);
  elsif v_path like '%/contact_messages%' then perform private.enforce_api_rate_limit(v_ip,'contact_form',5,600);
  elsif v_path like '%/newsletter_subscribers%' then perform private.enforce_api_rate_limit(v_ip,'newsletter',3,600);
  else perform private.enforce_api_rate_limit(v_ip,'data_api_write',120,300); end if;
