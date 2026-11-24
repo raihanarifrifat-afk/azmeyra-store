@@ -3425,3 +3425,32 @@ body{font-size:18px}
 /* Remove the empty bordered wrapper around the customer auth card */
 .account-shell-auth{max-width:none!important;margin:0 auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}
 .account-shell-auth .account-auth-layout-compact{margin:0 auto 24px!important;}
+
+
+/* Final auth form alignment: consistent floating labels and field text baseline */
+.account-auth-layout-compact .account-auth-form .account-auth-field{
+  width:100%;min-width:0;
+}
+.account-auth-layout-compact .account-auth-form .account-auth-field input{
+  display:block;width:100%;box-sizing:border-box;height:54px;
+  padding:21px 14px 8px!important;line-height:1.25;
+  font-size:14px!important;text-align:left;
+}
+.account-auth-layout-compact .account-auth-form .account-auth-field input::placeholder{color:transparent}
+.account-auth-layout-compact .account-auth-form .account-auth-field label{
+  left:14px!important;top:50%;font-size:12px!important;
+  line-height:1.1;white-space:nowrap;
+}
+.account-auth-layout-compact .account-auth-form .account-auth-field input:focus+label,
+.account-auth-layout-compact .account-auth-form .account-auth-field input:not(:placeholder-shown)+label{
+  top:9px!important;transform:translateY(0) scale(.82);
+}
+.account-auth-layout-compact .account-auth-form{align-items:stretch}
+.account-auth-layout-compact .account-auth-form>.button,
+.account-auth-layout-compact .account-google-button{width:100%;box-sizing:border-box}
+.account-page{padding-bottom:130px}
+@media(max-width:520px){
+ .account-auth-layout-compact .account-auth-panel{padding:22px 18px 20px}
+ .account-auth-layout-compact .account-auth-form .account-auth-field input{height:52px}
+ .account-auth-layout-compact .account-auth-form .account-auth-field label{font-size:11px!important}
+}
