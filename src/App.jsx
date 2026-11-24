@@ -256,8 +256,8 @@ function Home({products,wishlist,onToggleWishlist,onAdd}){
           {heroSlides.map((slide,index)=><button key={slide.title} className={index===heroSlide?'active':''} onClick={()=>setHeroSlide(index)} aria-label={'Show '+slide.title}><span key={heroSlide===index?heroSlide:'idle'} /></button>)}
         </div>     </div>
       <div className="az-hero-stage" onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onTouchStart={handleHeroTouchStart} onTouchEnd={handleHeroTouchEnd}>
-        <button className="az-hero-peek az-hero-peek-left" onClick={()=>changeHero(-1)} aria-label="Previous collection" style={{backgroundImage:`url(${heroSlides[(heroSlide+heroSlides.length-1)%heroSlides.length].image})`}}><span>0{((heroSlide+heroSlides.length-1)%heroSlides.length)+1}</span></button>
-        <button className="az-hero-peek az-hero-peek-right" onClick={()=>changeHero(1)} aria-label="Next collection" style={{backgroundImage:`url(${heroSlides[(heroSlide+1)%heroSlides.length].image})`}}><span>0{((heroSlide+1)%heroSlides.length)+1}</span></button>
+        <button className="az-hero-peek az-hero-peek-left" onClick={()=>changeHero(-1)} aria-label="Previous collection" style={{backgroundImage:`url(${heroSlides[(heroSlide+heroSlides.length-1)%heroSlides.length].image})`}} />
+        <button className="az-hero-peek az-hero-peek-right" onClick={()=>changeHero(1)} aria-label="Next collection" style={{backgroundImage:`url(${heroSlides[(heroSlide+1)%heroSlides.length].image})`}} />
         <AnimatePresence mode="wait">
           <motion.div className="az-hero-backdrop" key={'back-'+activeHero.image} style={{backgroundImage:'url('+activeHero.image+')'}} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.5}}/>
         </AnimatePresence>
