@@ -3454,3 +3454,73 @@ body{font-size:18px}
  .account-auth-layout-compact .account-auth-form .account-auth-field input{height:52px}
  .account-auth-layout-compact .account-auth-form .account-auth-field label{font-size:11px!important}
 }
+
+
+/* Customer account dashboard: cleaner layout, no enclosing white frame */
+.account-shell:not(.account-shell-auth){
+  width:min(100% - 32px,920px)!important;max-width:920px!important;
+  margin:28px auto 90px!important;padding:0!important;
+  border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;
+}
+.account-shell:not(.account-shell-auth) .account-topline{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:0 0 20px;margin:0 0 18px;border-bottom:1px solid #e9e6e2;
+}
+.account-shell:not(.account-shell-auth) .account-topline>span{
+  min-width:0;font-size:clamp(16px,3.8vw,21px);font-weight:600;color:#222;
+  overflow-wrap:anywhere;
+}
+.account-shell:not(.account-shell-auth) .account-topline .button{
+  flex:0 0 auto;min-height:42px;padding:0 18px;font-size:12px;
+}
+.account-shell:not(.account-shell-auth) .account-tabs{
+  display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:4px!important;overflow:visible!important;white-space:normal!important;
+  padding:0 0 12px!important;margin:0 0 26px!important;
+  border-bottom:1px solid #e8e5e1;
+}
+.account-shell:not(.account-shell-auth) .account-tabs button{
+  min-width:0;padding:12px 3px!important;text-align:center;
+  background:transparent!important;border:0!important;border-radius:0!important;
+  color:#777!important;font-size:clamp(10px,2.8vw,14px)!important;
+  line-height:1.25;white-space:normal!important;overflow-wrap:anywhere;
+}
+.account-shell:not(.account-shell-auth) .account-tabs button.active{
+  color:#111!important;font-weight:700!important;position:relative;
+}
+.account-shell:not(.account-shell-auth) .account-tabs button.active:after{
+  content:"";position:absolute;left:12%;right:12%;bottom:-13px;height:3px;
+  background:#111;border-radius:3px;
+}
+.account-shell:not(.account-shell-auth) .account-section{
+  min-width:0;padding:0!important;background:transparent!important;
+}
+.account-shell:not(.account-shell-auth) .account-section h2{
+  margin:0 0 20px;font-size:clamp(22px,4vw,28px);font-weight:600;
+}
+.account-shell:not(.account-shell-auth) .account-empty{
+  padding:34px 18px!important;border:1px solid #eeeae6;border-radius:14px;
+  background:#faf9f7!important;display:flex;flex-direction:column;
+  align-items:center;gap:10px;
+}
+.account-shell:not(.account-shell-auth) .account-empty h3{font-size:19px}
+.account-shell:not(.account-shell-auth) .account-empty p{
+  max-width:390px;text-align:center;line-height:1.6;
+}
+.account-shell:not(.account-shell-auth) .account-empty .button{
+  min-height:48px;padding:0 22px;margin-top:8px;
+}
+.account-shell:not(.account-shell-auth) .account-order-card,
+.account-shell:not(.account-shell-auth) .account-address-card{
+  border:1px solid #ece8e3;border-radius:12px;background:#fff;
+}
+@media(max-width:520px){
+ .account-shell:not(.account-shell-auth){width:calc(100% - 36px)!important;margin:22px auto 80px!important}
+ .account-shell:not(.account-shell-auth) .account-topline{padding-bottom:15px;margin-bottom:12px}
+ .account-shell:not(.account-shell-auth) .account-topline .button{min-height:38px;padding:0 13px}
+ .account-shell:not(.account-shell-auth) .account-tabs{gap:0!important;margin-bottom:22px!important}
+ .account-shell:not(.account-shell-auth) .account-tabs button{font-size:10px!important;letter-spacing:-.2px;padding:11px 1px!important}
+ .account-shell:not(.account-shell-auth) .account-tabs button.active:after{bottom:-13px}
+ .account-shell:not(.account-shell-auth) .account-empty{padding:26px 14px!important}
+}
