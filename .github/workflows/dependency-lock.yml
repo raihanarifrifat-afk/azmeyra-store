@@ -1,0 +1,55 @@
+name: Lock dependencies and verify build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - package.json
+      - .github/workflows/dependency-lock.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dependency-lock-main
+  cancel-in-progress: false
+
+jobs:
+  lock-and-build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Generate reproducible lockfile
+        run: npm install --package-lock-only --ignore-scripts --no-audit
+
+      - name: Clean install
+        run: npm ci --ignore-scripts
+
+      - name: Production build
+        run: npm run build
+
+      - name: Commit lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Add reproducible npm dependency lockfile"
+            git push origin HEAD:main
+          fi
+
+      - name: Dependency security audit
+        run: npm audit --audit-level=high
