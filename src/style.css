@@ -3536,7 +3536,7 @@ body{font-size:18px}
 /* AZMEYRA footer — rebuilt to follow the supplied Fabrilife mobile reference */
 .site-footer{
   padding:0;
-  background:#58595b;
+  background:#333533;
   color:#f7f7f5;
 }
 .footer-reference-wrap{
@@ -3648,7 +3648,7 @@ body{font-size:18px}
 .site-footer .footer-bottom{
   width:100%;max-width:none;margin:0;padding:28px 20px;
   display:flex;justify-content:center;text-align:center;
-  background:#f3f3f1;color:#999;font-size:11px;letter-spacing:1.4px;
+  background:#333533;color:rgba(255,255,255,.68);font-size:11px;letter-spacing:1.4px;
   border:0;
 }
 @media(max-width:700px){
