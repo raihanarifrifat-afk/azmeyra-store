@@ -3904,3 +3904,16 @@ body{font-size:18px}
   .az-footer .fb-widget-wrapper .fb-page{width:340px;max-width:100%!important}
   .az-footer .az-footer-bottom{padding:21px 14px!important;font-size:9px!important;letter-spacing:1.2px!important}
 }
+
+
+/* Account-required order tracking */
+.track-auth-panel{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:34px}
+.track-auth-panel .track-lock-icon{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);color:var(--brass)}
+.track-auth-panel .track-lock-icon svg{width:22px;height:22px}
+.track-auth-panel h2{margin:4px 0 0;font:500 27px/1.15 var(--serif);color:var(--ink)}
+.track-auth-panel p{max-width:440px;margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+.track-auth-panel .button{margin-top:5px}
+.track-auth-panel small{color:var(--muted);font-size:11px}
+.order-history-card a{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--ink);font-size:12px;text-decoration:none}
+.order-history-card a svg{width:15px;height:15px}
+@media(max-width:600px){.track-auth-panel{padding:25px 22px}.track-auth-panel h2{font-size:24px}}
