@@ -3718,3 +3718,40 @@ body{font-size:18px}
 @media(max-width:700px){
   .site-footer .fb-page{width:340px;max-width:100%!important}
 }
+
+
+/* Facebook follow widget: wait for SDK parsing and contain its native card */
+.site-footer .fb-widget-wrapper{
+  display:inline-block;
+  max-width:100%;
+  background:transparent;
+  border-radius:8px;
+  overflow:hidden;
+  vertical-align:top;
+}
+.site-footer .fb-widget-card{
+  display:inline-block;
+  max-width:100%;
+  padding:4px;
+  background:#fff;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:10px;
+  overflow:hidden;
+}
+.site-footer .fb-widget-wrapper .fb-page,
+.site-footer .fb-widget-wrapper .fb-page > span,
+.site-footer .fb-widget-wrapper .fb-page iframe{
+  max-width:100%!important;
+}
+.site-footer .fb-widget-wrapper .fb-page{
+  width:340px;
+  min-height:130px;
+  margin:0;
+  overflow:hidden;
+  background:#fff;
+}
+@media(max-width:700px){
+  .site-footer .fb-widget-wrapper{width:100%}
+  .site-footer .fb-widget-card{max-width:100%}
+  .site-footer .fb-widget-wrapper .fb-page{width:340px;max-width:100%!important}
+}
