@@ -3720,23 +3720,17 @@ body{font-size:18px}
 }
 
 
-/* Facebook follow widget: wait for SDK parsing and contain its native card */
+/* Facebook Page Plugin: full cover/header layout without artificial blank height */
 .site-footer .fb-widget-wrapper{
   display:inline-block;
-  max-width:100%;
-  background:transparent;
-  border-radius:8px;
-  overflow:hidden;
-  vertical-align:top;
-}
-.site-footer .fb-widget-card{
-  display:inline-block;
+  width:340px;
   max-width:100%;
   padding:4px;
   background:#fff;
-  border:1px solid rgba(255,255,255,.28);
+  border:1px solid rgba(255,255,255,.24);
   border-radius:10px;
   overflow:hidden;
+  vertical-align:top;
 }
 .site-footer .fb-widget-wrapper .fb-page,
 .site-footer .fb-widget-wrapper .fb-page > span,
@@ -3744,14 +3738,16 @@ body{font-size:18px}
   max-width:100%!important;
 }
 .site-footer .fb-widget-wrapper .fb-page{
+  display:block;
   width:340px;
-  min-height:130px;
+  max-width:100%!important;
+  min-height:0;
+  height:320px;
   margin:0;
   overflow:hidden;
   background:#fff;
 }
 @media(max-width:700px){
-  .site-footer .fb-widget-wrapper{width:100%}
-  .site-footer .fb-widget-card{max-width:100%}
-  .site-footer .fb-widget-wrapper .fb-page{width:340px;max-width:100%!important}
+  .site-footer .fb-widget-wrapper{width:340px;max-width:100%}
+  .site-footer .fb-widget-wrapper .fb-page{width:340px;max-width:100%!important;height:320px}
 }
