@@ -356,11 +356,11 @@ function SectionHeading({eyebrow,title,link,linkText='Explore all'}){return <div
 
 function ProductGrid({products,wishlist,onToggleWishlist,onAdd}){return <div className="product-grid">{products.map(product=><ProductCard key={product.id} product={product} wished={wishlist.includes(product.id)} onToggle={()=>onToggleWishlist(product.id)} onAdd={()=>onAdd(product)}/>)}</div>}
 
-function ProductCard({product,wished,onToggle,onAdd}){return <motion.article className="product-card" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.14}} whileHover={{y:-5}} transition={{duration:.35}}>
+function ProductCard({product,wished,onToggle,onAdd}){const soldOut=Number(product.stock)<=0;return <motion.article className="product-card" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.14}} whileHover={{y:-5}} transition={{duration:.35}}>
   <div className="product-image-wrap"><Link className="product-image" to={'/product/'+product.id}><img src={product.image} alt={product.name} loading="lazy"/><span className="product-image-glow"/></Link>
-    {product.tag&&<span className="product-badge">{product.tag}</span>}
+    {soldOut?<span className="product-badge" style={{background:'#171515',color:'#fff'}}>STOCK OUT</span>:product.tag&&<span className="product-badge">{product.tag}</span>}
     <button className={wished?'wishlist-chip is-active':'wishlist-chip'} onClick={onToggle} aria-label={wished?'Remove from wishlist':'Add to wishlist'}><Heart fill={wished?'currentColor':'none'}/></button>
-    <button className="quick-add-button" onClick={onAdd}><Plus/> Quick add</button>
+    <button className="quick-add-button" onClick={onAdd} disabled={soldOut} style={soldOut?{opacity:.55,cursor:'not-allowed'}:undefined}>{soldOut?'Stock Out':<><Plus/> Quick add</>}</button>
   </div>
   <div className="product-meta"><span>{product.category}</span><span className="product-rating"><Star fill="currentColor"/> 4.9</span></div>
   <Link className="product-name" to={'/product/'+product.id}>{product.name}</Link>
