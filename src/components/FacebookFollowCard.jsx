@@ -40,11 +40,11 @@ export default function FacebookFollowCard() {
         data-href="https://www.facebook.com/azmeyra"
         data-tabs=""
         data-width="340"
-        data-height="190"
-        data-small-header="false"
+        data-height="130"
+        data-small-header="true"
         data-adapt-container-width="true"
-        data-hide-cover="false"
-        data-show-facepile="true"
+        data-hide-cover="true"
+        data-show-facepile="false"
       >
         <blockquote cite="https://www.facebook.com/azmeyra" className="fb-xfbml-parse-ignore">
           <a href="https://www.facebook.com/azmeyra">Azmeyra</a>
