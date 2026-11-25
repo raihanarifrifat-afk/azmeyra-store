@@ -3525,12 +3525,9 @@ body{font-size:18px}
  .account-shell:not(.account-shell-auth) .account-empty{padding:26px 14px!important}
 }
 
-/* Facebook page follow card in footer */
-.facebook-follow-card{display:flex;align-items:center;gap:12px;width:min(100%,360px);margin-top:22px;padding:12px 14px;border-radius:14px;background:#f4f5f7;color:#17191d;text-decoration:none;box-shadow:0 5px 18px rgba(0,0,0,.12);transition:transform .2s,box-shadow .2s}
-.facebook-follow-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
-.facebook-follow-icon{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:12px;background:#1877f2;color:#fff;font:700 34px/1 Arial,sans-serif;padding-top:7px}
-.facebook-follow-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.facebook-follow-copy strong{font-size:14px;letter-spacing:.2px;color:#17191d}
-.facebook-follow-copy small{font-size:11px;color:#68707b}
-.facebook-follow-action{color:#1877f2;font-size:13px;font-weight:700}
-@media(max-width:700px){.facebook-follow-card{width:100%;max-width:360px;margin-top:20px;padding:11px 12px}.facebook-follow-icon{width:40px;height:40px;flex-basis:40px}}
+
+
+/* Official Facebook Page Plugin */
+.facebook-page-embed{width:100%;max-width:360px;margin-top:22px;min-height:130px;overflow:hidden;border-radius:10px;background:#fff}
+.facebook-page-embed iframe{display:block;width:100%;max-width:340px;height:130px;border:0}
+@media(max-width:700px){.facebook-page-embed{max-width:100%;width:100%;}}
