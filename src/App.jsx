@@ -153,7 +153,7 @@ function App(){
           <Route path="/cart" element={<CartPage cart={cart} total={cartTotal} onQuantity={setQuantity} onRemove={removeFromCart}/>}/>
           <Route path="/checkout" element={<Checkout cart={cart} total={cartTotal} setCart={setCart} orders={orders} setOrders={setOrders} session={authSession}/>}/>
           <Route path="/account" element={<Account session={authSession} authLoading={authLoading} cart={cart} setCart={setCart} wishlist={wishlist} products={products} onAdd={addToCart}/>}/>
-          <Route path="/track" element={<TrackOrder orders={orders}/>}/>
+          <Route path="/track" element={<TrackOrder session={authSession} authLoading={authLoading}/>}/>
           <Route path="/wishlist" element={<WishlistPage products={products} wishlist={wishlist} onToggleWishlist={toggleWishlist} onAdd={addToCart}/>}/>
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/contact" element={<ContactPage/>}/>
@@ -480,7 +480,49 @@ function Account({session,authLoading,cart,setCart,wishlist,products,onAdd}) {
   {tab==='Wishlist'&&<section className="account-section"><div className="account-section-title"><h2>Wishlist</h2><Link to="/wishlist">View all <ArrowRight/></Link></div>{wishlist.length?<div className="account-wishlist-grid">{wishlist.slice(0,4).map(id=>products.find(p=>p.id===id)).filter(Boolean).map(p=><div key={p.id}><img src={p.image} alt={p.name}/><b>{p.name}</b><span>{money(p.price)}</span><button onClick={()=>onAdd(p)}>Add to bag</button></div>)}</div>:<div className="account-empty"><Heart/><h3>Your wishlist is empty</h3><Link to="/shop" className="button button-dark">Discover pieces</Link></div>}</section>}
   {tab==='Security'&&<section className="account-section"><h2>Account security</h2><form onSubmit={changePassword}><label>New password<input type="password" minLength="8" required value={password} onChange={e=>setPassword(e.target.value)}/></label><button className="button button-dark" disabled={passwordBusy}>{passwordBusy?'Updating…':'Change password'} <ArrowRight/></button></form><div className="account-security-signout"><p>Sign out of your AZMEYRA account on this device.</p><button className="button button-light" onClick={()=>supabase.auth.signOut()}>Sign out</button></div></section>}</>:<><div className="account-auth-reference-heading"><h1>Welcome</h1><span>SIGN IN TO YOUR ACCOUNT</span></div><div className="account-auth-layout account-auth-layout-compact"><div className="simple-panel account-auth-panel"><div className="account-tabs account-auth-tabs"><button type="button" className={mode==='login'?'active':''} onClick={()=>{setMode('login');setError('');setNotice('');}}>Sign in</button><button type="button" className={mode==='signup'?'active':''} onClick={()=>{setMode('signup');setError('');setNotice('');}}>Sign up</button><span className="account-auth-tab-indicator" style={{transform:mode==='signup'?'translateX(100%)':'translateX(0)'}}/></div><p className="account-auth-welcome-copy">{mode==='login'?'Welcome back — sign in to continue.':'Create your AZMEYRA account.'}</p><form key={mode} className="account-auth-form" onSubmit={submitAuth}>{mode==='signup'&&<><div className="account-auth-field"><input id="auth-full-name" name="full_name" placeholder=" " minLength="2" maxLength="100" autoComplete="name" required/><label htmlFor="auth-full-name">Name</label></div></>}<div className="account-auth-field"><input id="auth-email" name="email" type="email" placeholder=" " autoComplete="email" required/><label htmlFor="auth-email">Email address</label></div>{mode==='signup'&&<div className="account-auth-field"><input id="auth-phone" name="phone" type="tel" placeholder=" " pattern="01[0-9]{9}" autoComplete="tel" required/><label htmlFor="auth-phone">Phone number</label></div>}<div className="account-auth-field"><input id="auth-password" name="password" type="password" placeholder=" " minLength="8" autoComplete={mode==='login'?'current-password':'new-password'} required/><label htmlFor="auth-password">Password</label></div>{mode==='signup'&&<div className="account-auth-field"><input id="auth-confirm-password" name="confirm_password" type="password" placeholder=" " minLength="8" autoComplete="new-password" required/><label htmlFor="auth-confirm-password">Confirm password</label></div>}{mode==='login'&&<button type="button" className="account-forgot-link" onClick={async()=>{const email=document.getElementById('auth-email')?.value?.trim();if(!email){setError('Enter your email address first.');return;}setBusy(true);setError('');setNotice('');try{const {error:e}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:'https://azmeyra-store.vercel.app/account'});if(e)throw e;setNotice('Password reset link sent. Please check your email.');}catch(e){setError(e.message||'Could not send password reset email.');}finally{setBusy(false);}}}>Forgot password?</button>}{error&&<p className="form-hint" role="alert">{error}</p>}{notice&&<p className="account-notice" role="status">{notice}</p>}<button className="button button-dark" disabled={busy}>{busy?'Please wait…':mode==='login'?'Sign in':'Create account'} <ArrowRight/></button></form><div className="account-auth-divider"><span>OR</span></div><button type="button" className="account-google-button" onClick={continueWithGoogle} disabled={busy}><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 37.96 46.98 31.8 46.98 24.55z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.2A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.44-4.89 2.3-8.18 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48z"/></svg><span>Continue with Google</span></button><p className="account-auth-switch">{mode==='login'?"Don't have an account?":"Already have an account?"} <button type="button" onClick={()=>{setMode(mode==='login'?'signup':'login');setError('');setNotice('');}}>{mode==='login'?'Register':'Login'}</button></p></div></div></>}</div></div>;
 }
-function TrackOrder(){const [id,setId]=useState('');const [phone,setPhone]=useState('');const [order,setOrder]=useState(null);const [busy,setBusy]=useState(false);const [message,setMessage]=useState('');const lookup=async event=>{event.preventDefault();setBusy(true);setMessage('');setOrder(null);try{const {data,error}=await supabase.rpc('track_guest_order',{p_order_number:id.trim().toUpperCase(),p_phone:phone.trim()});if(error)throw error;if(!data){setMessage('No order matched. Check your order number and phone number.');return;}setOrder(data);}catch(error){setMessage(error.message||'Could not look up this order. Please try again.');}finally{setBusy(false);}};return <div className="page-wrap"><div className="shop-intro"><span className="eyebrow">ORDER SUPPORT</span><h1>Track your <em>order.</em></h1><p>Enter your order number and the phone number used at checkout.</p></div><div className="simple-panel"><form onSubmit={lookup}><label>Order number<input value={id} onChange={event=>setId(event.target.value)} placeholder="e.g. AZ12345678" required/></label><label>Phone number<input value={phone} onChange={event=>setPhone(event.target.value)} placeholder="01XXXXXXXXX" inputMode="tel" required/></label><button className="button button-dark" type="submit" disabled={busy}>{busy?'Checking…':'Track order'} <ArrowRight/></button></form>{message&&<p className="form-hint" role="alert">{message}</p>}{order&&<div className="order-history-card"><b>{order.order_number}</b><span>{order.status}</span><p>Total: {money(order.total)}</p><p>Delivery fee: {money(order.delivery_fee)}</p><p>Items: {order.item_count}</p><p>Placed: {new Date(order.created_at).toLocaleString()}</p></div>}</div></div>}
+function TrackOrder({session,authLoading}){
+  const [id,setId]=useState('');
+  const [order,setOrder]=useState(null);
+  const [busy,setBusy]=useState(false);
+  const [message,setMessage]=useState('');
+  const lookup=async event=>{
+    event.preventDefault();
+    if(!session?.user){setMessage('Please sign in to track your order.');return;}
+    setBusy(true);setMessage('');setOrder(null);
+    try{
+      const {data,error}=await supabase.from('orders')
+        .select('id,order_number,status,total,delivery_fee,created_at,order_items(id)')
+        .eq('user_id',session.user.id)
+        .eq('order_number',id.trim().toUpperCase())
+        .maybeSingle();
+      if(error)throw error;
+      if(!data){setMessage('No order found in your account. Check the order number or view your orders in My Account.');return;}
+      setOrder(data);
+    }catch(error){setMessage(error.message||'Could not look up this order. Please try again.');}
+    finally{setBusy(false);}
+  };
+  return <div className="page-wrap">
+    <div className="shop-intro"><span className="eyebrow">ORDER SUPPORT</span><h1>Track your <em>order.</em></h1>
+      <p>{session?'Enter your order number to view its latest status.':'Sign in to your AZMEYRA account to securely view and track your orders.'}</p>
+    </div>
+    {authLoading?<div className="simple-panel track-auth-panel"><p>Checking your account…</p></div>:
+      !session?.user?<div className="simple-panel track-auth-panel">
+        <div className="track-lock-icon"><ShieldCheck/></div>
+        <h2>Sign in to track your order</h2>
+        <p>Order tracking is available to signed-in customers. Log in or create an AZMEYRA account using the email used for your order.</p>
+        <Link className="button button-dark" to="/account">Login / Create account <ArrowRight/></Link>
+        <small>Your orders remain private to your account.</small>
+      </div>:
+      <div className="simple-panel">
+        <form onSubmit={lookup}>
+          <label>Order number<input value={id} onChange={event=>setId(event.target.value)} placeholder="e.g. AZ12345678" required/></label>
+          <button className="button button-dark" type="submit" disabled={busy}>{busy?'Checking…':'Track order'} <ArrowRight/></button>
+        </form>
+        {message&&<p className="form-hint" role="alert">{message}</p>}
+        {order&&<div className="order-history-card"><b>{order.order_number}</b><span>{order.status}</span><p>Total: {money(order.total)}</p><p>Delivery fee: {money(order.delivery_fee)}</p><p>Items: {order.order_items?.length||0}</p><p>Placed: {new Date(order.created_at).toLocaleString()}</p><Link to="/account">View all my orders <ArrowRight/></Link></div>}
+      </div>}
+  </div>;
+}
 
 function WishlistPage({products,wishlist,onToggleWishlist,onAdd}){const saved=products.filter(product=>wishlist.includes(product.id));return <div className="page-wrap"><div className="shop-intro"><span className="eyebrow">THE PIECES YOU SAVED</span><h1>Your wish <em>list.</em></h1><p>A little collection of things you love.</p></div>{saved.length?<ProductGrid products={saved} wishlist={wishlist} onToggleWishlist={onToggleWishlist} onAdd={onAdd}/>:<div className="empty-state"><Heart/><h2>Nothing saved just yet.</h2><p>Tap the little heart on a piece to keep it close.</p><Link className="button button-dark" to="/shop">Explore the collection <ArrowUpRight/></Link></div>}</div>}
 
