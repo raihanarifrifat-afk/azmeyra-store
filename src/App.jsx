@@ -370,12 +370,14 @@ function ProductCard({product,wished,onToggle,onAdd}){return <motion.article cla
 function Shop({products,wishlist,onToggleWishlist,onAdd}){
   const [params,setParams]=useState(()=>new URLSearchParams(window.location.search));
   const [category,setCategory]=useState(params.get('category')||'All');
+  const [visibleCategoryNames,setVisibleCategoryNames]=useState(CATEGORIES.map(item=>item.name));
+  useEffect(()=>{let live=true;(async()=>{const {data,error}=await supabase.from('categories').select('name,is_active').order('sort_order');if(live&&!error&&data){const visible=data.filter(item=>item.is_active!==false).map(item=>item.name);setVisibleCategoryNames(visible);setCategory(current=>current!=='All'&&!visible.includes(current)?'All':current);}})();return()=>{live=false;};},[]);
   const [sort,setSort]=useState('featured');
   const [query,setQuery]=useState(params.get('search')||'');
   const [maxPrice,setMaxPrice]=useState(10000);
   const [size,setSize]=useState('All');
   const [filtersOpen,setFiltersOpen]=useState(false);
-  const categories=['All',...CATEGORIES.map(item=>item.name)];
+  const categories=['All',...visibleCategoryNames];
   const filtered=useMemo(()=>products.filter(item=>(category==='All'||item.category===category)&&item.price<=maxPrice&&(size==='All'||item.sizes?.includes(size))&&item.name.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>sort==='low'?a.price-b.price:sort==='high'?b.price-a.price:sort==='new'?b.id-a.id:0),[products,category,maxPrice,size,query,sort]);
   return <div className="page-wrap">
     <div className="shop-intro"><span className="eyebrow">THE AZMEYRA COLLECTION</span><h1>Find your <em>favourite.</em></h1><p>Thoughtful pieces for all the moments that make you, you.</p><div className="breadcrumb"><Link to="/">Home</Link><ChevronRight/> <span>Shop all</span></div></div>
