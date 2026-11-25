@@ -40,7 +40,7 @@ export default function FacebookFollowCard() {
         data-href="https://www.facebook.com/azmeyra"
         data-tabs=""
         data-width="340"
-        data-height="320"
+        data-height="190"
         data-small-header="false"
         data-adapt-container-width="true"
         data-hide-cover="false"
