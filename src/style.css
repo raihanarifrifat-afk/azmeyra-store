@@ -3686,10 +3686,10 @@ body{font-size:18px}
 }
 
 
-/* Facebook Page Plugin: compact native page header with no oversized blank cover area */
+/* Facebook follow card sizing: match the supplied Fabrilife compact Page Plugin */
 .site-footer .facebook-page-embed{
   display:block;width:100%;max-width:570px;height:120px;min-height:0;
-  margin:0;overflow:hidden;border-radius:12px;background:#fff;
+  margin:0;overflow:hidden;border-radius:13px;background:#e4e4e4;
 }
 .site-footer .facebook-page-embed iframe{
   display:block;width:100%;max-width:none;height:120px;min-height:120px;
