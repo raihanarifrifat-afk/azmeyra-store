@@ -3686,29 +3686,16 @@ body{font-size:18px}
 }
 
 
-/* Footer follow-up: compact Facebook card and safe mobile clearance above fixed dock */
-.az-facebook-follow-card{
-  display:flex;align-items:flex-start;gap:14px;width:100%;max-width:570px;
-  min-height:112px;padding:14px;background:#fff;color:#263b59;
-  border-radius:13px;overflow:hidden;
+/* Facebook Page Plugin: compact native page header with no oversized blank cover area */
+.site-footer .facebook-page-embed{
+  display:block;width:100%;max-width:570px;height:120px;min-height:0;
+  margin:0;overflow:hidden;border-radius:12px;background:#fff;
 }
-.az-facebook-follow-card>img{
-  display:block;width:66px;height:66px;flex:0 0 66px;object-fit:contain;
-  padding:5px;background:#080808;
+.site-footer .facebook-page-embed iframe{
+  display:block;width:100%;max-width:none;height:120px;min-height:120px;
+  border:0;overflow:hidden;
 }
-.az-facebook-follow-copy{display:flex;flex:1;min-width:0;flex-direction:column;align-items:flex-start;gap:22px}
-.az-facebook-follow-copy strong{font:500 20px/1.2 Arial,sans-serif;color:#36547b}
-.az-facebook-follow-copy a{
-  display:inline-flex;align-items:center;gap:7px;padding:8px 12px;
-  border:1px solid #d4d8de;border-radius:4px;color:#36547b;
-  font:600 13px/1 Arial,sans-serif;text-decoration:none;
-}
-.az-facebook-follow-copy a svg{width:14px;height:14px}
 @media(max-width:700px){
-  .az-facebook-follow-card{min-height:100px;padding:12px;gap:12px}
-  .az-facebook-follow-card>img{width:60px;height:60px;flex-basis:60px}
-  .az-facebook-follow-copy{gap:16px}
-  .az-facebook-follow-copy strong{font-size:18px}
-  .footer-reference-wrap{padding-bottom:165px!important}
-  .site-footer .footer-bottom{position:relative;z-index:2}
+  .site-footer .facebook-page-embed{width:100%;height:120px;min-height:0}
+  .site-footer .facebook-page-embed iframe{width:100%;height:120px;min-height:120px}
 }
