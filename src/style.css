@@ -3742,14 +3742,18 @@ body{font-size:18px}
   width:340px;
   max-width:100%!important;
   min-height:0;
-  height:320px;
+  height:190px;
   margin:0;
   overflow:hidden;
   background:#fff;
 }
+.site-footer .fb-widget-wrapper iframe{
+  display:block;
+  max-height:190px;
+}
 @media(max-width:700px){
   .site-footer .fb-widget-wrapper{width:340px;max-width:100%}
-  .site-footer .fb-widget-wrapper .fb-page{width:340px;max-width:100%!important;height:320px}
+  .site-footer .fb-widget-wrapper .fb-page{width:340px;max-width:100%!important;height:190px}
 }
 
 
